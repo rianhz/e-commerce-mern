@@ -1,17 +1,18 @@
-import express from 'express'
+import express from "express";
+import {
+	getProfile,
+	loginUser,
+	registerUser,
+} from "../../controller/userAction";
 
-const userRouter = express.Router()
+import { verifyToken } from "../../middleware/auth";
 
-userRouter.get('/profile',(req,res)=> {
+const userRouter = express.Router();
 
-})
+userRouter.get("/profile", verifyToken, getProfile);
 
-userRouter.post('/register',(req,res)=> {
-    
-})
+userRouter.post("/register", registerUser);
 
-userRouter.post('/login',(req,res)=> {
-    
-})
+userRouter.post("/login", loginUser);
 
-export default userRouter
+export default userRouter;
