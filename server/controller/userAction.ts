@@ -4,9 +4,13 @@ import { NextFunction, Request, Response } from "express";
 import * as bcrypt from "bcrypt";
 import { Users } from "../models/userModel";
 import jwt from "jsonwebtoken";
+import { IGetUserAuthInfoRequest } from "../middleware/auth";
 
 export const getProfile = async (req: Request, res: Response) => {
-	res.json({ msg: "haii" });
+	const user_id = (req as IGetUserAuthInfoRequest).user;
+
+	const user = await Users.find({ _id: user_id.id });
+	res.json(user[0]);
 };
 
 export const registerUser = async (req: Request, res: Response) => {

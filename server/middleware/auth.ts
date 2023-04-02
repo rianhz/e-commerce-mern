@@ -2,7 +2,12 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
 
 export interface IGetUserAuthInfoRequest extends Request {
-	user: string | JwtPayload;
+	user: {
+		id: string;
+		isAdmin: boolean;
+		iat: number;
+		exp: number;
+	};
 }
 
 export const verifyToken = async (
@@ -17,6 +22,8 @@ export const verifyToken = async (
 	}
 
 	jwt.verify(token, process.env.SECRET_KEY as string, (err: any, user: any) => {
+		console.log(user);
+
 		if (err) return res.status(403).json("Invalid token");
 		(req as IGetUserAuthInfoRequest).user = user;
 		next();
