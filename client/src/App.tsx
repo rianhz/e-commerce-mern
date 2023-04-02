@@ -1,7 +1,9 @@
+import RegisterUser from "./pages/RegisterUser/RegisterUser";
+
 function App() {
 	return (
 		<div className="App">
-			<h1>haii</h1>
+			<RegisterUser />
 		</div>
 	);
 }

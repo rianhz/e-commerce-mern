@@ -1,8 +1,8 @@
 server/node_modules
 
-.env
+server/.env
 
-index.js
+server/index.js
 
 client/node_modules
 client/.pnp

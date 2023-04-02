@@ -1,0 +1,20 @@
+.regis-container {
+	background-color: red;
+	width: 100%;
+	height: 100vh;
+	background-image: url("../../images/bg.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.form-wrapper {
+	color: white;
+	width: 350px;
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 40px;
+	border-radius: 20px;
+}

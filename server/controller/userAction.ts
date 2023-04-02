@@ -14,7 +14,7 @@ export const getProfile = async (req: Request, res: Response) => {
 };
 
 export const registerUser = async (req: Request, res: Response) => {
-	const { username, password } = req.body;
+	const { username, password, isAdmin } = req.body;
 	try {
 		const userDuplicated = await Users.findOne({ username });
 
@@ -24,6 +24,7 @@ export const registerUser = async (req: Request, res: Response) => {
 		await Users.create({
 			username,
 			password: hashed,
+			isAdmin,
 		});
 
 		res.status(201).json("User has been created");
