@@ -1,6 +1,7 @@
 import { Alert, Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const RegisterForm: React.FC = () => {
 	const [username, setUsername] = useState<string>("");
@@ -82,18 +83,24 @@ const RegisterForm: React.FC = () => {
 					type="radio"
 					label="Seller"
 					name="status"
-					className="me-4"
 					value="seller"
 					onChange={handleAdmin}
-				></Form.Check>
+				/>
 				<Form.Check
 					type="radio"
 					label="Buyer"
 					name="status"
 					value="buyer"
+					className="ms-3"
 					onChange={handleAdmin}
-				></Form.Check>
+				/>
 			</Form.Group>
+			<span id="acc">
+				Already have account? Sign in{" "}
+				<Link to="/sign-in" id="sign">
+					here
+				</Link>
+			</span>
 			<Button className="text-uppercase d-block w-100 mt-3" type="submit">
 				submit
 			</Button>

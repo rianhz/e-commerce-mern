@@ -1,0 +1,17 @@
+.contain {
+	margin-top: 100px;
+}
+
+a {
+	text-decoration: none !important;
+	color: white !important;
+}
+
+a#brand:hover {
+	color: white;
+}
+
+a#sign {
+	text-decoration: underline !important;
+	color: blue !important;
+}

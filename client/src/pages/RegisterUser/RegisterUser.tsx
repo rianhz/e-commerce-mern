@@ -1,10 +1,10 @@
 import RegisterForm from "../../components/RegisterForm";
 import "./regis.css";
 
-const RegisterUser = () => {
+const RegisterUser: React.FC = () => {
 	return (
 		<div className="regis-container">
-			<div className="form-wrapper">
+			<div className="form-regis-wrapper">
 				<RegisterForm />
 			</div>
 		</div>
