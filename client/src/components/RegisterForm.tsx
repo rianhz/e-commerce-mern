@@ -1,7 +1,7 @@
 import { Alert, Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const RegisterForm: React.FC = () => {
 	const [username, setUsername] = useState<string>("");
@@ -9,9 +9,20 @@ const RegisterForm: React.FC = () => {
 	const [confirmPassword, setConfimPassword] = useState<string>("");
 	const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
-	const [status, setStatus] = useState<boolean>(false);
+	const [alertStatus, setAlertStatus] = useState<boolean>(false);
 	const [alertText, setAlertText] = useState<string>("");
 	const [alertColor, setAlertColor] = useState<string>("");
+
+	const navigate = useNavigate();
+
+	const handleAlert = (status: boolean, text: string, color: string) => {
+		setAlertStatus(status);
+		setAlertText(text);
+		setAlertColor(color);
+		setTimeout(() => {
+			setAlertStatus(false);
+		}, 1500);
+	};
 
 	const handleAdmin = (e: React.ChangeEvent<HTMLInputElement>) => {
 		let val = e.target.value;
@@ -22,25 +33,26 @@ const RegisterForm: React.FC = () => {
 		e.preventDefault();
 
 		if (username === "" || password === "") {
-			setStatus(true);
-			setAlertText("Fill all fields!");
-			setAlertColor("danger");
-			setTimeout(() => {
-				setStatus(false);
-			}, 2000);
+			handleAlert(true, "Fill all fields!", "danger");
+		} else if (password !== confirmPassword) {
+			handleAlert(true, "Wrong confirm password!", "danger");
 		} else {
-			axios.post("http://localhost:5000/users/register", {
-				username: username,
-				password: password,
-				isAdmin: isAdmin,
-			});
-
-			setStatus(true);
-			setAlertText("Register Success");
-			setAlertColor("success");
-			setTimeout(() => {
-				setStatus(false);
-			}, 2000);
+			try {
+				await axios
+					.post("http://localhost:5000/users/register", {
+						username: username,
+						password: password,
+						isAdmin: isAdmin,
+					})
+					.then((response) => {
+						handleAlert(true, response.data.message, "success");
+						setTimeout(() => {
+							navigate("/sign-in");
+						}, 1200);
+					});
+			} catch (error: any) {
+				handleAlert(true, error.response.data.message, "danger");
+			}
 
 			setUsername("");
 			setPassword("");
@@ -51,7 +63,10 @@ const RegisterForm: React.FC = () => {
 	return (
 		<Form onSubmit={handleSubmit}>
 			<h2 className="text-uppercase text-center pb-3">sign up</h2>
-			<Alert variant={alertColor} className={status ? "d-block" : "d-none"}>
+			<Alert
+				variant={alertColor}
+				className={alertStatus ? "d-block" : "d-none"}
+			>
 				{alertText}
 			</Alert>
 			<Form.Group className="mb-2">

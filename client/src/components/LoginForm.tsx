@@ -33,7 +33,7 @@ const LoginForm: React.FC = () => {
 			navigate("/homepage");
 		} catch (error: any) {
 			setShowAlert(true);
-			setTextAlert(error.message);
+			setTextAlert(error.response.data.message);
 			setTimeout(() => {
 				setShowAlert(false);
 			}, 2000);

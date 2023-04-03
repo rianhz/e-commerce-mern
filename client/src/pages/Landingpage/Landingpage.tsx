@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 
 const Landingpage = () => {
-	return <Container className="contain">Homepage</Container>;
+	return <Container className="contain">Landing</Container>;
 };
 
 export default Landingpage;

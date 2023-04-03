@@ -12,7 +12,6 @@ export const getProfile = async (
 	next: NextFunction
 ) => {
 	const user_id = (req as IGetUserAuthInfoRequest).id;
-	console.log(user_id);
 
 	try {
 		const user = await Users.findById(user_id, "-password");
@@ -33,7 +32,7 @@ export const registerUser = async (req: Request, res: Response) => {
 		const userDuplicated = await Users.findOne({ username });
 
 		if (userDuplicated)
-			return res.status(400).json({ message: "username alerady exist" });
+			return res.status(400).json({ message: "Username alerady exist" });
 
 		const hashed = await bcrypt.hash(password, 10);
 		await Users.create({
@@ -71,10 +70,13 @@ export const loginUser = async (req: Request, res: Response) => {
 					},
 					process.env.SECRET_KEY as string,
 					{
-						expiresIn: "30s",
+						expiresIn: "35s",
 					}
 				);
 
+				if (req.cookies[`${user.id}`]) {
+					req.cookies[`${user.id}`] = "";
+				}
 				res
 					.cookie(user.id, token, {
 						httpOnly: true,
@@ -85,6 +87,34 @@ export const loginUser = async (req: Request, res: Response) => {
 			}
 		});
 	} catch (error: any) {
-		res.json(new Error(error));
+		res.status(400).json(error);
 	}
+};
+
+export const logoutUser = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
+	const cookies = req.headers.cookie;
+	const prevToken = cookies?.split("=")[1];
+	console.log(cookies);
+
+	if (!prevToken) {
+		return res.status(400).json({ message: "Couldn't find token" });
+	}
+	jwt.verify(
+		prevToken as string,
+		process.env.SECRET_KEY as string,
+		(err: any, user: any) => {
+			if (err) {
+				return res.status(403).json({ message: "Authentication failed" });
+			}
+
+			res.clearCookie(`${user.id}`);
+			req.cookies[`${user.id}`] = "";
+
+			return res.status(200).json("Logout success");
+		}
+	);
 };
