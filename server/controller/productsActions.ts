@@ -8,7 +8,8 @@ export const getProduct = async (req: Request, res: Response) => {
 };
 
 export const addProduct = async (req: Request, res: Response) => {
-	const { product_name, product_price, product_made, desc } = req.body;
+	const { product_name, product_price, product_made, category, desc } =
+		req.body;
 
 	try {
 		if (!product_price || !product_name || !product_made || !desc) {
@@ -26,6 +27,7 @@ export const addProduct = async (req: Request, res: Response) => {
 			product_price,
 			product_image,
 			product_made,
+			category,
 			desc,
 		});
 
@@ -33,4 +35,37 @@ export const addProduct = async (req: Request, res: Response) => {
 	} catch (error) {
 		res.status(500).json({ message: "Server error" });
 	}
+};
+
+export const getProductLowPrice = async (req: Request, res: Response) => {
+	const products = await Product.find();
+	const result = products.filter((el) => el.product_price <= 50000);
+
+	res.json(result);
+};
+export const getProductExpensivePrice = async (req: Request, res: Response) => {
+	const products = await Product.find();
+	const result = products.filter((el) => el.product_price > 50000);
+
+	res.json(result);
+};
+export const getProductMale = async (req: Request, res: Response) => {
+	const products = await Product.find();
+	const result = products.filter((el) => el.category === "male");
+
+	res.json(result);
+};
+
+export const getProductFemale = async (req: Request, res: Response) => {
+	const products = await Product.find();
+	const result = products.filter((el) => el.category === "female");
+
+	res.json(result);
+};
+
+export const getProductJewelery = async (req: Request, res: Response) => {
+	const products = await Product.find();
+	const result = products.filter((el) => el.category === "jewelery");
+
+	res.json(result);
 };
