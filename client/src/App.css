@@ -1,39 +1,6 @@
+body {
+	overflow: hidden;
+}
 .contain {
 	margin-top: 100px;
-}
-
-a {
-	text-decoration: none !important;
-	color: white !important;
-}
-
-a#brand:hover {
-	color: white;
-}
-
-a#regLink,
-a#logLink {
-	padding: 10px 20px;
-	border-radius: 10px;
-	transition: all 0.6s;
-	font-weight: 500;
-}
-a#regLink {
-	outline: none;
-}
-a#regLink:hover {
-	background-color: rgb(75, 75, 75);
-}
-
-a#logLink {
-	background-color: rgb(48, 61, 135);
-}
-
-a#logLink:hover {
-	background-color: rgb(51, 77, 225);
-}
-
-a#sign {
-	text-decoration: underline !important;
-	color: blue !important;
 }

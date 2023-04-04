@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navigation from "./components/Navigation";
+import Navigation from "./components/navbar/Navigation";
 import RegisterUser from "./pages/RegisterUser/RegisterUser";
 import Homepage from "./pages/Homepage/Homepage";
 import LoginUser from "./pages/LoginUser/LoginUser";
@@ -11,6 +11,8 @@ import axios from "axios";
 function App() {
 	const [user, setUser] = useState<string>("");
 	const [errorStatus, setErrorStatus] = useState<number>();
+
+	const [mobile, setMobile] = useState<boolean>(false);
 
 	const getUserInfo = async () => {
 		const res = await axios
@@ -32,6 +34,7 @@ function App() {
 			});
 		setUser(res?.data.username);
 	};
+	console.log(user);
 
 	const handleLogout = async () => {
 		const res = await axios
@@ -41,6 +44,7 @@ function App() {
 			.catch((err) => {
 				setErrorStatus(err.response.status);
 			});
+		setMobile(!mobile);
 
 		if (res?.status === 200) {
 			setUser("");
@@ -52,7 +56,12 @@ function App() {
 	return (
 		<div className="App">
 			<BrowserRouter>
-				<Navigation user={user} handleLogout={handleLogout} />
+				<Navigation
+					user={user}
+					handleLogout={handleLogout}
+					mobile={mobile}
+					setMobile={setMobile}
+				/>
 				<Routes>
 					<Route path="/" element={<Landingpage />} />
 					<Route
