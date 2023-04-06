@@ -1,84 +1,55 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/navbar/Navigation";
 import RegisterUser from "./pages/RegisterUser/RegisterUser";
-import Homepage from "./pages/Homepage/Homepage";
 import LoginUser from "./pages/LoginUser/LoginUser";
 import "./App.css";
-import Landingpage from "./pages/Landingpage/Landingpage";
 import { useState } from "react";
 import axios from "axios";
+import DashBoard from "./pages/Dashboard/Dashboard";
+import Products from "./pages/Products/Products";
+
+export interface IUser {
+	createdAt: Date;
+	isAdmin: boolean;
+	updatedAt: Date;
+	username: string;
+	__v: number;
+	_id: string;
+}
 
 function App() {
-	const [user, setUser] = useState<string>("");
-	const [errorStatus, setErrorStatus] = useState<number>();
+	const [user, setUser] = useState<IUser | undefined>();
 
 	const [mobile, setMobile] = useState<boolean>(false);
 
-	const getUserInfo = async () => {
-		const res = await axios
-			.get("http://localhost:5000/users/profile", {
-				withCredentials: true,
-			})
-			.catch((err) => {
-				setErrorStatus(err.response.status);
-			});
-		setUser(res?.data.username);
-	};
-	const refreshGetUserInfo = async () => {
-		const res = await axios
-			.get("http://localhost:5000/users/refresh", {
-				withCredentials: true,
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-		setUser(res?.data.username);
-	};
-	console.log(user);
-
 	const handleLogout = async () => {
-		const res = await axios
-			.post("http://localhost:5000/users/logout", null, {
-				withCredentials: true,
+		await axios
+			.post("http://localhost:5000/users/logout")
+			.then((data) => {
+				console.log(data.statusText);
+				setUser(undefined);
+				setMobile(!mobile);
 			})
-			.catch((err) => {
-				setErrorStatus(err.response.status);
-			});
-		setMobile(!mobile);
-
-		if (res?.status === 200) {
-			setUser("");
-		}
-
-		return new Error("cant logout");
+			.catch((error) => console.log(error));
 	};
 
 	return (
 		<div className="App">
-			<BrowserRouter>
-				<Navigation
-					user={user}
-					handleLogout={handleLogout}
-					mobile={mobile}
-					setMobile={setMobile}
+			<Navigation
+				user={user}
+				handleLogout={handleLogout}
+				mobile={mobile}
+				setMobile={setMobile}
+			/>
+			<Routes>
+				<Route path="/" element={<LoginUser />} />
+				<Route path="/register" element={<RegisterUser />} />
+				<Route
+					path="/dashboard"
+					element={<DashBoard setUser={setUser} user={user} />}
 				/>
-				<Routes>
-					<Route path="/" element={<Landingpage />} />
-					<Route
-						path="/homepage"
-						element={
-							<Homepage
-								getUserInfo={getUserInfo}
-								refreshGetUserInfo={refreshGetUserInfo}
-								user={user}
-								errorStatus={errorStatus}
-							/>
-						}
-					/>
-					<Route path="/register" element={<RegisterUser />} />
-					<Route path="/sign-in" element={<LoginUser />} />
-				</Routes>
-			</BrowserRouter>
+				<Route path="/products" element={<Products />} />
+			</Routes>
 		</div>
 	);
 }

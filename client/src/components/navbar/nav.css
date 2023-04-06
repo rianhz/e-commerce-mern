@@ -8,8 +8,9 @@ nav {
 
 .nav-tab {
 	position: relative;
+	width: 400px;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	gap: 5px;
 	align-items: center;
 }
@@ -70,8 +71,25 @@ a#logLink.active {
 	font-size: 24px;
 }
 
+.cart {
+	position: relative;
+	color: white;
+	cursor: pointer;
+}
+
+#cart-nums {
+	font-size: 13px;
+	position: absolute;
+	bottom: -15px;
+	right: -5px;
+	background-color: red;
+	border-radius: 50%;
+	padding: 3px 5px;
+}
+
 @media only screen and (max-width: 768px) {
 	.nav-tab {
+		z-index: 30;
 		position: absolute;
 		right: -400px;
 		top: 65px;

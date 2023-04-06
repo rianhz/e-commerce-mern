@@ -17,3 +17,12 @@
 	padding: 40px;
 	border-radius: 20px;
 }
+
+a#linkReg {
+	text-decoration: underline !important;
+	color: blue !important;
+}
+
+span#regSpan {
+	font-size: 11px;
+}

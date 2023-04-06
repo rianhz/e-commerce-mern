@@ -21,3 +21,8 @@
 span#acc {
 	font-size: 11px;
 }
+
+a#linkSign {
+	text-decoration: underline !important;
+	color: blue !important;
+}

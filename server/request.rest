@@ -1,0 +1,21 @@
+GET http://localhost:5000/users/profile
+
+###
+POST http://localhost:5000/users/register
+Content-Type: application/json
+
+{
+    "username" : "aa",
+    "password" : "aa",
+    "confirmPassword" : "aa",
+    "isAdmin" : true
+}
+
+###
+POST http://localhost:5000/users/login
+Content-Type: application/json
+
+{
+    "username" : "c",
+    "password" : "c",
+}
