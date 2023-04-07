@@ -38,12 +38,13 @@ const LoginUser: React.FC<PropsTypes> = ({ user, setUser }) => {
 				handleAlert(true, "Fill all fields!", "danger");
 			}
 
-			await axios
-				.post("https://e-commerce-mern-api-three.vercel.app/users/login", {
+			await axios.post(
+				"https://e-commerce-mern-api-three.vercel.app/users/login",
+				{
 					username: username,
 					password: password,
-				})
-				.then((data) => setUser(data.data));
+				}
+			);
 
 			navigate("/products");
 		} catch (error: any) {

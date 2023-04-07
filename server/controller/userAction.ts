@@ -74,10 +74,13 @@ export const loginUser = async (req: Request, res: Response) => {
 			path: "/",
 			expires: new Date(Date.now() + 10000 * 24),
 			sameSite: "lax",
+			secure: true,
+			httpOnly: true,
 		});
 
 		return res.status(200).send(user);
 	} catch (error: any) {
+		console.log(error);
 		return res.status(400).json(error);
 	}
 };
