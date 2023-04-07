@@ -4,8 +4,6 @@ import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { IUser } from "../../App";
 
-axios.defaults.withCredentials = true;
-
 type PropsTypes = {
 	setUser: React.Dispatch<React.SetStateAction<IUser | undefined>>;
 	user: IUser | undefined;
@@ -21,10 +19,7 @@ const DashBoard: React.FC<PropsTypes> = ({ setUser, user }) => {
 	const getUserInfo = async () => {
 		try {
 			const res = await axios.get(
-				"https://e-commerce-mern-api-three.vercel.app/users/profile",
-				{
-					withCredentials: true,
-				}
+				"https://e-commerce-mern-api-three.vercel.app/users/profile"
 			);
 			const data = await res.data;
 			setUser(data);
