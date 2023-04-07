@@ -32,10 +32,13 @@ const LoginUser: React.FC = () => {
 				handleAlert(true, "Fill all fields!", "danger");
 			}
 
-			await axios.post("http://localhost:5000/users/login", {
-				username: username,
-				password: password,
-			});
+			await axios.post(
+				"https://e-commerce-mern-api-three.vercel.app/users/login",
+				{
+					username: username,
+					password: password,
+				}
+			);
 
 			navigate("/products");
 		} catch (error: any) {

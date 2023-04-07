@@ -10,7 +10,12 @@ import userRouter from "./routers/Users/userRouter";
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(
+	cors({
+		credentials: true,
+		origin: "https://e-commerce-mern-beta.vercel.app/",
+	})
+);
 app.use(express.json());
 app.use(cookieParser());
 app.use("/images", express.static(path.join(__dirname, "images")));

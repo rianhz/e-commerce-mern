@@ -98,63 +98,6 @@ export const getProfile = async (
 	}
 };
 
-// export const refreshToken = async (
-// 	req: Request,
-// 	res: Response,
-// 	next: NextFunction
-// ) => {
-// 	const cookies = req.headers.cookie;
-// 	console.log(cookies);
-
-// 	const token = cookies?.split("=")[1];
-
-// 	try {
-// 		if (!token) {
-// 			return res.status(400).json("Cant find Token !");
-// 		}
-
-// 		jwt.verify(
-// 			String(token),
-// 			process.env.SECRET_KEY as string,
-// 			(err: any, user: any) => {
-// 				if (err) {
-// 					console.log(err);
-// 				}
-
-// 				res.clearCookie(`${user.username}`);
-// 				req.cookies[`${user.username}`] = "";
-
-// 				const tokenref = jwt.sign(
-// 					{
-// 						id: user?._id.toString(),
-// 						username: user?.username,
-// 						email: user?.email,
-// 						isAdmin: user?.isAdmin,
-// 					},
-// 					process.env.SECRET_KEY as string,
-// 					{
-// 						expiresIn: "35s",
-// 					}
-// 				);
-// 				console.log("regenr");
-
-// 				res.cookie(String(user.username), tokenref, {
-// 					path: "/",
-// 					expires: new Date(Date.now() + 1000 * 30),
-// 					httpOnly: true,
-// 					sameSite: "lax",
-// 				});
-
-// 				(req as IGetUserAuthInfoRequest).username = user.username;
-// 			}
-// 		);
-// 		next();
-// 	} catch (error) {
-// 		if (error)
-// 			return res.status(400).json({ error: "Invalid adadadadsssssssssss" });
-// 	}
-// };
-
 export const logoutUser = async (
 	req: Request,
 	res: Response,
