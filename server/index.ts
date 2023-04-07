@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
 	cors({
 		credentials: true,
-		origin: "https://e-commerce-mern-beta.vercel.app/",
+		origin: "https://e-commerce-mern-beta.vercel.app",
 	})
 );
 app.use(express.json());
