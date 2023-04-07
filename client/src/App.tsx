@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/navbar/Navigation";
 import RegisterUser from "./pages/RegisterUser/RegisterUser";
 import LoginUser from "./pages/LoginUser/LoginUser";
@@ -6,7 +6,7 @@ import "./App.css";
 import { useState } from "react";
 import axios from "axios";
 import DashBoard from "./pages/Dashboard/Dashboard";
-import Products from "./pages/Products/Products";
+import Landingpage from "./pages/Landingpage/Landingpage";
 
 export interface IUser {
 	createdAt: Date;
@@ -26,7 +26,6 @@ function App() {
 		await axios
 			.post("http://localhost:5000/users/logout")
 			.then((data) => {
-				console.log(data.statusText);
 				setUser(undefined);
 				setMobile(!mobile);
 			})
@@ -42,13 +41,13 @@ function App() {
 				setMobile={setMobile}
 			/>
 			<Routes>
-				<Route path="/" element={<LoginUser />} />
+				<Route path="/" element={<Landingpage />} />
+				<Route path="/sign-in" element={<LoginUser />} />
 				<Route path="/register" element={<RegisterUser />} />
 				<Route
-					path="/dashboard"
+					path="/products"
 					element={<DashBoard setUser={setUser} user={user} />}
 				/>
-				<Route path="/products" element={<Products />} />
 			</Routes>
 		</div>
 	);

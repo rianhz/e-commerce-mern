@@ -1,0 +1,67 @@
+.landing-container {
+	background-image: url("../../images/bgLand.png");
+	background-position: center;
+	background-position-x: right;
+	background-position-y: -120px;
+
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100vh;
+	padding: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+}
+
+.landing-container h1 {
+	font-size: 70px;
+}
+
+.landing-container p {
+	font-size: 20px;
+	font-weight: 400;
+}
+
+.landing-text {
+	width: 700px;
+	background: rgba(0, 0, 0, 0.1) !important;
+	padding: 20px;
+	border-radius: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+}
+
+a#shopnow {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-transform: uppercase;
+	padding: 5px 20px;
+	border-radius: 20px;
+	box-shadow: 0 7px 20px -9px black !important;
+	gap: 4px;
+	font-weight: 600 !important;
+	color: black !important;
+	transition: 0.5s;
+	background-color: rgb(231, 242, 252);
+}
+
+a#shopnow:hover {
+	background-color: rgb(235, 159, 19);
+	transform: scale(1.1);
+}
+
+@media only screen and (max-width: 768px) {
+	.landing-text {
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+	}
+	.landing-container h1,
+	.landing-container p {
+		text-align: center;
+	}
+}

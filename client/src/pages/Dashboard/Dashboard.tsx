@@ -29,7 +29,7 @@ const DashBoard: React.FC<PropsTypes> = ({ setUser, user }) => {
 			if (error) {
 				console.log(error.response.data);
 			}
-			navigate("/");
+			navigate("/sign-in");
 		}
 	};
 

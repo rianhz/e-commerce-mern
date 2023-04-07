@@ -37,7 +37,7 @@ const LoginUser: React.FC = () => {
 				password: password,
 			});
 
-			navigate("/dashboard");
+			navigate("/products");
 		} catch (error: any) {
 			handleAlert(true, error.response.data.message, "danger");
 		}

@@ -8,9 +8,10 @@ nav {
 
 .nav-tab {
 	position: relative;
-	width: 400px;
+	width: 100%;
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
+	gap: 30px;
 	gap: 5px;
 	align-items: center;
 }
@@ -41,9 +42,10 @@ a.active {
 
 .nav-sign {
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
-	align-items: flex-start;
+	align-items: center;
+	margin: 0 20px;
+	gap: 20px;
 }
 a#logLink,
 a#regLink {
@@ -84,7 +86,7 @@ a#logLink.active {
 	right: -5px;
 	background-color: red;
 	border-radius: 50%;
-	padding: 3px 5px;
+	padding: 1px 5px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -114,7 +116,13 @@ a#logLink.active {
 	.nav-sign {
 		padding: 0 10px 50px 10px;
 		width: 100%;
+		flex-direction: column;
+		gap: 10px;
 	}
+	a#logLink {
+		padding: 10px 20px;
+	}
+
 	a#logLink,
 	a#regLink {
 		width: 100%;
@@ -128,5 +136,12 @@ a#logLink.active {
 		align-items: flex-end !important;
 
 		align-items: center;
+	}
+
+	.cart {
+		position: absolute;
+		z-index: 50;
+		right: 30px;
+		bottom: 265px;
 	}
 }

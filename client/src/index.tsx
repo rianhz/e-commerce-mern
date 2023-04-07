@@ -4,6 +4,7 @@ import { store } from "./app/store";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -11,9 +12,11 @@ const root = createRoot(container);
 root.render(
 	<>
 		<Provider store={store}>
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
+			<ChakraProvider>
+				<BrowserRouter>
+					<App />
+				</BrowserRouter>
+			</ChakraProvider>
 		</Provider>
 	</>
 );

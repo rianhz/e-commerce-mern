@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 const RegisterUser: React.FC = () => {
 	const [username, setUsername] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
+	const [email, setEmail] = useState<string>("");
 	const [confirmPassword, setConfimPassword] = useState<string>("");
 	const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
@@ -34,7 +35,7 @@ const RegisterUser: React.FC = () => {
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		if (username === "" || password === "") {
+		if (username === "" || password === "" || email === "") {
 			handleAlert(true, "Fill all fields!", "danger");
 			return;
 		}
@@ -48,13 +49,14 @@ const RegisterUser: React.FC = () => {
 			await axios
 				.post("http://localhost:5000/users/register", {
 					username: username,
+					email: email,
 					password: password,
 					isAdmin: isAdmin,
 				})
 				.then((response) => {
 					handleAlert(true, response.data.message, "success");
 					setTimeout(() => {
-						navigate("/");
+						navigate("/sign-in");
 					}, 1000);
 				});
 		} catch (error: any) {
@@ -92,6 +94,14 @@ const RegisterUser: React.FC = () => {
 					</Form.Group>
 					<Form.Group className="mb-2">
 						<Form.Control
+							placeholder="Email"
+							type="text"
+							onChange={(e) => setEmail(e.target.value)}
+							value={email}
+						/>
+					</Form.Group>
+					<Form.Group className="mb-2">
+						<Form.Control
 							placeholder="Password"
 							type="password"
 							onChange={(e) => setPassword(e.target.value)}
@@ -125,7 +135,7 @@ const RegisterUser: React.FC = () => {
 					</Form.Group>
 					<span id="acc">
 						Already have account? Sign in{" "}
-						<Link to="/" id="linkSign">
+						<Link to="/sign-in" id="linkSign">
 							here
 						</Link>
 					</span>
