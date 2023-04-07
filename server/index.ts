@@ -12,7 +12,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(
 	cors({
-		origin: "http://localhost:3000",
+		origin: "https://vercel.com/rianhz/e-commerce-mern",
 		credentials: true,
 	})
 );
