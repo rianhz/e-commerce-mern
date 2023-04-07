@@ -74,6 +74,7 @@ export const loginUser = async (req: Request, res: Response) => {
 			path: "/",
 			expires: new Date(Date.now() + 10000 * 24),
 			sameSite: "lax",
+			secure: true,
 			httpOnly: true,
 		});
 
