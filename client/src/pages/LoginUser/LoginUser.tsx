@@ -38,7 +38,7 @@ const LoginUser: React.FC<PropsTypes> = ({ user, setUser }) => {
 				handleAlert(true, "Fill all fields!", "danger");
 			}
 
-			await axios.post("https://e-commerce-api-mu.vercel.app/users/login", {
+			await axios.post("http://localhost:5000/users/login", {
 				username: username,
 				password: password,
 			});

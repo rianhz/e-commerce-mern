@@ -20,12 +20,9 @@ const DashBoard: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 	const getUserInfo = async () => {
 		try {
-			const res = await axios.get(
-				"https://e-commerce-api-mu.vercel.app/users/profile",
-				{
-					withCredentials: true,
-				}
-			);
+			const res = await axios.get("http://localhost:5000/users/profile", {
+				withCredentials: true,
+			});
 			const data = await res.data;
 			setUser(data);
 		} catch (error: any) {
