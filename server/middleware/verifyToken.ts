@@ -1,7 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { Users } from "../models/userModel";
-import { IGetUserAuthInfoRequest } from "./auth";
+
+export interface IGetUserAuthInfoRequest extends Request {
+	username: string;
+}
 
 export const verifyToken = async (
 	req: Request,

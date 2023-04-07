@@ -4,7 +4,7 @@ import { NextFunction, Request, Response } from "express";
 import * as bcrypt from "bcrypt";
 import { Users } from "../models/userModel";
 import jwt from "jsonwebtoken";
-import { IGetUserAuthInfoRequest } from "../middleware/auth";
+import { IGetUserAuthInfoRequest } from "../middleware/verifyToken";
 
 export const registerUser = async (req: Request, res: Response) => {
 	try {
