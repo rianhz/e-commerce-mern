@@ -73,7 +73,6 @@ export const loginUser = async (req: Request, res: Response) => {
 		res.cookie(String(user.username), token, {
 			path: "/",
 			expires: new Date(Date.now() + 10000 * 24),
-			httpOnly: true,
 			sameSite: "lax",
 		});
 

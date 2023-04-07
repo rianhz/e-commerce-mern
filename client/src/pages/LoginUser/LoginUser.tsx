@@ -4,8 +4,14 @@ import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./login.css";
 import { motion } from "framer-motion";
+import { IUser } from "../../App";
 
-const LoginUser: React.FC = () => {
+type PropsTypes = {
+	user: IUser | undefined;
+	setUser: React.Dispatch<React.SetStateAction<IUser | undefined>>;
+};
+
+const LoginUser: React.FC<PropsTypes> = ({ user, setUser }) => {
 	const [username, setUsername] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 
@@ -32,13 +38,12 @@ const LoginUser: React.FC = () => {
 				handleAlert(true, "Fill all fields!", "danger");
 			}
 
-			await axios.post(
-				"https://e-commerce-mern-api-three.vercel.app/users/login",
-				{
+			await axios
+				.post("https://e-commerce-mern-api-three.vercel.app/users/login", {
 					username: username,
 					password: password,
-				}
-			);
+				})
+				.then((data) => setUser(data.data));
 
 			navigate("/products");
 		} catch (error: any) {

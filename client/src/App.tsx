@@ -19,6 +19,7 @@ export interface IUser {
 
 function App() {
 	const [user, setUser] = useState<IUser | undefined>();
+	console.log(user);
 
 	const [mobile, setMobile] = useState<boolean>(false);
 
@@ -42,7 +43,10 @@ function App() {
 			/>
 			<Routes>
 				<Route path="/" element={<Landingpage />} />
-				<Route path="/sign-in" element={<LoginUser />} />
+				<Route
+					path="/sign-in"
+					element={<LoginUser user={user} setUser={setUser} />}
+				/>
 				<Route path="/register" element={<RegisterUser />} />
 				<Route
 					path="/products"
