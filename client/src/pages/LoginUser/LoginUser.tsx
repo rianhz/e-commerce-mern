@@ -38,10 +38,11 @@ const LoginUser: React.FC<PropsTypes> = ({ user, setUser }) => {
 				handleAlert(true, "Fill all fields!", "danger");
 			}
 
-			await axios.post("http://localhost:5000/users/login", {
+			const res = await axios.post("http://localhost:5000/users/login", {
 				username: username,
 				password: password,
 			});
+			console.log(res.data);
 
 			navigate("/products");
 		} catch (error: any) {

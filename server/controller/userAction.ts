@@ -78,18 +78,14 @@ export const loginUser = async (req: Request, res: Response) => {
 			httpOnly: true,
 		});
 
-		return res.status(200).send(user);
+		return res.status(200).send({ message: "Login success" });
 	} catch (error: any) {
 		console.log(error);
 		return res.status(400).json(error);
 	}
 };
 
-export const getProfile = async (
-	req: Request,
-	res: Response,
-	next: NextFunction
-) => {
+export const getProfile = async (req: Request, res: Response) => {
 	let username = (req as IGetUserAuthInfoRequest).username;
 
 	try {
@@ -100,11 +96,7 @@ export const getProfile = async (
 	}
 };
 
-export const logoutUser = async (
-	req: Request,
-	res: Response,
-	next: NextFunction
-) => {
+export const logoutUser = async (req: Request, res: Response) => {
 	const cookies = req.headers.cookie;
 	const prevToken = cookies?.split("=")[1];
 	if (!prevToken) {

@@ -19,7 +19,6 @@ export interface IUser {
 
 function App() {
 	const [user, setUser] = useState<IUser | undefined>();
-	console.log(user);
 
 	const [mobile, setMobile] = useState<boolean>(false);
 

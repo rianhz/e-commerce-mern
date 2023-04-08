@@ -11,7 +11,6 @@ export const verifyToken = async (
 	next: NextFunction
 ) => {
 	const cookies = req.headers.cookie;
-
 	const token = cookies?.split("=")[1];
 
 	try {
