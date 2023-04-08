@@ -11,12 +11,10 @@ import userRouter from "./routers/Users/userRouter";
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(
-	cors()
-	// 	{
-	// 	origin: "https://e-commerce-fe-five.vercel.app/",
-	// 	credentials: true,
-	// 	allowedHeaders: "X-Requested-With,content-type",
-	// }
+	cors({
+		origin: "https://e-commerce-fe-five.vercel.app",
+		credentials: true,
+	})
 );
 app.use(express.json());
 app.use(cookieParser());

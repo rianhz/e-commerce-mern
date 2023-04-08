@@ -5,7 +5,6 @@ import * as bcrypt from "bcrypt";
 import { Users } from "../models/userModel";
 import jwt from "jsonwebtoken";
 import { IGetUserAuthInfoRequest } from "../middleware/verifyToken";
-import bcrypts from "bcryptjs";
 
 export const registerUser = async (req: Request, res: Response) => {
 	try {
@@ -23,7 +22,7 @@ export const registerUser = async (req: Request, res: Response) => {
 		if (emailDuplicated)
 			return res.status(400).json({ error: "Email alerady exist" });
 
-		const hashed = await bcrypts.hash(password, 10);
+		const hashed = await bcrypt.hash(password, 10);
 
 		await Users.create({
 			username,
@@ -51,7 +50,7 @@ export const loginUser = async (req: Request, res: Response) => {
 
 		if (!user) return res.status(400).json({ message: "Username not found" });
 
-		const match = await bcrypts.compare(password, userPassword);
+		const match = await bcrypt.compare(password, userPassword);
 		if (!match) return res.status(400).json({ message: "Invalid password" });
 
 		const token = jwt.sign(
