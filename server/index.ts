@@ -14,6 +14,7 @@ app.use(
 	cors({
 		origin: "https://e-commerce-fe-five.vercel.app/",
 		credentials: true,
+		allowedHeaders: "X-Requested-With,content-type",
 	})
 );
 app.use(express.json());
