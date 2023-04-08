@@ -47,7 +47,7 @@ const RegisterUser: React.FC = () => {
 
 		try {
 			await axios
-				.post("http://localhost:5000/users/register", {
+				.post("https://e-commerce-api-green.vercel.app/users/register", {
 					username: username,
 					email: email,
 					password: password,
