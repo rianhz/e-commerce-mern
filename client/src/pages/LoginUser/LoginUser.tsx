@@ -43,9 +43,6 @@ const LoginUser: React.FC<PropsTypes> = ({ user, setUser }) => {
 				{
 					username: username,
 					password: password,
-				},
-				{
-					withCredentials: true,
 				}
 			);
 			console.log(res.data);
