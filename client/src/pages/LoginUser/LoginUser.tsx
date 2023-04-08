@@ -38,10 +38,13 @@ const LoginUser: React.FC<PropsTypes> = ({ user, setUser }) => {
 				handleAlert(true, "Fill all fields!", "danger");
 			}
 
-			const res = await axios.post("http://localhost:5000/users/login", {
-				username: username,
-				password: password,
-			});
+			const res = await axios.post(
+				"https://e-commerce-api-green.vercel.app/users/login",
+				{
+					username: username,
+					password: password,
+				}
+			);
 			console.log(res.data);
 
 			navigate("/products");
