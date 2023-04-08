@@ -75,6 +75,7 @@ export const loginUser = async (req: Request, res: Response) => {
 			expires: new Date(Date.now() + 10000 * 24),
 			sameSite: "lax",
 			secure: true,
+			httpOnly: true,
 		});
 
 		return res.status(200).send({ message: "Login success" });
