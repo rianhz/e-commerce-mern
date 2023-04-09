@@ -12,8 +12,9 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(
 	cors({
-		origin: "https://e-commerce-fe-five.vercel.app",
+		origin: "https://e-commerce-fe-five.vercel.app/",
 		credentials: true,
+		allowedHeaders: "*",
 	})
 );
 app.use(express.json());
