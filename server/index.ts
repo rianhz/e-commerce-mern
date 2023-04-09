@@ -1,6 +1,6 @@
 import * as dotenv from "dotenv";
 dotenv.config();
-import express from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import productRouter from "./routers/Products/productsRouter";
 import path from "path";
@@ -19,9 +19,12 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 app.use("/images", express.static(path.join(__dirname, "images")));
-
 app.use("/products", productRouter);
 app.use("/users", userRouter);
+
+app.get("/", (req: Request, res: Response) => {
+	res.json("Ready!");
+});
 
 app.listen(5000, (): void => {
 	console.log("Server Running");

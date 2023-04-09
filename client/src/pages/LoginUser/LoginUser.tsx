@@ -39,7 +39,7 @@ const LoginUser: React.FC<PropsTypes> = ({ user, setUser }) => {
 			}
 
 			const res = await axios.post(
-				"https://e-commerce-api-green.vercel.app/users/login",
+				"https://e-commerce-mern-api-rho.vercel.app/users/login",
 				{
 					username: username,
 					password: password,
