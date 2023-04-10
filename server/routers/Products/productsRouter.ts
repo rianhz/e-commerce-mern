@@ -7,8 +7,11 @@ import {
 	getProductJewelery,
 	getProductLowPrice,
 	getProductMale,
+	sortASC,
+	sortDESC,
 } from "../../controller/productsActions";
 import multer, { FileFilterCallback } from "multer";
+import { verifyAdmin } from "../../middleware/verifyAdmin";
 
 type DestinationCallback = (error: Error | null, destination: string) => void;
 type FileNameCallback = (error: Error | null, filename: string) => void;
@@ -54,11 +57,13 @@ productRouter.use(
 	)
 );
 productRouter.get("/", getProduct);
-productRouter.post("/", addProduct);
+productRouter.post("/", verifyAdmin, addProduct);
 productRouter.get("/filter-by/low-price", getProductLowPrice);
 productRouter.get("/filter-by/expensive-price", getProductExpensivePrice);
 productRouter.get("/filter-by/female", getProductFemale);
 productRouter.get("/filter-by/male", getProductMale);
 productRouter.get("/filter-by/jewelery", getProductJewelery);
+productRouter.get("/sort-by/asc", sortASC);
+productRouter.get("/sort-by/desc", sortDESC);
 
 export default productRouter;

@@ -39,7 +39,7 @@ const LoginUser: React.FC<PropsTypes> = ({ user, setUser }) => {
 			}
 
 			const res = await axios.post(
-				"https://e-commerce-mern-api-rho.vercel.app/users/login",
+				"http://localhost:5000/users/login",
 				{
 					username: username,
 					password: password,

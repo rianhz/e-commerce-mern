@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-
 import { Product } from "../models/productModel";
 
 export const getProduct = async (req: Request, res: Response) => {
@@ -38,34 +37,40 @@ export const addProduct = async (req: Request, res: Response) => {
 };
 
 export const getProductLowPrice = async (req: Request, res: Response) => {
-	const products = await Product.find();
-	const result = products.filter((el) => el.product_price <= 50000);
+	const products = await Product.find({ product_price: { $lt: 50000 } });
 
-	res.json(result);
+	res.json(products);
 };
 export const getProductExpensivePrice = async (req: Request, res: Response) => {
-	const products = await Product.find();
-	const result = products.filter((el) => el.product_price > 50000);
+	const products = await Product.find({ product_price: { $gt: 50000 } });
 
-	res.json(result);
+	res.json(products);
 };
 export const getProductMale = async (req: Request, res: Response) => {
-	const products = await Product.find();
-	const result = products.filter((el) => el.category === "male");
+	const products = await Product.find({ category: "male" });
 
-	res.json(result);
+	res.json(products);
 };
 
 export const getProductFemale = async (req: Request, res: Response) => {
-	const products = await Product.find();
-	const result = products.filter((el) => el.category === "female");
+	const products = await Product.find({ category: "female" });
 
-	res.json(result);
+	res.json(products);
 };
 
 export const getProductJewelery = async (req: Request, res: Response) => {
-	const products = await Product.find();
-	const result = products.filter((el) => el.category === "jewelery");
+	const products = await Product.find({ category: "jewelery" });
 
-	res.json(result);
+	res.json(products);
+};
+
+export const sortASC = async (req: Request, res: Response) => {
+	const products = await Product.find().sort({ product_name: "asc" });
+
+	res.json(products);
+};
+export const sortDESC = async (req: Request, res: Response) => {
+	const products = await Product.find().sort({ product_name: "desc" });
+
+	res.json(products);
 };

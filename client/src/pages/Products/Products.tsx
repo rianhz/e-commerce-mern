@@ -11,7 +11,7 @@ type PropsTypes = {
 	user: IUser | undefined;
 };
 
-const DashBoard: React.FC<PropsTypes> = ({ setUser, user }) => {
+const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -20,9 +20,7 @@ const DashBoard: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 	const getUserInfo = async () => {
 		try {
-			const res = await axios.get(
-				"https://e-commerce-mern-api-rho.vercel.app/users/profile"
-			);
+			const res = await axios.get("http://localhost:5000/users/profile");
 			const data = await res.data;
 			setUser(data);
 		} catch (error: any) {
@@ -40,4 +38,4 @@ const DashBoard: React.FC<PropsTypes> = ({ setUser, user }) => {
 	);
 };
 
-export default DashBoard;
+export default Products;

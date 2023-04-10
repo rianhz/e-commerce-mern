@@ -86,14 +86,25 @@ const Navigation: React.FC<PropsTypes> = ({
 					</div>
 
 					{user ? (
-						<NavLink
-							onClick={handleLogout}
-							id="logLink"
-							to="/"
-							className="text-uppercase"
+						<div
+							style={{
+								display: "flex",
+								flexDirection: "column",
+								justifyContent: "center",
+								gap: "2px",
+								alignItems: "center",
+							}}
 						>
-							logout
-						</NavLink>
+							<NavLink
+								onClick={handleLogout}
+								id="logLink"
+								to="/"
+								className="text-uppercase"
+							>
+								logout
+							</NavLink>
+							<span style={{ color: "white" }}>Hello, {user.username}</span>
+						</div>
 					) : (
 						<NavLink
 							id="logLink"

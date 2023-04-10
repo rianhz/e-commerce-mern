@@ -74,7 +74,6 @@ export const loginUser = async (req: Request, res: Response) => {
 			path: "/",
 			expires: new Date(Date.now() + 10000 * 24),
 			sameSite: "lax",
-			secure: true,
 			httpOnly: true,
 		});
 
@@ -99,15 +98,17 @@ export const getProfile = async (req: Request, res: Response) => {
 export const logoutUser = async (req: Request, res: Response) => {
 	const cookies = req.headers.cookie;
 	const prevToken = cookies?.split("=")[1];
+	console.log(prevToken);
+
 	if (!prevToken) {
 		return res.status(400).json({ message: "Couldn't find token" });
 	}
+
 	jwt.verify(
 		String(prevToken),
 		process.env.SECRET_KEY as string,
 		(err: any, user: any) => {
 			if (err) {
-				console.log(err);
 				return res.status(403).json({ message: "Authentication failed" });
 			}
 

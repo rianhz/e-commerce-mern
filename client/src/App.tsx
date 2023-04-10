@@ -5,7 +5,7 @@ import LoginUser from "./pages/LoginUser/LoginUser";
 import "./App.css";
 import { useState } from "react";
 import axios from "axios";
-import DashBoard from "./pages/Dashboard/Dashboard";
+import Products from "./pages/Products/Products";
 import Landingpage from "./pages/Landingpage/Landingpage";
 
 export interface IUser {
@@ -49,7 +49,7 @@ function App() {
 				<Route path="/register" element={<RegisterUser />} />
 				<Route
 					path="/products"
-					element={<DashBoard setUser={setUser} user={user} />}
+					element={<Products setUser={setUser} user={user} />}
 				/>
 			</Routes>
 		</div>
