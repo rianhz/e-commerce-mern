@@ -41,6 +41,38 @@ export const getProductLowPrice = async (req: Request, res: Response) => {
 
 	res.json(products);
 };
+
+export const searchByQuery = async (req: Request, res: Response) => {
+	const { category, price } = req.query;
+
+	try {
+		if (price == undefined && category !== undefined) {
+			const products = await Product.find({
+				category: category,
+			});
+
+			return res.status(200).json(products);
+		}
+
+		if (category == undefined && price !== undefined) {
+			const products = await Product.find({
+				product_price: price === "low" ? { $lt: 50000 } : { $gt: 50000 },
+			});
+
+			return res.status(200).json(products);
+		}
+
+		const products = await Product.find({
+			product_price: price === "low" ? { $lt: 50000 } : { $gt: 50000 },
+			category: category,
+		});
+
+		return res.status(200).json(products);
+	} catch (error) {
+		return res.json(error);
+	}
+};
+
 export const getProductExpensivePrice = async (req: Request, res: Response) => {
 	const products = await Product.find({ product_price: { $gt: 50000 } });
 

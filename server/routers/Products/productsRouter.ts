@@ -7,6 +7,7 @@ import {
 	getProductJewelery,
 	getProductLowPrice,
 	getProductMale,
+	searchByQuery,
 	sortASC,
 	sortDESC,
 } from "../../controller/productsActions";
@@ -57,6 +58,7 @@ productRouter.use(
 	)
 );
 productRouter.get("/", getProduct);
+productRouter.get("/search", searchByQuery);
 productRouter.post("/", verifyAdmin, addProduct);
 productRouter.get("/filter-by/low-price", getProductLowPrice);
 productRouter.get("/filter-by/expensive-price", getProductExpensivePrice);

@@ -3,9 +3,7 @@ import "./nav.css";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose, AiOutlineShoppingCart } from "react-icons/ai";
 import { IUser } from "../../App";
-import { Input, InputGroup, InputRightElement, Button } from "@chakra-ui/react";
 import React from "react";
-import { BsSearch } from "react-icons/bs";
 
 type PropsTypes = {
 	user: IUser | undefined;
@@ -20,9 +18,6 @@ const Navigation: React.FC<PropsTypes> = ({
 	mobile,
 	setMobile,
 }) => {
-	const [show, setShow] = React.useState(false);
-	const handleClick = () => setShow(!show);
-
 	return (
 		<nav>
 			<NavLink to="/" id="brand">
@@ -69,22 +64,6 @@ const Navigation: React.FC<PropsTypes> = ({
 				</div>
 
 				<div className="nav-sign">
-					<div>
-						<InputGroup size="md" color="white">
-							<Input
-								pr="4.5rem"
-								type="text"
-								placeholder="Search product"
-								borderRadius={20}
-							/>
-							<InputRightElement width="4.5rem">
-								<Button size="sm" onClick={handleClick} borderRadius="50%">
-									<BsSearch style={{ color: "black" }} />
-								</Button>
-							</InputRightElement>
-						</InputGroup>
-					</div>
-
 					{user ? (
 						<div
 							style={{

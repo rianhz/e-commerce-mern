@@ -14,7 +14,6 @@ export const verifyAdmin = async (
 			if (err)
 				return res.status(400).json({ message: "User not found as seller" });
 			const status = (user as { isAdmin: boolean }).isAdmin;
-			console.log(status);
 			if (status !== true)
 				return res
 					.status(400)
