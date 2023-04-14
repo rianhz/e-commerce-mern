@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Product } from "../models/productModel";
+import { Users } from "../models/userModel";
 
 export const getProduct = async (req: Request, res: Response) => {
 	const product = await Product.find();
@@ -46,7 +47,16 @@ export const searchByQuery = async (req: Request, res: Response) => {
 	const { category, price } = req.query;
 
 	try {
-		if (price == undefined && category !== undefined) {
+		if (
+			(price == undefined || price === "") &&
+			(price == undefined || price === "")
+		) {
+			const products = await Product.find();
+
+			return res.status(200).json(products);
+		}
+
+		if ((price == undefined || price === "") && category !== undefined) {
 			const products = await Product.find({
 				category: category,
 			});
@@ -54,9 +64,9 @@ export const searchByQuery = async (req: Request, res: Response) => {
 			return res.status(200).json(products);
 		}
 
-		if (category == undefined && price !== undefined) {
+		if ((category == undefined || category === "") && price !== undefined) {
 			const products = await Product.find({
-				product_price: price === "low" ? { $lt: 50000 } : { $gt: 50000 },
+				product_price: price === "low" ? { $lt: 100000 } : { $gt: 100001 },
 			});
 
 			return res.status(200).json(products);
@@ -105,4 +115,16 @@ export const sortDESC = async (req: Request, res: Response) => {
 	const products = await Product.find().sort({ product_name: "desc" });
 
 	res.json(products);
+};
+
+export const getProductInput = async (req: Request, res: Response) => {
+	const { product_names } = req.query;
+	console.log(product_names);
+
+	const product = await Product.find({
+		product_name: new RegExp(`${product_names}`, "i"),
+	});
+	console.log(product);
+
+	return res.json(product);
 };

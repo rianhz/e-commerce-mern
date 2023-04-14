@@ -47,7 +47,7 @@ const RegisterUser: React.FC = () => {
 
 		try {
 			await axios
-				.post("http://localhost:5000/users/register", {
+				.post(`${process.env.REACT_APP_REGISTER}`, {
 					username: username,
 					email: email,
 					password: password,

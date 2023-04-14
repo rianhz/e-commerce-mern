@@ -24,7 +24,7 @@ function App() {
 
 	const handleLogout = async () => {
 		await axios
-			.post("http://localhost:5000/users/logout")
+			.post(`${process.env.REACT_APP_LOGOUT}`)
 			.then((data) => {
 				setUser(undefined);
 				setMobile(!mobile);

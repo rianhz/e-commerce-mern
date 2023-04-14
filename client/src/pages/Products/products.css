@@ -29,9 +29,34 @@
 }
 
 .chakra-card {
-	transition: all 0.2s;
+	transition: 0.3s;
+	height: 430px;
 }
 
 .chakra-card:hover {
 	transform: scale(1.05);
+}
+
+.chakra-image {
+	height: 100%;
+}
+
+.chakra-checkbox__control {
+	border: 1px solid black !important;
+}
+
+@media only screen and (max-width: 768px) {
+	#form-filter {
+		flex-direction: column;
+	}
+
+	#price,
+	#category,
+	#btn-filter {
+		width: 100%;
+	}
+
+	#btn-filter {
+		margin-bottom: 10px;
+	}
 }

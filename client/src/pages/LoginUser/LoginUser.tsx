@@ -39,7 +39,7 @@ const LoginUser: React.FC<PropsTypes> = ({ user, setUser }) => {
 			}
 
 			const res = await axios.post(
-				"http://localhost:5000/users/login",
+				`${process.env.REACT_APP_LOGIN}`,
 				{
 					username: username,
 					password: password,
@@ -48,7 +48,6 @@ const LoginUser: React.FC<PropsTypes> = ({ user, setUser }) => {
 					withCredentials: true,
 				}
 			);
-			console.log(res.data);
 
 			navigate("/products");
 		} catch (error: any) {
