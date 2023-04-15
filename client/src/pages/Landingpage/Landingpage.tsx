@@ -1,6 +1,5 @@
 import { FaLongArrowAltRight } from "react-icons/fa";
 import "./landing.css";
-import { Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 

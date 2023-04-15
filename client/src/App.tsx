@@ -7,10 +7,12 @@ import { useState } from "react";
 import axios from "axios";
 import Products from "./pages/Products/Products";
 import Landingpage from "./pages/Landingpage/Landingpage";
+import FormProduct from "./pages/FormAddProduct/FormProduct";
+import EditProduct from "./pages/EditProduct/EditProduct";
 
 export interface IUser {
 	createdAt: Date;
-	isAdmin: boolean;
+	role: string;
 	updatedAt: Date;
 	username: string;
 	__v: number;
@@ -47,6 +49,8 @@ function App() {
 					element={<LoginUser user={user} setUser={setUser} />}
 				/>
 				<Route path="/register" element={<RegisterUser />} />
+				<Route path="/add-product" element={<FormProduct />} />
+				<Route path="/edit-product/:id" element={<EditProduct />} />
 				<Route
 					path="/products"
 					element={<Products setUser={setUser} user={user} />}

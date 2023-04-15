@@ -8,15 +8,15 @@ const UserSchema = new mongoose.Schema(
 		},
 		password: {
 			type: String,
-			required: [true, "Please provide a password"],
+			required: true,
 			unique: false,
 		},
 		email: {
 			type: String,
 			unique: true,
 		},
-		isAdmin: {
-			type: Boolean,
+		role: {
+			type: String,
 			required: true,
 		},
 	},

@@ -1,6 +1,6 @@
 import * as dotenv from "dotenv";
 dotenv.config();
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import * as bcrypt from "bcrypt";
 import { Users } from "../models/userModel";
 import jwt from "jsonwebtoken";
@@ -8,12 +8,12 @@ import { IGetUserAuthInfoRequest } from "../middleware/verifyToken";
 
 export const registerUser = async (req: Request, res: Response) => {
 	try {
-		const { username, password, isAdmin, email } = req.body;
+		const { username, password, role, email } = req.body;
 
 		const usernameDuplicated = await Users.findOne({ username });
 		const emailDuplicated = await Users.findOne({ email });
 
-		if (username === "" || password === "" || isAdmin === "" || email === "")
+		if (username === "" || password === "" || role === "" || email === "")
 			return res.status(400).json({ error: `All fields can't be empty` });
 
 		if (usernameDuplicated)
@@ -27,7 +27,7 @@ export const registerUser = async (req: Request, res: Response) => {
 		await Users.create({
 			username,
 			password: hashed,
-			isAdmin,
+			role,
 			email,
 		});
 
@@ -58,7 +58,7 @@ export const loginUser = async (req: Request, res: Response) => {
 				id: user?._id.toString(),
 				username: user?.username,
 				email: user?.email,
-				isAdmin: user?.isAdmin,
+				role: user?.role,
 			},
 			process.env.SECRET_KEY as string,
 			{

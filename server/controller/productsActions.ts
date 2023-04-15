@@ -1,9 +1,35 @@
 import { Request, Response } from "express";
 import { Product } from "../models/productModel";
-import { Users } from "../models/userModel";
 
 export const getProduct = async (req: Request, res: Response) => {
 	const product = await Product.find();
+	res.json(product);
+};
+
+export const getProductById = async (req: Request, res: Response) => {
+	const { id } = req.params;
+
+	const product = await Product.find({ _id: id });
+	res.json(product);
+};
+export const editProduct = async (req: Request, res: Response) => {
+	const { id } = req.params;
+	const { product_name, product_price, product_made, category, desc } =
+		req.body;
+
+	const product_image = req.file?.path;
+
+	const product = await Product.findOneAndUpdate(
+		{ _id: id },
+		{
+			product_name,
+			product_price,
+			product_made,
+			category,
+			desc,
+			product_image,
+		}
+	);
 	res.json(product);
 };
 
@@ -17,7 +43,7 @@ export const addProduct = async (req: Request, res: Response) => {
 		}
 
 		if (!req.file) {
-			return res.status(422).json("Image file is required");
+			return res.status(422).json({ message: "Image file is required" });
 		}
 
 		const product_image = req.file?.path;
@@ -37,6 +63,16 @@ export const addProduct = async (req: Request, res: Response) => {
 	}
 };
 
+export const deleteProduct = async (req: Request, res: Response) => {
+	const { id } = req.params;
+	try {
+		const product = await Product.findOneAndDelete({ _id: id });
+		return res.status(200).json({ message: "Product deleted!" });
+	} catch (error) {
+		return res.status(500).json({ message: "Internal server error" });
+	}
+};
+
 export const getProductLowPrice = async (req: Request, res: Response) => {
 	const products = await Product.find({ product_price: { $lt: 50000 } });
 
@@ -49,7 +85,7 @@ export const searchByQuery = async (req: Request, res: Response) => {
 	try {
 		if (
 			(price == undefined || price === "") &&
-			(price == undefined || price === "")
+			(category == undefined || category === "")
 		) {
 			const products = await Product.find();
 
@@ -119,12 +155,10 @@ export const sortDESC = async (req: Request, res: Response) => {
 
 export const getProductInput = async (req: Request, res: Response) => {
 	const { product_names } = req.query;
-	console.log(product_names);
 
 	const product = await Product.find({
 		product_name: new RegExp(`${product_names}`, "i"),
 	});
-	console.log(product);
 
 	return res.json(product);
 };

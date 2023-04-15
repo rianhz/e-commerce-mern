@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IUser } from "../../App";
 import { BsSearch } from "react-icons/bs";
 import Modal from "react-bootstrap/Modal";
@@ -17,9 +17,9 @@ import {
 	Image,
 	Stack,
 	Text,
-	RadioGroup,
 	Radio,
 	useRadioGroup,
+	RadioGroup,
 } from "@chakra-ui/react";
 import "./products.css";
 import { IProduct } from "../../product";
@@ -33,7 +33,7 @@ type PropsTypes = {
 
 const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 	const navigate = useNavigate();
-	// main functions
+	// main state
 	const [product, setProduct] = useState<IProduct[]>([]);
 	const [search, setSearch] = useState<string>("");
 	const [price, setPrice] = useState<string>("");
@@ -53,6 +53,7 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 		getProducts();
 	}, []);
 
+	// main functions
 	const getProducts = async () => {
 		const res = await axios.get("http://localhost:5000/products");
 		const data = await res.data;
@@ -136,10 +137,12 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 					sm={12}
 					className="mt-lg-0 mt-md-3 mt-sm-3 d-flex align-items-center"
 				>
-					<Stack direction="row" {...getRadioProps()}>
-						<Radio value="1">All</Radio>
-						<Radio value="2">A-Z</Radio>
-					</Stack>
+					<RadioGroup defaultValue="1">
+						<Stack direction="row" {...getRadioProps()}>
+							<Radio value="1">All</Radio>
+							<Radio value="2">A-Z</Radio>
+						</Stack>
+					</RadioGroup>
 				</Col>
 				<Col lg={5} md={12} sm={12}>
 					<form id="form-filter" onSubmit={handleSubmit}>
@@ -182,8 +185,18 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 					</InputGroup>
 				</Col>
 			</Row>
-
-			<Row className="mt-4 d-flex justify-content-center align-items-center">
+			<Row className="mt-3">
+				<Col>
+					{user?.role === "buyer" ? (
+						""
+					) : (
+						<Link to="/add-product">
+							<Button colorScheme="blue">ADD PRODUCTS</Button>
+						</Link>
+					)}
+				</Col>
+			</Row>
+			<Row className="mt-3 d-flex justify-content-center align-items-center">
 				{product.map((el, i) => {
 					return (
 						<Col
@@ -218,18 +231,29 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 										</Text>
 									</Stack>
 
-									<ButtonGroup spacing="2">
-										<Button variant="solid" colorScheme="blue">
-											Add to cart
-										</Button>
-										<Button
-											variant="ghost"
-											colorScheme="blue"
-											onClick={handleShow}
-										>
-											Preview
-										</Button>
-									</ButtonGroup>
+									{user?.role === "buyer" ? (
+										<ButtonGroup spacing="2">
+											<Button variant="solid" colorScheme="blue">
+												Add to cart
+											</Button>
+											<Button
+												variant="ghost"
+												colorScheme="blue"
+												onClick={handleShow}
+											>
+												Preview
+											</Button>
+										</ButtonGroup>
+									) : (
+										<ButtonGroup spacing="2">
+											<Button variant="solid" colorScheme="blue">
+												Edit
+											</Button>
+											<Button variant="ghost" colorScheme="blue">
+												Delete
+											</Button>
+										</ButtonGroup>
+									)}
 								</CardBody>
 							</Card>
 						</Col>
