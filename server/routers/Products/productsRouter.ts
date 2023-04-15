@@ -63,7 +63,7 @@ productRouter.use(
 );
 productRouter.get("/", getProduct);
 productRouter.get("/:id", getProductById);
-productRouter.get("/search", searchByQuery);
+productRouter.post("/search/query", searchByQuery);
 productRouter.patch("/edit/:id", verifyAdmin, editProduct);
 productRouter.delete("/delete/:id", verifyAdmin, deleteProduct);
 productRouter.post("/", verifyAdmin, addProduct);

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Alert, Button, Col, Container, Form, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const FormProduct: React.FC = () => {
 	const [pname, setPname] = useState<string>("");
@@ -9,6 +10,8 @@ const FormProduct: React.FC = () => {
 	const [category, setCategory] = useState<string>("");
 	const [description, setDescription] = useState<string>("");
 	const [pImage, setpImage] = useState<File | null>(null);
+
+	const navigate = useNavigate();
 
 	// ALERT
 	const [alertStatus, setAlertStatus] = useState<boolean>(false);
@@ -21,6 +24,7 @@ const FormProduct: React.FC = () => {
 		setAlertColor(color);
 		setTimeout(() => {
 			setAlertStatus(false);
+			navigate("/products");
 		}, 1500);
 	};
 
@@ -28,7 +32,6 @@ const FormProduct: React.FC = () => {
 		const target = e.target;
 
 		const file: File = (target.files as FileList)[0];
-		console.log(file);
 
 		setpImage(file);
 	};
@@ -52,7 +55,7 @@ const FormProduct: React.FC = () => {
 				}
 			);
 			const data = await res.data;
-			console.log(data);
+			handleAlert(true, data.message, "success");
 
 			setPname("");
 			setPmade("");

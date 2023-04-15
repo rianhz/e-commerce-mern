@@ -34,10 +34,13 @@ type PropsTypes = {
 const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 	const navigate = useNavigate();
 	// main state
-	const [product, setProduct] = useState<IProduct[]>([]);
+	const [refresher, setRefresher] = useState<boolean>(false);
+	const [product, setProduct] = useState<IProduct[]>();
 	const [search, setSearch] = useState<string>("");
 	const [price, setPrice] = useState<string>("");
 	const [category, setCategory] = useState<string>("");
+
+	console.log(product);
 
 	// modal
 	const [show, setShow] = useState(false);
@@ -51,11 +54,11 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 	useEffect(() => {
 		getProducts();
-	}, []);
+	}, [refresher]);
 
-	// main functions
+	// main functionsv
 	const getProducts = async () => {
-		const res = await axios.get("http://localhost:5000/products");
+		const res = await axios.get(`${process.env.REACT_APP_GET_PRODUCTS}`);
 		const data = await res.data;
 		setProduct(data);
 	};
@@ -68,21 +71,17 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 		setProduct(data);
 	};
 
-	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (e.target.value.length === 0) {
-			getProducts();
-		}
-		setSearch(e.target.value);
-	};
-
 	const getUserInfo = async () => {
 		try {
 			const res = await axios.get(`${process.env.REACT_APP_GET_USER}`);
 			const data = await res.data;
-			setUser(data);
+
+			if (!data) {
+				setUser(data);
+			}
 		} catch (error: any) {
 			if (error) {
-				console.log(error.response.data);
+				console.log(error);
 			}
 			navigate("/sign-in");
 		}
@@ -91,14 +90,30 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 		e.preventDefault();
 
 		try {
-			const res = await axios.get(
-				`${process.env.REACT_APP_PRODUCTS_SEARCH_QUERY}price=${price}&category=${category}`
+			const res = await axios.post(
+				`${process.env.REACT_APP_PRODUCTS_SEARCH_QUERY}?price=${price}&category=${category}`
 			);
 			const data = await res.data;
 			setProduct(data);
 		} catch (error) {
 			console.log(error);
 		}
+	};
+
+	const handleDeleteProduct = async (e: number) => {
+		await axios
+			.delete(`${process.env.REACT_APP_PRODUCTS_DELETE}/${e}`)
+			.then((response) => console.log(response.data));
+
+		setRefresher(!refresher);
+	};
+
+	// onChange
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (e.target.value.length === 0) {
+			getProducts();
+		}
+		setSearch(e.target.value);
 	};
 	const handleChangePrice = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		setPrice(e.target.value);
@@ -107,10 +122,13 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 		setCategory(e.target.value);
 	};
 
-	const handleRadio = async (val: string | number) => {
-		console.log(val);
+	const handleRadio = async (val: string) => {
 		if (val === "2") {
 			const res = await axios.get(`${process.env.REACT_APP_PRODUCTS_ASC}`);
+			const data = await res.data;
+			setProduct(data);
+		} else if (val === "3") {
+			const res = await axios.get(`${process.env.REACT_APP_PRODUCTS_DSC}`);
 			const data = await res.data;
 			setProduct(data);
 		} else {
@@ -141,6 +159,7 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 						<Stack direction="row" {...getRadioProps()}>
 							<Radio value="1">All</Radio>
 							<Radio value="2">A-Z</Radio>
+							<Radio value="3">Z-A</Radio>
 						</Stack>
 					</RadioGroup>
 				</Col>
@@ -197,7 +216,7 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 				</Col>
 			</Row>
 			<Row className="mt-3 d-flex justify-content-center align-items-center">
-				{product.map((el, i) => {
+				{product?.map((el, i) => {
 					return (
 						<Col
 							lg={3}
@@ -222,7 +241,9 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 											alignItems: "center",
 										}}
 									>
-										<Image src={`http://localhost:5000/${el.product_image}`} />
+										<Image
+											src={`${process.env.REACT_APP_BASE_URL}/${el.product_image}`}
+										/>
 									</div>
 									<Stack>
 										<Heading size="md">{el.product_name}</Heading>
@@ -246,10 +267,16 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 										</ButtonGroup>
 									) : (
 										<ButtonGroup spacing="2">
-											<Button variant="solid" colorScheme="blue">
-												Edit
-											</Button>
-											<Button variant="ghost" colorScheme="blue">
+											<Link to={`/edit-product/${el._id}`}>
+												<Button variant="solid" colorScheme="blue">
+													Edit
+												</Button>
+											</Link>
+											<Button
+												variant="ghost"
+												colorScheme="blue"
+												onClick={() => handleDeleteProduct(el._id)}
+											>
 												Delete
 											</Button>
 										</ButtonGroup>

@@ -1,18 +1,24 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Button, Col, Container, Form, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const EditProduct = () => {
 	const params = useParams();
-	console.log(params);
+	const { id } = params;
+	const navigate = useNavigate();
 
 	const [pname, setPname] = useState<string>("");
 	const [price, setPrice] = useState<string>("");
 	const [pmade, setPmade] = useState<string>("");
 	const [category, setCategory] = useState<string>("");
 	const [description, setDescription] = useState<string>("");
-	const [pImage, setpImage] = useState<File | null>(null);
+	const [pImage, setpImage] = useState<File | string>("");
+
+	useEffect(() => {
+		getProducts();
+	}, []);
+
 	// ALERT
 	const [alertStatus, setAlertStatus] = useState<boolean>(false);
 	const [alertText, setAlertText] = useState<string>("");
@@ -24,14 +30,27 @@ const EditProduct = () => {
 		setAlertColor(color);
 		setTimeout(() => {
 			setAlertStatus(false);
+			navigate("/products");
 		}, 1500);
+	};
+
+	const getProducts = async () => {
+		const res = await axios.get(`${process.env.REACT_APP_GET_PRODUCTS}/${id}`);
+
+		const data = await res.data;
+
+		setPname(data[0].product_name);
+		setPrice(data[0].product_price);
+		setPmade(data[0].product_made);
+		setCategory(data[0].category);
+		setDescription(data[0].desc);
+		setpImage(data[0].product_image);
 	};
 
 	const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const target = e.target;
 
 		const file: File = (target.files as FileList)[0];
-		console.log(file);
 
 		setpImage(file);
 	};
@@ -41,7 +60,7 @@ const EditProduct = () => {
 
 		try {
 			const res = await axios.patch(
-				`${process.env.REACT_APP_ADD_PRODUCTS}`,
+				`${process.env.REACT_APP_PRODUCTS_EDIT}/${id}`,
 				{
 					product_name: pname,
 					product_price: parseInt(price),
@@ -55,14 +74,8 @@ const EditProduct = () => {
 				}
 			);
 			const data = await res.data;
-			console.log(data);
 
-			setPname("");
-			setPmade("");
-			setPrice("");
-			setpImage(null);
-			setCategory("");
-			setDescription("");
+			handleAlert(true, data, "success");
 		} catch (error: any) {
 			handleAlert(true, error.response.data.message, "danger");
 		}
@@ -76,7 +89,7 @@ const EditProduct = () => {
 						className="m-auto border border-1 border-dark p-3 rounded"
 						onSubmit={handleSubmit}
 					>
-						<h2>Add Product</h2>
+						<h2>Edit Product</h2>
 						<Alert
 							variant={alertColor}
 							className={alertStatus ? "d-block" : "d-none"}

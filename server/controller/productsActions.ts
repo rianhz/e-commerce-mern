@@ -19,7 +19,7 @@ export const editProduct = async (req: Request, res: Response) => {
 
 	const product_image = req.file?.path;
 
-	const product = await Product.findOneAndUpdate(
+	await Product.findOneAndUpdate(
 		{ _id: id },
 		{
 			product_name,
@@ -30,7 +30,7 @@ export const editProduct = async (req: Request, res: Response) => {
 			product_image,
 		}
 	);
-	res.json(product);
+	res.json("Product edited!");
 };
 
 export const addProduct = async (req: Request, res: Response) => {
@@ -48,7 +48,7 @@ export const addProduct = async (req: Request, res: Response) => {
 
 		const product_image = req.file?.path;
 
-		const product = await Product.create({
+		await Product.create({
 			product_name,
 			product_price,
 			product_image,
@@ -57,7 +57,7 @@ export const addProduct = async (req: Request, res: Response) => {
 			desc,
 		});
 
-		res.json(product);
+		res.json({ message: "Product added!" });
 	} catch (error) {
 		res.status(500).json({ message: "Server error" });
 	}
@@ -66,7 +66,7 @@ export const addProduct = async (req: Request, res: Response) => {
 export const deleteProduct = async (req: Request, res: Response) => {
 	const { id } = req.params;
 	try {
-		const product = await Product.findOneAndDelete({ _id: id });
+		await Product.findOneAndDelete({ _id: id });
 		return res.status(200).json({ message: "Product deleted!" });
 	} catch (error) {
 		return res.status(500).json({ message: "Internal server error" });
