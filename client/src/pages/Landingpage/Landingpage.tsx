@@ -19,7 +19,7 @@ const Landingpage = () => {
 					troubling for the bank balance.
 				</p>
 
-				<Link id="shopnow" to="/sign-in">
+				<Link id="shopnow" to="/products">
 					shop now
 					<FaLongArrowAltRight style={{ padding: "0" }} />
 				</Link>

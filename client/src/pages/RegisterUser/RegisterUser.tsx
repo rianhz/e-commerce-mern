@@ -35,23 +35,14 @@ const RegisterUser: React.FC = () => {
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		if (username === "" || password === "" || email === "") {
-			handleAlert(true, "Fill all fields!", "danger");
-			return;
-		}
-
-		if (password !== confirmPassword) {
-			handleAlert(true, "Wrong confirm password!", "danger");
-			return;
-		}
-
 		try {
 			await axios
 				.post(`${process.env.REACT_APP_REGISTER}`, {
 					username: username,
 					email: email,
 					password: password,
-					isAdmin: isAdmin,
+					confirmPassword: confirmPassword,
+					role: isAdmin,
 				})
 				.then((response) => {
 					handleAlert(true, response.data.message, "success");

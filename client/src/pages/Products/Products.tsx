@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { IUser } from "../../App";
 import { BsSearch } from "react-icons/bs";
 import Modal from "react-bootstrap/Modal";
 import {
@@ -17,12 +16,10 @@ import {
 	Image,
 	Stack,
 	Text,
-	Radio,
-	useRadioGroup,
-	RadioGroup,
 } from "@chakra-ui/react";
 import "./products.css";
 import { IProduct } from "../../product";
+import { IUser } from "../../user";
 
 axios.defaults.withCredentials = true;
 
@@ -40,8 +37,6 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 	const [price, setPrice] = useState<string>("");
 	const [category, setCategory] = useState<string>("");
 
-	console.log(product);
-
 	// modal
 	const [show, setShow] = useState(false);
 
@@ -56,7 +51,7 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 		getProducts();
 	}, [refresher]);
 
-	// main functionsv
+	// main functions
 	const getProducts = async () => {
 		const res = await axios.get(`${process.env.REACT_APP_GET_PRODUCTS}`);
 		const data = await res.data;
@@ -64,8 +59,8 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 	};
 
 	const handleSearchInput = async () => {
-		const res = await axios.get(
-			`${process.env.REACT_APP_PRODUCTS_SEARCH}=${search}`
+		const res = await axios.post(
+			`${process.env.REACT_APP_PRODUCTS_SEARCH}?product_names=${search}`
 		);
 		const data = await res.data;
 		setProduct(data);
@@ -75,14 +70,10 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 		try {
 			const res = await axios.get(`${process.env.REACT_APP_GET_USER}`);
 			const data = await res.data;
-
-			if (!data) {
-				setUser(data);
-			}
+			setUser(data);
 		} catch (error: any) {
-			if (error) {
-				console.log(error);
-			}
+			console.log(error.response.data);
+
 			navigate("/sign-in");
 		}
 	};
@@ -113,6 +104,7 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 		if (e.target.value.length === 0) {
 			getProducts();
 		}
+
 		setSearch(e.target.value);
 	};
 	const handleChangePrice = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -122,12 +114,12 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 		setCategory(e.target.value);
 	};
 
-	const handleRadio = async (val: string) => {
-		if (val === "2") {
+	const handleRadio = async (val: React.ChangeEvent<HTMLInputElement>) => {
+		if (val.target.value === "az") {
 			const res = await axios.get(`${process.env.REACT_APP_PRODUCTS_ASC}`);
 			const data = await res.data;
 			setProduct(data);
-		} else if (val === "3") {
+		} else if (val.target.value === "za") {
 			const res = await axios.get(`${process.env.REACT_APP_PRODUCTS_DSC}`);
 			const data = await res.data;
 			setProduct(data);
@@ -136,9 +128,15 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 		}
 	};
 
-	const { getRadioProps } = useRadioGroup({
-		onChange: handleRadio,
-	});
+	const handleKeyup = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === "Enter") {
+			const res = await axios.post(
+				`${process.env.REACT_APP_PRODUCTS_SEARCH}?product_names=${search}`
+			);
+			const data = await res.data;
+			setProduct(data);
+		}
+	};
 
 	return (
 		<Container className="contain">
@@ -150,18 +148,35 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 				}}
 			>
 				<Col
-					lg={2}
+					lg={3}
 					md={12}
 					sm={12}
 					className="mt-lg-0 mt-md-3 mt-sm-3 d-flex align-items-center"
 				>
-					<RadioGroup defaultValue="1">
-						<Stack direction="row" {...getRadioProps()}>
-							<Radio value="1">All</Radio>
-							<Radio value="2">A-Z</Radio>
-							<Radio value="3">Z-A</Radio>
-						</Stack>
-					</RadioGroup>
+					<div className="radios" onChange={handleRadio}>
+						<Form.Check
+							label="All"
+							name="radios"
+							type="radio"
+							value="all"
+							id="all"
+							defaultChecked
+						/>
+						<Form.Check
+							label="A-Z"
+							name="radios"
+							type="radio"
+							value="az"
+							id="az"
+						/>
+						<Form.Check
+							label="Z-A"
+							name="radios"
+							type="radio"
+							value="za"
+							id="za"
+						/>
+					</div>
 				</Col>
 				<Col lg={5} md={12} sm={12}>
 					<form id="form-filter" onSubmit={handleSubmit}>
@@ -181,7 +196,7 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 						</Button>
 					</form>
 				</Col>
-				<Col lg={5} md={12} sm={12} className="mt-lg-0 mt-md-3 mt-sm-3 ">
+				<Col lg={4} md={12} sm={12} className="mt-lg-0 mt-md-3 mt-sm-3 ">
 					<InputGroup
 						size="md"
 						color="black"
@@ -195,6 +210,7 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 							borderRadius={20}
 							onChange={handleInputChange}
 							value={search}
+							onKeyUp={handleKeyup}
 						/>
 						<InputRightElement width="4.5rem">
 							<Button size="sm" borderRadius="50%" onClick={handleSearchInput}>

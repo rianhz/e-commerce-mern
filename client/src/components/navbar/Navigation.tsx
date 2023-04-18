@@ -2,8 +2,9 @@ import { NavLink } from "react-router-dom";
 import "./nav.css";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose, AiOutlineShoppingCart } from "react-icons/ai";
-import { IUser } from "../../App";
+
 import React from "react";
+import { IUser } from "../../user";
 
 type PropsTypes = {
 	user: IUser | undefined;

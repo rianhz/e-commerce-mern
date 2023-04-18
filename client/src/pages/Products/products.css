@@ -45,6 +45,13 @@
 	border: 1px solid black !important;
 }
 
+.radios {
+	display: flex;
+	gap: 15px;
+	justify-content: flex-start;
+	align-items: center;
+}
+
 @media only screen and (max-width: 768px) {
 	#form-filter {
 		flex-direction: column;

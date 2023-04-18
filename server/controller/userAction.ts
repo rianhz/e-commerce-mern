@@ -8,19 +8,41 @@ import { IGetUserAuthInfoRequest } from "../middleware/verifyToken";
 
 export const registerUser = async (req: Request, res: Response) => {
 	try {
-		const { username, password, role, email } = req.body;
+		const { username, password, confirmPassword, role, email } = req.body;
 
 		const usernameDuplicated = await Users.findOne({ username });
 		const emailDuplicated = await Users.findOne({ email });
 
+		console.log(username.length);
+
 		if (username === "" || password === "" || role === "" || email === "")
-			return res.status(400).json({ error: `All fields can't be empty` });
+			return res.status(400).json({ message: `All fields can't be empty!` });
+
+		if (username.length <= 3)
+			return res
+				.status(400)
+				.json({ message: "Username should more than 3 character!" });
 
 		if (usernameDuplicated)
-			return res.status(400).json({ error: "Username alerady exist" });
+			return res.status(400).json({ message: "Username alerady exist!" });
 
+		if (password.length <= 3)
+			return res
+				.status(400)
+				.json({ message: "Passowrd should more than 3 character!" });
+
+		if (password !== confirmPassword)
+			return res
+				.status(400)
+				.json({ message: "Wrong combination password, try again!" });
+
+		//regex email
+		let regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
+
+		if (!regex.test(email))
+			return res.status(400).json({ message: "Invalid Email!" });
 		if (emailDuplicated)
-			return res.status(400).json({ error: "Email alerady exist" });
+			return res.status(400).json({ message: "Email alerady exist" });
 
 		const hashed = await bcrypt.hash(password, 10);
 
@@ -72,7 +94,7 @@ export const loginUser = async (req: Request, res: Response) => {
 
 		res.cookie(String(user.username), token, {
 			path: "/",
-			expires: new Date(Date.now() + 115000000),
+			expires: new Date(Date.now() + 600000), //115000000
 			sameSite: "lax",
 			httpOnly: true,
 		});
@@ -98,7 +120,6 @@ export const getProfile = async (req: Request, res: Response) => {
 export const logoutUser = async (req: Request, res: Response) => {
 	const cookies = req.headers.cookie;
 	const prevToken = cookies?.split("=")[1];
-	console.log(prevToken);
 
 	if (!prevToken) {
 		return res.status(400).json({ message: "Couldn't find token" });

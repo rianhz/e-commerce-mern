@@ -4,14 +4,8 @@ import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./login.css";
 import { motion } from "framer-motion";
-import { IUser } from "../../App";
 
-type PropsTypes = {
-	user: IUser | undefined;
-	setUser: React.Dispatch<React.SetStateAction<IUser | undefined>>;
-};
-
-const LoginUser: React.FC<PropsTypes> = ({ user, setUser }) => {
+const LoginUser: React.FC = () => {
 	const [username, setUsername] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 
@@ -30,15 +24,11 @@ const LoginUser: React.FC<PropsTypes> = ({ user, setUser }) => {
 
 	const navigate = useNavigate();
 
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+	const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		try {
-			if (username === "" || password === "") {
-				handleAlert(true, "Fill all fields!", "danger");
-			}
-
-			const res = await axios.post(
+			await axios.post(
 				`${process.env.REACT_APP_LOGIN}`,
 				{
 					username: username,
@@ -63,7 +53,7 @@ const LoginUser: React.FC<PropsTypes> = ({ user, setUser }) => {
 				exit={{ opacity: 0, position: "absolute", bottom: "-400px" }}
 				transition={{ duration: 0.8 }}
 			>
-				<Form onSubmit={handleSubmit}>
+				<Form onSubmit={handleLogin}>
 					<h2 className="text-uppercase text-center pb-3">sign in</h2>
 					<Alert
 						variant={alertColor}

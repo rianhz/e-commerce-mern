@@ -9,29 +9,25 @@ import Products from "./pages/Products/Products";
 import Landingpage from "./pages/Landingpage/Landingpage";
 import FormProduct from "./pages/FormAddProduct/FormProduct";
 import EditProduct from "./pages/EditProduct/EditProduct";
-
-export interface IUser {
-	createdAt: Date;
-	role: string;
-	updatedAt: Date;
-	username: string;
-	__v: number;
-	_id: string;
-}
+import { IUser } from "./user";
+import { useAppSelector } from "./app/hooks";
 
 function App() {
 	const [user, setUser] = useState<IUser | undefined>();
-
 	const [mobile, setMobile] = useState<boolean>(false);
+	console.log(user);
+
+	const cart = useAppSelector((state) => state.cart);
+	console.log(cart);
 
 	const handleLogout = async () => {
 		await axios
 			.post(`${process.env.REACT_APP_LOGOUT}`)
-			.then((data) => {
+			.then(() => {
 				setUser(undefined);
 				setMobile(!mobile);
 			})
-			.catch((error) => console.log(error));
+			.catch((error) => console.log(error.response.data));
 	};
 
 	return (
@@ -44,10 +40,7 @@ function App() {
 			/>
 			<Routes>
 				<Route path="/" element={<Landingpage />} />
-				<Route
-					path="/sign-in"
-					element={<LoginUser user={user} setUser={setUser} />}
-				/>
+				<Route path="/sign-in" element={<LoginUser />} />
 				<Route path="/register" element={<RegisterUser />} />
 				<Route path="/add-product" element={<FormProduct />} />
 				<Route path="/edit-product/:id" element={<EditProduct />} />

@@ -74,6 +74,6 @@ productRouter.get("/filter-by/male", getProductMale);
 productRouter.get("/filter-by/jewelery", getProductJewelery);
 productRouter.get("/sort-by/asc", sortASC);
 productRouter.get("/sort-by/desc", sortDESC);
-productRouter.get("/search-product", getProductInput);
+productRouter.post("/search-product", getProductInput);
 
 export default productRouter;
