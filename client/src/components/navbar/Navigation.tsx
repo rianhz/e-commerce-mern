@@ -2,15 +2,16 @@ import { NavLink } from "react-router-dom";
 import "./nav.css";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose, AiOutlineShoppingCart } from "react-icons/ai";
-
 import React from "react";
 import { IUser } from "../../user";
+import { useAppSelector } from "../../app/hooks";
 
 type PropsTypes = {
 	user: IUser | undefined;
 	handleLogout: () => void;
 	mobile: boolean;
 	setMobile: React.Dispatch<React.SetStateAction<boolean>>;
+	handleShowCart: () => void;
 };
 
 const Navigation: React.FC<PropsTypes> = ({
@@ -18,7 +19,9 @@ const Navigation: React.FC<PropsTypes> = ({
 	handleLogout,
 	mobile,
 	setMobile,
+	handleShowCart,
 }) => {
+	const cart = useAppSelector((state) => state.cart.cart);
 	return (
 		<nav>
 			<NavLink to="/" id="brand">
@@ -96,7 +99,7 @@ const Navigation: React.FC<PropsTypes> = ({
 						</NavLink>
 					)}
 				</div>
-				<div className="cart">
+				<div className="cart" onClick={() => handleShowCart()}>
 					<AiOutlineShoppingCart
 						style={{
 							fontSize: "30px",
@@ -104,7 +107,7 @@ const Navigation: React.FC<PropsTypes> = ({
 							margin: "0",
 						}}
 					/>
-					<span id="cart-nums">2</span>
+					<span id="cart-nums">{cart.length}</span>
 				</div>
 			</div>
 		</nav>

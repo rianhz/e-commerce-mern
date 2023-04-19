@@ -1,6 +1,10 @@
+.container {
+	padding-top: 60px;
+}
+
+.landing-container {
+	margin-top: 60px;
+}
 body {
 	overflow-x: hidden;
-}
-.contain {
-	margin-top: 60px;
 }

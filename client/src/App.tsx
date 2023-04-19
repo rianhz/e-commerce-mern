@@ -11,14 +11,18 @@ import FormProduct from "./pages/FormAddProduct/FormProduct";
 import EditProduct from "./pages/EditProduct/EditProduct";
 import { IUser } from "./user";
 import { useAppSelector } from "./app/hooks";
+import MyCart from "./components/cart/MyCart";
 
 function App() {
 	const [user, setUser] = useState<IUser | undefined>();
 	const [mobile, setMobile] = useState<boolean>(false);
-	console.log(user);
+	const [showCart, setShowCart] = useState<boolean>(false);
 
 	const cart = useAppSelector((state) => state.cart);
 	console.log(cart);
+
+	const handleShowCart = () => setShowCart(!showCart);
+	const closeCart = () => setShowCart(!showCart);
 
 	const handleLogout = async () => {
 		await axios
@@ -37,6 +41,7 @@ function App() {
 				handleLogout={handleLogout}
 				mobile={mobile}
 				setMobile={setMobile}
+				handleShowCart={handleShowCart}
 			/>
 			<Routes>
 				<Route path="/" element={<Landingpage />} />
@@ -49,6 +54,7 @@ function App() {
 					element={<Products setUser={setUser} user={user} />}
 				/>
 			</Routes>
+			<MyCart showCart={showCart} closeCart={closeCart} />
 		</div>
 	);
 }

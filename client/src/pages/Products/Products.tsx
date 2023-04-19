@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
-import Modal from "react-bootstrap/Modal";
+
 import {
 	Input,
 	InputGroup,
@@ -20,6 +20,8 @@ import {
 import "./products.css";
 import { IProduct } from "../../product";
 import { IUser } from "../../user";
+import { useAppDispatch } from "../../app/hooks";
+import { addItem } from "../../features/cart/cartSlice";
 
 axios.defaults.withCredentials = true;
 
@@ -31,17 +33,11 @@ type PropsTypes = {
 const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 	const navigate = useNavigate();
 	// main state
-	const [refresher, setRefresher] = useState<boolean>(false);
 	const [product, setProduct] = useState<IProduct[]>();
 	const [search, setSearch] = useState<string>("");
 	const [price, setPrice] = useState<string>("");
 	const [category, setCategory] = useState<string>("");
-
-	// modal
-	const [show, setShow] = useState(false);
-
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
+	const [refresher, setRefresher] = useState<boolean>(false);
 
 	useEffect(() => {
 		getUserInfo();
@@ -107,9 +103,11 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 		setSearch(e.target.value);
 	};
+
 	const handleChangePrice = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		setPrice(e.target.value);
 	};
+
 	const handleChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		setCategory(e.target.value);
 	};
@@ -137,6 +135,8 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 			setProduct(data);
 		}
 	};
+
+	const dispatch = useAppDispatch();
 
 	return (
 		<Container className="contain">
@@ -269,26 +269,40 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 									</Stack>
 
 									{user?.role === "buyer" ? (
-										<ButtonGroup spacing="2">
-											<Button variant="solid" colorScheme="blue">
-												Add to cart
-											</Button>
+										<ButtonGroup
+											spacing="2"
+											display="flex"
+											justifyContent="center"
+											alignItems="center"
+										>
 											<Button
-												variant="ghost"
+												variant="solid"
 												colorScheme="blue"
-												onClick={handleShow}
+												onClick={() => dispatch(addItem(el))}
 											>
-												Preview
+												Add to cart
 											</Button>
 										</ButtonGroup>
 									) : (
-										<ButtonGroup spacing="2">
+										<ButtonGroup
+											spacing="2"
+											display="flex"
+											justifyContent="center"
+											gap="10px"
+											alignItems="center"
+										>
 											<Link to={`/edit-product/${el._id}`}>
-												<Button variant="solid" colorScheme="blue">
+												<Button
+													variant="solid"
+													colorScheme="blue"
+													width="100%"
+													padding="0 30px"
+												>
 													Edit
 												</Button>
 											</Link>
 											<Button
+												padding="0 20px"
 												variant="ghost"
 												colorScheme="blue"
 												onClick={() => handleDeleteProduct(el._id)}
@@ -303,15 +317,6 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 					);
 				})}
 			</Row>
-			<Modal show={show} onHide={handleClose}>
-				<Modal.Header closeButton>
-					<Modal.Title>Modal heading</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-				<Modal.Footer>
-					<Button onClick={handleClose}>Close</Button>
-				</Modal.Footer>
-			</Modal>
 		</Container>
 	);
 };

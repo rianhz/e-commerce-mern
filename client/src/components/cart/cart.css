@@ -1,0 +1,35 @@
+.offcanvas {
+	padding-bottom: 70px;
+}
+
+.cart-body {
+	width: 100%;
+	border: 1px solid black;
+	padding: 10px;
+	border-radius: 20px;
+	margin-bottom: 10px;
+}
+
+.cartRow2 {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.cartRow3 {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.total {
+	background-color: white;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	position: fixed;
+	bottom: 0;
+	height: 80px;
+	right: 30px;
+	width: 28%;
+}

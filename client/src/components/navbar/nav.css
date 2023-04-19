@@ -4,6 +4,11 @@ nav {
 	justify-content: space-between;
 	align-items: center;
 	padding: 20px 60px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 31;
 }
 
 .nav-tab {
@@ -71,6 +76,7 @@ a#logLink.active {
 	padding: 5px;
 	color: white;
 	font-size: 24px;
+	z-index: 31;
 }
 
 .cart {
@@ -92,9 +98,9 @@ a#logLink.active {
 @media only screen and (max-width: 768px) {
 	.nav-tab {
 		z-index: 30;
-		position: absolute;
+		position: fixed;
 		right: -400px;
-		top: 65px;
+		top: 0;
 		width: 250px;
 		height: 100vh;
 		background-color: black;
@@ -134,7 +140,9 @@ a#logLink.active {
 		display: flex;
 		justify-content: flex-end;
 		align-items: flex-end !important;
-
+		position: fixed;
+		top: 20px;
+		right: 30px;
 		align-items: center;
 	}
 
