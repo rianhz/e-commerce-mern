@@ -20,6 +20,13 @@ const MyCart: React.FC<PropsTypes> = ({ showCart, closeCart }) => {
 	const cartItem = useAppSelector((state) => state.cart.cart);
 	const totalPay = useAppSelector((state) => state.cart.total_payment);
 
+	const setCurrency = (num: number) => {
+		return new Intl.NumberFormat("Rp", {
+			style: "currency",
+			currency: "idr",
+		}).format(Math.round(num));
+	};
+
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
@@ -29,7 +36,7 @@ const MyCart: React.FC<PropsTypes> = ({ showCart, closeCart }) => {
 	return (
 		<Offcanvas show={showCart} onHide={closeCart} placement="end">
 			<Offcanvas.Header closeButton>
-				<Offcanvas.Title>Total Payment : {totalPay}</Offcanvas.Title>
+				<Offcanvas.Title>Payment : {setCurrency(totalPay)}</Offcanvas.Title>
 			</Offcanvas.Header>
 			<Offcanvas.Body className="position-relative">
 				{cartItem.length === 0 ? (
@@ -41,8 +48,8 @@ const MyCart: React.FC<PropsTypes> = ({ showCart, closeCart }) => {
 								<div className="cartText">
 									<h5>{el.product_name}</h5>
 									<div className="cartRow2">
-										<p>Price : ${el.product_price}</p>
-										<p>Total : ${el.total_price}</p>
+										<p>{setCurrency(el.product_price)}</p>
+										<p>Total: {setCurrency(el.total_price)}</p>
 									</div>
 									<div className="cartRow3">
 										<AiFillMinusSquare

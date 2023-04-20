@@ -146,12 +146,13 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 					borderRadius: "20px",
 					padding: "20px",
 				}}
+				className="mt-5"
 			>
 				<Col
 					lg={3}
 					md={12}
 					sm={12}
-					className="mt-lg-0 mt-md-3 mt-sm-3 d-flex align-items-center"
+					className="mt-lg-5 mt-md-3 mt-sm-3 d-flex align-items-center"
 				>
 					<div className="radios" onChange={handleRadio}>
 						<Form.Check

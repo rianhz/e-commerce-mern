@@ -19,8 +19,6 @@ function App() {
 	const [showCart, setShowCart] = useState<boolean>(false);
 
 	const cart = useAppSelector((state) => state.cart);
-	console.log(cart);
-
 	const handleShowCart = () => setShowCart(!showCart);
 	const closeCart = () => setShowCart(!showCart);
 
