@@ -3,7 +3,29 @@ import { Product } from "../models/productModel";
 
 export const getProduct = async (req: Request, res: Response) => {
 	const product = await Product.find();
-	res.json(product);
+	return res.json(product);
+};
+
+export const getProductPagination = async (req: Request, res: Response) => {
+	const page = req.query.page || 1;
+	const perPage = req.query.perPage || 5;
+	let totalData;
+
+	console.log({ page, perPage });
+
+	const product = await Product.find()
+		.countDocuments()
+		.then((counter) => {
+			totalData = counter;
+			Product.find()
+				.skip((parseInt(page as string) - 1) * parseInt(perPage as string))
+				.limit(parseInt(perPage as string))
+				.then((data) => res.json(data));
+		})
+
+		.catch((err) => console.log(err));
+
+	console.log(product);
 };
 
 export const getProductById = async (req: Request, res: Response) => {

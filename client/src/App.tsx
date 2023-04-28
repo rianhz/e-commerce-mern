@@ -12,6 +12,7 @@ import EditProduct from "./pages/EditProduct/EditProduct";
 import { IUser } from "./user";
 import { useAppSelector } from "./app/hooks";
 import MyCart from "./components/cart/MyCart";
+import AdminZone from "./pages/AdminZone/AdminZone";
 
 function App() {
 	const [user, setUser] = useState<IUser | undefined>();
@@ -47,6 +48,7 @@ function App() {
 				<Route path="/register" element={<RegisterUser />} />
 				<Route path="/add-product" element={<FormProduct />} />
 				<Route path="/edit-product/:id" element={<EditProduct />} />
+				<Route path="/admin" element={<AdminZone />} />
 				<Route
 					path="/products"
 					element={<Products setUser={setUser} user={user} />}

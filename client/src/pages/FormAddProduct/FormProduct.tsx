@@ -24,7 +24,6 @@ const FormProduct: React.FC = () => {
 		setAlertColor(color);
 		setTimeout(() => {
 			setAlertStatus(false);
-			navigate("/products");
 		}, 1500);
 	};
 
@@ -55,6 +54,8 @@ const FormProduct: React.FC = () => {
 				}
 			);
 			const data = await res.data;
+			navigate("/products");
+
 			handleAlert(true, data.message, "success");
 
 			setPname("");
@@ -70,7 +71,7 @@ const FormProduct: React.FC = () => {
 	return (
 		<Container>
 			<Row>
-				<Col lg={6} className="pt-5 ps-2 pe-2 offset-md-3">
+				<Col lg={6} md={8} sm={8} className="pt-5 mt-3 ps-2 pe-2 offset-md-2">
 					<Form
 						className="m-auto border border-1 border-dark p-3 rounded"
 						onSubmit={handleSubmit}

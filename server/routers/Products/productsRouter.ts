@@ -14,6 +14,7 @@ import {
 	getProductById,
 	editProduct,
 	deleteProduct,
+	getProductPagination,
 } from "../../controller/productsActions";
 import multer, { FileFilterCallback } from "multer";
 import { verifyAdmin } from "../../middleware/verifyAdmin";
@@ -62,6 +63,7 @@ productRouter.use(
 	)
 );
 productRouter.get("/", getProduct);
+productRouter.get("/list", getProductPagination);
 productRouter.get("/:id", getProductById);
 productRouter.post("/search/query", searchByQuery);
 productRouter.patch("/edit/:id", verifyAdmin, editProduct);

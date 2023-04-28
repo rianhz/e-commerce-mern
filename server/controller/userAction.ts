@@ -13,8 +13,6 @@ export const registerUser = async (req: Request, res: Response) => {
 		const usernameDuplicated = await Users.findOne({ username });
 		const emailDuplicated = await Users.findOne({ email });
 
-		console.log(username.length);
-
 		if (username === "" || password === "" || role === "" || email === "")
 			return res.status(400).json({ message: `All fields can't be empty!` });
 
@@ -70,7 +68,7 @@ export const loginUser = async (req: Request, res: Response) => {
 		const user = await Users.findOne({ username });
 		const userPassword = user?.password as string;
 
-		if (!user) return res.status(400).json({ message: "Username not found" });
+		if (!user) return res.status(400).json({ message: "User not found" });
 
 		const match = await bcrypt.compare(password, userPassword);
 		if (!match) return res.status(400).json({ message: "Invalid password" });
@@ -101,7 +99,6 @@ export const loginUser = async (req: Request, res: Response) => {
 
 		return res.status(200).send({ message: "Login success" });
 	} catch (error: any) {
-		console.log(error);
 		return res.status(400).json(error);
 	}
 };

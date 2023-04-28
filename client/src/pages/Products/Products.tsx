@@ -226,8 +226,8 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 					{user?.role === "buyer" ? (
 						""
 					) : (
-						<Link to="/add-product">
-							<Button colorScheme="blue">ADD PRODUCTS</Button>
+						<Link to="/admin">
+							<Button colorScheme="blue">View as Table</Button>
 						</Link>
 					)}
 				</Col>
