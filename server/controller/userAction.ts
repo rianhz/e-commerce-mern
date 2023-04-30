@@ -1,6 +1,6 @@
 import * as dotenv from "dotenv";
 dotenv.config();
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import * as bcrypt from "bcrypt";
 import { Users } from "../models/userModel";
 import jwt from "jsonwebtoken";
@@ -75,14 +75,14 @@ export const loginUser = async (req: Request, res: Response) => {
 
 		const token = jwt.sign(
 			{
-				id: user?._id.toString(),
+				id: user?._id,
 				username: user?.username,
 				email: user?.email,
 				role: user?.role,
 			},
 			process.env.SECRET_KEY as string,
 			{
-				expiresIn: "1d",
+				expiresIn: "1h",
 			}
 		);
 
@@ -92,9 +92,10 @@ export const loginUser = async (req: Request, res: Response) => {
 
 		res.cookie(String(user.username), token, {
 			path: "/",
-			expires: new Date(Date.now() + 600000), //115000000
+			// expires: new Date(Date.now() + 1000 * 60 * 60), //115000000_600000
 			sameSite: "lax",
 			httpOnly: true,
+			maxAge: 6000000,
 		});
 
 		return res.status(200).send({ message: "Login success" });
@@ -109,6 +110,70 @@ export const getProfile = async (req: Request, res: Response) => {
 	try {
 		const user = await Users.findOne({ username }, "-password");
 		return res.json(user);
+	} catch (error: any) {
+		console.log(error);
+
+		return res.status(404).json(error);
+	}
+};
+
+export const refreshToken = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
+	const cookies = req.headers.cookie;
+	const token = cookies?.split("=")[1];
+
+	if (!token) {
+		return res.status(400).json("No Token! Failed to refresh token!");
+	}
+	jwt.verify(
+		String(token),
+		process.env.SECRET_KEY as string,
+		(err: any, user: any) => {
+			if (err) {
+				console.log(err);
+				return res.json(403).json("Authentication failed!");
+			}
+
+			console.log(user);
+			console.log(req.cookies[`${user.username}`]);
+
+			res.clearCookie(`${user.username}`);
+			req.cookies[`${user.username}`];
+
+			const newToken = jwt.sign(
+				{
+					id: user?._id,
+					username: user?.username,
+					email: user?.email,
+					role: user?.role,
+				},
+				process.env.SECRET_KEY as string,
+				{
+					expiresIn: "1h",
+				}
+			);
+
+			res.cookie(String(user.username), newToken, {
+				path: "/",
+				// expires: new Date(Date.now() + 1000 * 60 * 60), //115000000_600000
+				sameSite: "lax",
+				httpOnly: true,
+				maxAge: 6000000,
+			});
+
+			(req as IGetUserAuthInfoRequest).username = user.username;
+			next();
+		}
+	);
+};
+
+export const getAllUsers = async (req: Request, res: Response) => {
+	try {
+		const users = await Users.find();
+		return res.json(users);
 	} catch (error: any) {
 		return res.status(404).json(error);
 	}
@@ -135,4 +200,15 @@ export const logoutUser = async (req: Request, res: Response) => {
 			return res.status(200).json({ message: "Successfully Logged Out" });
 		}
 	);
+};
+
+export const deleteUser = async (req: Request, res: Response) => {
+	const { id } = req.params;
+
+	try {
+		await Users.findOneAndDelete({ _id: id });
+		return res.status(200).json({ message: "User deleted!" });
+	} catch (error) {
+		return res.status(500).json({ message: "Internal server error" });
+	}
 };

@@ -24,7 +24,7 @@ import { useAppDispatch } from "../../app/hooks";
 import { addItem } from "../../features/cart/cartSlice";
 
 axios.defaults.withCredentials = true;
-
+let render = true;
 type PropsTypes = {
 	setUser: React.Dispatch<React.SetStateAction<IUser | undefined>>;
 	user: IUser | undefined;
@@ -40,7 +40,16 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 	const [refresher, setRefresher] = useState<boolean>(false);
 
 	useEffect(() => {
-		getUserInfo();
+		if (render) {
+			getUserInfo();
+			render = false;
+		}
+
+		let interval = setInterval(() => {
+			refreshToken();
+		}, 6000000);
+
+		return () => clearInterval(interval);
 	}, []);
 
 	useEffect(() => {
@@ -64,7 +73,22 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 	const getUserInfo = async () => {
 		try {
-			const res = await axios.get(`${process.env.REACT_APP_GET_USER}`);
+			const res = await axios.get(`${process.env.REACT_APP_GET_USER}`, {
+				withCredentials: true,
+			});
+			const data = await res.data;
+			setUser(data);
+		} catch (error: any) {
+			console.log(error.response.data);
+
+			navigate("/sign-in");
+		}
+	};
+	const refreshToken = async () => {
+		try {
+			const res = await axios.get(`${process.env.REACT_APP_REFRESH_TOKEN}`, {
+				withCredentials: true,
+			});
 			const data = await res.data;
 			setUser(data);
 		} catch (error: any) {
@@ -222,13 +246,22 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 				</Col>
 			</Row>
 			<Row className="mt-3">
-				<Col>
+				<Col className="d-flex gap-3">
 					{user?.role === "buyer" ? (
 						""
-					) : (
+					) : user?.role === "seller" ? (
 						<Link to="/admin">
 							<Button colorScheme="blue">View as Table</Button>
 						</Link>
+					) : (
+						<>
+							<Link to="/admin">
+								<Button colorScheme="blue">View as Table</Button>
+							</Link>
+							<Link to="/users">
+								<Button colorScheme="blue">All Users</Button>
+							</Link>
+						</>
 					)}
 				</Col>
 			</Row>

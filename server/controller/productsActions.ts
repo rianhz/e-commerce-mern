@@ -13,10 +13,11 @@ export const getProductPagination = async (req: Request, res: Response) => {
 
 	console.log({ page, perPage });
 
-	const product = await Product.find()
+	await Product.find()
 		.countDocuments()
 		.then((counter) => {
 			totalData = counter;
+
 			Product.find()
 				.skip((parseInt(page as string) - 1) * parseInt(perPage as string))
 				.limit(parseInt(perPage as string))
@@ -24,8 +25,6 @@ export const getProductPagination = async (req: Request, res: Response) => {
 		})
 
 		.catch((err) => console.log(err));
-
-	console.log(product);
 };
 
 export const getProductById = async (req: Request, res: Response) => {

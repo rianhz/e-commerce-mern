@@ -17,6 +17,7 @@ export const verifyToken = async (
 		if (!token) {
 			return res.status(400).json("No Token !");
 		}
+
 		jwt.verify(
 			String(token),
 			process.env.SECRET_KEY as string,

@@ -10,7 +10,7 @@ const RegisterUser: React.FC = () => {
 	const [password, setPassword] = useState<string>("");
 	const [email, setEmail] = useState<string>("");
 	const [confirmPassword, setConfimPassword] = useState<string>("");
-	const [isAdmin, setIsAdmin] = useState<boolean>(false);
+	const [isAdmin, setIsAdmin] = useState<string>("");
 
 	const [alertStatus, setAlertStatus] = useState<boolean>(false);
 	const [alertText, setAlertText] = useState<string>("");
@@ -30,7 +30,9 @@ const RegisterUser: React.FC = () => {
 	const handleAdmin = (e: React.ChangeEvent<HTMLInputElement>) => {
 		let val = e.target.value;
 
-		setIsAdmin(val === "seller" ? true : false);
+		console.log(val);
+
+		setIsAdmin(val === "seller" ? "seller" : "buyer");
 	};
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();

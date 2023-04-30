@@ -13,13 +13,13 @@ import { IUser } from "./user";
 import { useAppSelector } from "./app/hooks";
 import MyCart from "./components/cart/MyCart";
 import AdminZone from "./pages/AdminZone/AdminZone";
+import UsersInfo from "./pages/Users/UsersInfo";
 
 function App() {
 	const [user, setUser] = useState<IUser | undefined>();
 	const [mobile, setMobile] = useState<boolean>(false);
 	const [showCart, setShowCart] = useState<boolean>(false);
 
-	const cart = useAppSelector((state) => state.cart);
 	const handleShowCart = () => setShowCart(!showCart);
 	const closeCart = () => setShowCart(!showCart);
 
@@ -32,6 +32,8 @@ function App() {
 			})
 			.catch((error) => console.log(error.response.data));
 	};
+
+	console.log(user);
 
 	return (
 		<div className="App">
@@ -49,6 +51,7 @@ function App() {
 				<Route path="/add-product" element={<FormProduct />} />
 				<Route path="/edit-product/:id" element={<EditProduct />} />
 				<Route path="/admin" element={<AdminZone />} />
+				<Route path="/users" element={<UsersInfo />} />
 				<Route
 					path="/products"
 					element={<Products setUser={setUser} user={user} />}

@@ -9,14 +9,13 @@ import ReactPaginate from "react-paginate";
 const AdminZone = () => {
 	const [product, setProduct] = useState<IProduct[]>([]);
 	const [allProduct, setAllProduct] = useState<IProduct[]>([]);
-	const [pagiSetter, setPagiSetter] = useState<number>(0);
-
-	console.log(pagiSetter);
+	const [pagiSetter, setPagiSetter] = useState<number>(1);
+	const [refresher, setRefresher] = useState<boolean>(false);
 
 	useEffect(() => {
 		getProducts();
 		getAllProducts();
-	}, [pagiSetter]);
+	}, [pagiSetter, refresher]);
 
 	const getAllProducts = async () => {
 		const res = await axios.get(`${process.env.REACT_APP_GET_PRODUCTS}`);
@@ -25,7 +24,7 @@ const AdminZone = () => {
 	};
 
 	const getProducts = async () => {
-		const res = await axios.get(
+		const res = await axios.post(
 			`${process.env.REACT_APP_GET_PRODUCTS_PAGINATION}?page=${pagiSetter}`
 		);
 		const data = await res.data;
@@ -34,6 +33,14 @@ const AdminZone = () => {
 
 	const handlePageClick = (e: any) => {
 		setPagiSetter(e.selected + 1);
+	};
+
+	const handleDeleteProduct = async (e: number) => {
+		await axios
+			.delete(`${process.env.REACT_APP_PRODUCTS_DELETE}/${e}`)
+			.then((response) => console.log(response.data));
+
+		setRefresher(!refresher);
 	};
 
 	return (
@@ -58,28 +65,30 @@ const AdminZone = () => {
 										<td>{el.product_name}</td>
 										<td>{el.product_price}</td>
 										<td className="d-flex gap-2 text-center">
-											<Button>Edit</Button>
-											<Button>Delete</Button>
+											<Link to={`/edit-product/${el._id}`}>
+												<Button>Edit</Button>
+											</Link>
+											<Button onClick={() => handleDeleteProduct(el._id)}>
+												Delete
+											</Button>
 										</td>
 									</tr>
 								);
 							})}
 						</tbody>
-						<tfoot>
-							<ReactPaginate
-								previousLabel={"Prev"}
-								nextLabel={"Next"}
-								breakLabel={"..."}
-								breakClassName={"break-me"}
-								pageCount={Math.ceil(allProduct.length / 5)}
-								marginPagesDisplayed={2}
-								pageRangeDisplayed={5}
-								onPageChange={handlePageClick}
-								containerClassName={"pagination"}
-								activeClassName={"activePagi"}
-							/>
-						</tfoot>
 					</Table>
+					<ReactPaginate
+						previousLabel={"Prev"}
+						nextLabel={"Next"}
+						breakLabel={"..."}
+						breakClassName={"break-me"}
+						pageCount={Math.ceil(allProduct.length / 5)}
+						marginPagesDisplayed={2}
+						pageRangeDisplayed={5}
+						onPageChange={handlePageClick}
+						containerClassName={"pagination"}
+						activeClassName={"activePagi"}
+					/>
 				</Col>
 			</Row>
 		</Container>
