@@ -1,0 +1,2514 @@
+{
+	"info": {
+		"_postman_id": "dfa6c961-50ac-4d09-ad40-bb98670f98f3",
+		"name": "MART",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21280581"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "a",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/users/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 - Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "rian",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "rian12345",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/users/login",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "rian=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTNhODQxOGNmMmMyYWQxMDI3Yjg2MyIsInVzZXJuYW1lIjoicmlhbiIsImVtYWlsIjoicmlhbmhpZGF5YXRAZ21haWwuY29tIiwicm9sZSI6ImJ1eWVyIiwiaWF0IjoxNjgzMjQ5MTI1LCJleHAiOjE2ODMyNTI3MjV9.S9cQp0hLOBC5c8DCH0qsgdkgx43VRuNb-Vux8Y5puGw; Max-Age=6000; Path=/; Expires=Fri, 05 May 2023 02:52:05 GMT; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "27"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b-r6HkcREyQaRHbryVd7hGUkeRtJM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:12:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Login success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "rian",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "rian12345",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "rianhidayat@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "confirmPassword",
+									"value": "rian12345",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "buyer",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/users/register",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 - User Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "rian",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "rian12345",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "rianhidayat@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "confirmPassword",
+											"value": "rian12345",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "buyer",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/users/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "36"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"24-l/ZI+Cs+/ltzh82mlpnfl8efY6Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 04 May 2023 12:42:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User has been created!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/profile",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 - Profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/users/profile",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "185"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b9-7DB9i88FMPxi7FptgsjaIZFOe7Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:13:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"6453a8418cf2c2ad1027b863\",\n    \"username\": \"rian\",\n    \"email\": \"rianhidayat@gmail.com\",\n    \"role\": \"buyer\",\n    \"createdAt\": \"2023-05-04T12:42:41.974Z\",\n    \"updatedAt\": \"2023-05-04T12:42:41.974Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Info All User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "400 - All User (Not superadmin))",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/users",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-qCXbXtrhx1doa5F5oI1E3jbwRe8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:14:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"This account not authorize to delete any user\"\n}"
+						},
+						{
+							"name": "200 - All User (As superadmin)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/users",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1534"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5fe-LZ6ueOaV0TJLlD7YO9Qev5u8yj0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:17:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"6438d4d9d4f2cdfe9753a67f\",\n        \"username\": \"a\",\n        \"password\": \"$2b$10$J65Lu8zMun9dJP7VtMnyrOjDNt9RkDFxwaaDMdizPsTUo2G.JQqtC\",\n        \"email\": \"byyb@gmail.com\",\n        \"role\": \"seller\",\n        \"createdAt\": \"2023-04-14T04:21:45.328Z\",\n        \"updatedAt\": \"2023-04-14T04:21:45.328Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"6438f0e0a2a558362d44c67c\",\n        \"username\": \"b\",\n        \"password\": \"$2b$10$Jc3Tix9r29Ajqa5M6hmF5e1k3TH.LHiKhrc3ifSuHw9gyGjHHoSka\",\n        \"email\": \"b@gmail.com\",\n        \"role\": \"buyer\",\n        \"createdAt\": \"2023-04-14T06:21:20.465Z\",\n        \"updatedAt\": \"2023-04-14T06:21:20.465Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"643e5b850a28671ded994afb\",\n        \"username\": \"bbbb\",\n        \"password\": \"$2b$10$uz/63SuPMkfWnP6Mrit8bO4Sk/c2OcrKdu7a/auwtIToXA3KuHgt6\",\n        \"email\": \"b@dgmail.com\",\n        \"role\": \"buyer\",\n        \"createdAt\": \"2023-04-18T08:57:41.062Z\",\n        \"updatedAt\": \"2023-04-18T08:57:41.062Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"644dd89a8e9c1b39340fba75\",\n        \"username\": \"superadmin\",\n        \"password\": \"$2b$10$/jU2bySC8YS3zj9PRN5C7.KBGR8sEgdH1V7UUmG71d6OveLyH.C7e\",\n        \"email\": \"superadmin@gmail.com\",\n        \"role\": \"superadmin\",\n        \"createdAt\": \"2023-04-30T02:55:22.703Z\",\n        \"updatedAt\": \"2023-04-30T02:55:22.703Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"644dd9c48e9c1b39340fba79\",\n        \"username\": \"dddd\",\n        \"password\": \"$2b$10$BEeeH56E..XIcumnue/sZOpZ1VOQ1X.t4M3iLDYkX92LLCGDtpMru\",\n        \"email\": \"dddd@gmail.com\",\n        \"role\": \"seller\",\n        \"createdAt\": \"2023-04-30T03:00:20.987Z\",\n        \"updatedAt\": \"2023-04-30T03:00:20.987Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"6453a8418cf2c2ad1027b863\",\n        \"username\": \"rian\",\n        \"password\": \"$2b$10$.GzC4Y0kiZ8O8rmwO4O9Ge9wVDwifHzmuZ/ukN5VZdni.y5cUeWz6\",\n        \"email\": \"rianhidayat@gmail.com\",\n        \"role\": \"buyer\",\n        \"createdAt\": \"2023-05-04T12:42:41.974Z\",\n        \"updatedAt\": \"2023-05-04T12:42:41.974Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Add Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product_name",
+									"value": "baju baru",
+									"type": "text"
+								},
+								{
+									"key": "product_price",
+									"value": "40000",
+									"type": "text"
+								},
+								{
+									"key": "product_made",
+									"value": "Indo",
+									"type": "text"
+								},
+								{
+									"key": "product_image",
+									"type": "file",
+									"src": "/C:/Users/ASUS/Downloads/api/7.jpg"
+								},
+								{
+									"key": "desc",
+									"value": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "female",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/products",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - By superadmin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "product_name",
+											"value": "baju",
+											"type": "text"
+										},
+										{
+											"key": "product_price",
+											"value": "40000",
+											"type": "text"
+										},
+										{
+											"key": "product_made",
+											"value": "Indo",
+											"type": "text"
+										},
+										{
+											"key": "product_image",
+											"type": "file",
+											"src": "/C:/Users/ASUS/Downloads/api/7.jpg"
+										},
+										{
+											"key": "desc",
+											"value": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "female",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/products",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "28"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c-Ef6kcntVBH3rXXK4roL6sk8Z12A\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:21:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Product added!\"\n}"
+						},
+						{
+							"name": "200 - By admin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "product_name",
+											"value": "baju baru",
+											"type": "text"
+										},
+										{
+											"key": "product_price",
+											"value": "40000",
+											"type": "text"
+										},
+										{
+											"key": "product_made",
+											"value": "Indo",
+											"type": "text"
+										},
+										{
+											"key": "product_image",
+											"type": "file",
+											"src": "/C:/Users/ASUS/Downloads/api/7.jpg"
+										},
+										{
+											"key": "desc",
+											"value": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "female",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/products",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "28"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c-Ef6kcntVBH3rXXK4roL6sk8Z12A\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:22:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Product added!\"\n}"
+						},
+						{
+							"name": "400 - By buyer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "product_name",
+											"value": "baju baru",
+											"type": "text"
+										},
+										{
+											"key": "product_price",
+											"value": "40000",
+											"type": "text"
+										},
+										{
+											"key": "product_made",
+											"value": "Indo",
+											"type": "text"
+										},
+										{
+											"key": "product_image",
+											"type": "file",
+											"src": "/C:/Users/ASUS/Downloads/api/7.jpg"
+										},
+										{
+											"key": "desc",
+											"value": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "female",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/products",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-d9b7IJYNsx79udVWFH0kGI07DuY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:23:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"This account not authorize to add any product\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/products",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - All Products",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "7242"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c4a-W0QBZddWbCFvJoQeaPVbI/aqkqw\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:24:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"6435898fa6f90676a7904f15\",\n        \"product_name\": \"Fjallraven - Foldsack No. 1 Backpack\",\n        \"product_price\": 200000,\n        \"product_made\": \"USA\",\n        \"product_image\": \"images\\\\1681230223863-1.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday\",\n        \"createdAt\": \"2023-04-11T16:23:43.910Z\",\n        \"updatedAt\": \"2023-04-11T16:23:43.910Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358a07a6f90676a7904f17\",\n        \"product_name\": \"Mens Casual Premium Slim Fit T-Shirts\",\n        \"product_price\": 40000,\n        \"product_made\": \"CANADA\",\n        \"product_image\": \"images\\\\1681230343928-2.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans.\",\n        \"createdAt\": \"2023-04-11T16:25:43.972Z\",\n        \"updatedAt\": \"2023-04-11T16:25:43.972Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358a5ca6f90676a7904f19\",\n        \"product_name\": \"Mens Cotton Jacket\",\n        \"product_price\": 98000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230428278-3.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.\",\n        \"createdAt\": \"2023-04-11T16:27:08.288Z\",\n        \"updatedAt\": \"2023-04-11T16:27:08.288Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358b03a6f90676a7904f1c\",\n        \"product_name\": \"Solid Gold Petite Micropave\",\n        \"product_price\": 30000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230595287-5.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.\",\n        \"createdAt\": \"2023-04-11T16:29:55.330Z\",\n        \"updatedAt\": \"2023-04-11T16:29:55.330Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358b3ba6f90676a7904f1e\",\n        \"product_name\": \"White Gold Plated Princess\",\n        \"product_price\": 77000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230651154-6.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day\",\n        \"createdAt\": \"2023-04-11T16:30:51.175Z\",\n        \"updatedAt\": \"2023-04-11T16:30:51.175Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358b85a6f90676a7904f20\",\n        \"product_name\": \"Pierced Owl Rose Gold Plated Stainless Steel Double\",\n        \"product_price\": 88000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230725896-7.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel\",\n        \"createdAt\": \"2023-04-11T16:32:05.928Z\",\n        \"updatedAt\": \"2023-04-11T16:32:05.928Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358c52a6f90676a7904f23\",\n        \"product_name\": \"Lock and Love Women's Removable Hoode\",\n        \"product_price\": 210000,\n        \"product_made\": \"NEW YORK\",\n        \"product_image\": \"images\\\\1681230930728-15.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket\",\n        \"createdAt\": \"2023-04-11T16:35:30.745Z\",\n        \"updatedAt\": \"2023-04-11T16:35:30.745Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358c8fa6f90676a7904f25\",\n        \"product_name\": \"Rain Jacket Women Windbreaker Striped Climbing Raincoats\",\n        \"product_price\": 175000,\n        \"product_made\": \"NEW YORK\",\n        \"product_image\": \"images\\\\1681230991176-16.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look.\",\n        \"createdAt\": \"2023-04-11T16:36:31.189Z\",\n        \"updatedAt\": \"2023-04-11T16:36:31.189Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358cd0a6f90676a7904f27\",\n        \"product_name\": \"MBJ Women's Solid Short Sleeve Boat Neck V\",\n        \"product_price\": 161000,\n        \"product_made\": \"CANADA\",\n        \"product_image\": \"images\\\\1681231056684-17.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem\",\n        \"createdAt\": \"2023-04-11T16:37:36.694Z\",\n        \"updatedAt\": \"2023-04-11T16:37:36.694Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358d09a6f90676a7904f29\",\n        \"product_name\": \"Opna Women's Short Sleeve Moisture\",\n        \"product_price\": 90000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681231113382-18.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort\",\n        \"createdAt\": \"2023-04-11T16:38:33.400Z\",\n        \"updatedAt\": \"2023-04-11T16:38:33.400Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"643913f52627d12a52c71076\",\n        \"product_name\": \"Womens T Shirt Casual Cotton Short\",\n        \"product_price\": 40000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681462260875-19.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-04-14T08:51:01.856Z\",\n        \"updatedAt\": \"2023-04-14T08:51:01.856Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"643919de47414d8da6ebae22\",\n        \"product_name\": \"Womens T Shirt Casual Cotton Short\",\n        \"product_price\": 40000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681463774485-2.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-04-14T09:16:14.856Z\",\n        \"updatedAt\": \"2023-04-14T09:16:14.856Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64545a21545147705d19972f\",\n        \"product_name\": \"baju\",\n        \"product_price\": 40000,\n        \"product_made\": \"Indo\",\n        \"product_image\": \"images\\\\1683249697871-7.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-05-05T01:21:37.913Z\",\n        \"updatedAt\": \"2023-05-05T01:21:37.913Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64545a5b545147705d199732\",\n        \"product_name\": \"baju baru\",\n        \"product_price\": 40000,\n        \"product_made\": \"Indo\",\n        \"product_image\": \"images\\\\1683249755153-7.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-05-05T01:22:35.164Z\",\n        \"updatedAt\": \"2023-05-05T01:22:35.164Z\",\n        \"__v\": 0\n    }\n]"
+						},
+						{
+							"name": "200 - All Products Pagination",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/list",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"list"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2519"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9d7-7cmzrsS+AAfo5Nfreyk5rKyPdiU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:52:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"6435898fa6f90676a7904f15\",\n        \"product_name\": \"Fjallraven - Foldsack No. 1 Backpack\",\n        \"product_price\": 200000,\n        \"product_made\": \"USA\",\n        \"product_image\": \"images\\\\1681230223863-1.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday\",\n        \"createdAt\": \"2023-04-11T16:23:43.910Z\",\n        \"updatedAt\": \"2023-04-11T16:23:43.910Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358a07a6f90676a7904f17\",\n        \"product_name\": \"Mens Casual Premium Slim Fit T-Shirts\",\n        \"product_price\": 40000,\n        \"product_made\": \"CANADA\",\n        \"product_image\": \"images\\\\1681230343928-2.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans.\",\n        \"createdAt\": \"2023-04-11T16:25:43.972Z\",\n        \"updatedAt\": \"2023-04-11T16:25:43.972Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358a5ca6f90676a7904f19\",\n        \"product_name\": \"Mens Cotton Jacket\",\n        \"product_price\": 98000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230428278-3.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.\",\n        \"createdAt\": \"2023-04-11T16:27:08.288Z\",\n        \"updatedAt\": \"2023-04-11T16:27:08.288Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358b03a6f90676a7904f1c\",\n        \"product_name\": \"Solid Gold Petite Micropave\",\n        \"product_price\": 30000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230595287-5.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.\",\n        \"createdAt\": \"2023-04-11T16:29:55.330Z\",\n        \"updatedAt\": \"2023-04-11T16:29:55.330Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358b3ba6f90676a7904f1e\",\n        \"product_name\": \"White Gold Plated Princess\",\n        \"product_price\": 77000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230651154-6.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day\",\n        \"createdAt\": \"2023-04-11T16:30:51.175Z\",\n        \"updatedAt\": \"2023-04-11T16:30:51.175Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/images/1681231156383-19.jpg",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"images",
+								"1681231156383-19.jpg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter By Price",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/products/filter-by/low-price",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products",
+								"filter-by",
+								"low-price"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - High Price",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/filter-by/expensive-price",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"filter-by",
+										"expensive-price"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "4203"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"106b-A+n4HtgQJjOtWJYSS9dcYEaKfX4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:26:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"6435898fa6f90676a7904f15\",\n        \"product_name\": \"Fjallraven - Foldsack No. 1 Backpack\",\n        \"product_price\": 200000,\n        \"product_made\": \"USA\",\n        \"product_image\": \"images\\\\1681230223863-1.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday\",\n        \"createdAt\": \"2023-04-11T16:23:43.910Z\",\n        \"updatedAt\": \"2023-04-11T16:23:43.910Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358a5ca6f90676a7904f19\",\n        \"product_name\": \"Mens Cotton Jacket\",\n        \"product_price\": 98000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230428278-3.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.\",\n        \"createdAt\": \"2023-04-11T16:27:08.288Z\",\n        \"updatedAt\": \"2023-04-11T16:27:08.288Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358b3ba6f90676a7904f1e\",\n        \"product_name\": \"White Gold Plated Princess\",\n        \"product_price\": 77000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230651154-6.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day\",\n        \"createdAt\": \"2023-04-11T16:30:51.175Z\",\n        \"updatedAt\": \"2023-04-11T16:30:51.175Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358b85a6f90676a7904f20\",\n        \"product_name\": \"Pierced Owl Rose Gold Plated Stainless Steel Double\",\n        \"product_price\": 88000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230725896-7.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel\",\n        \"createdAt\": \"2023-04-11T16:32:05.928Z\",\n        \"updatedAt\": \"2023-04-11T16:32:05.928Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358c52a6f90676a7904f23\",\n        \"product_name\": \"Lock and Love Women's Removable Hoode\",\n        \"product_price\": 210000,\n        \"product_made\": \"NEW YORK\",\n        \"product_image\": \"images\\\\1681230930728-15.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket\",\n        \"createdAt\": \"2023-04-11T16:35:30.745Z\",\n        \"updatedAt\": \"2023-04-11T16:35:30.745Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358c8fa6f90676a7904f25\",\n        \"product_name\": \"Rain Jacket Women Windbreaker Striped Climbing Raincoats\",\n        \"product_price\": 175000,\n        \"product_made\": \"NEW YORK\",\n        \"product_image\": \"images\\\\1681230991176-16.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look.\",\n        \"createdAt\": \"2023-04-11T16:36:31.189Z\",\n        \"updatedAt\": \"2023-04-11T16:36:31.189Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358cd0a6f90676a7904f27\",\n        \"product_name\": \"MBJ Women's Solid Short Sleeve Boat Neck V\",\n        \"product_price\": 161000,\n        \"product_made\": \"CANADA\",\n        \"product_image\": \"images\\\\1681231056684-17.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem\",\n        \"createdAt\": \"2023-04-11T16:37:36.694Z\",\n        \"updatedAt\": \"2023-04-11T16:37:36.694Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358d09a6f90676a7904f29\",\n        \"product_name\": \"Opna Women's Short Sleeve Moisture\",\n        \"product_price\": 90000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681231113382-18.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort\",\n        \"createdAt\": \"2023-04-11T16:38:33.400Z\",\n        \"updatedAt\": \"2023-04-11T16:38:33.400Z\",\n        \"__v\": 0\n    }\n]"
+						},
+						{
+							"name": "200 - Low Price",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/filter-by/low-price",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"filter-by",
+										"low-price"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3040"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"be0-uC3qhEdWgoO8SKak/fCeLy+aG8o\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:26:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"64358a07a6f90676a7904f17\",\n        \"product_name\": \"Mens Casual Premium Slim Fit T-Shirts\",\n        \"product_price\": 40000,\n        \"product_made\": \"CANADA\",\n        \"product_image\": \"images\\\\1681230343928-2.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans.\",\n        \"createdAt\": \"2023-04-11T16:25:43.972Z\",\n        \"updatedAt\": \"2023-04-11T16:25:43.972Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358b03a6f90676a7904f1c\",\n        \"product_name\": \"Solid Gold Petite Micropave\",\n        \"product_price\": 30000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230595287-5.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.\",\n        \"createdAt\": \"2023-04-11T16:29:55.330Z\",\n        \"updatedAt\": \"2023-04-11T16:29:55.330Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"643913f52627d12a52c71076\",\n        \"product_name\": \"Womens T Shirt Casual Cotton Short\",\n        \"product_price\": 40000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681462260875-19.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-04-14T08:51:01.856Z\",\n        \"updatedAt\": \"2023-04-14T08:51:01.856Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"643919de47414d8da6ebae22\",\n        \"product_name\": \"Womens T Shirt Casual Cotton Short\",\n        \"product_price\": 40000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681463774485-2.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-04-14T09:16:14.856Z\",\n        \"updatedAt\": \"2023-04-14T09:16:14.856Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64545a21545147705d19972f\",\n        \"product_name\": \"baju\",\n        \"product_price\": 40000,\n        \"product_made\": \"Indo\",\n        \"product_image\": \"images\\\\1683249697871-7.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-05-05T01:21:37.913Z\",\n        \"updatedAt\": \"2023-05-05T01:21:37.913Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64545a5b545147705d199732\",\n        \"product_name\": \"baju baru\",\n        \"product_price\": 40000,\n        \"product_made\": \"Indo\",\n        \"product_image\": \"images\\\\1683249755153-7.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-05-05T01:22:35.164Z\",\n        \"updatedAt\": \"2023-05-05T01:22:35.164Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Filter By Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/products/filter-by/jewelery",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products",
+								"filter-by",
+								"jewelery"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - Male",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/filter-by/male",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"filter-by",
+										"male"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1581"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"62d-dpndWNCOrG9eErYCEjxAkFhdLDI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:28:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"6435898fa6f90676a7904f15\",\n        \"product_name\": \"Fjallraven - Foldsack No. 1 Backpack\",\n        \"product_price\": 200000,\n        \"product_made\": \"USA\",\n        \"product_image\": \"images\\\\1681230223863-1.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday\",\n        \"createdAt\": \"2023-04-11T16:23:43.910Z\",\n        \"updatedAt\": \"2023-04-11T16:23:43.910Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358a07a6f90676a7904f17\",\n        \"product_name\": \"Mens Casual Premium Slim Fit T-Shirts\",\n        \"product_price\": 40000,\n        \"product_made\": \"CANADA\",\n        \"product_image\": \"images\\\\1681230343928-2.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans.\",\n        \"createdAt\": \"2023-04-11T16:25:43.972Z\",\n        \"updatedAt\": \"2023-04-11T16:25:43.972Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358a5ca6f90676a7904f19\",\n        \"product_name\": \"Mens Cotton Jacket\",\n        \"product_price\": 98000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230428278-3.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.\",\n        \"createdAt\": \"2023-04-11T16:27:08.288Z\",\n        \"updatedAt\": \"2023-04-11T16:27:08.288Z\",\n        \"__v\": 0\n    }\n]"
+						},
+						{
+							"name": "200 - Female",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/filter-by/female",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"filter-by",
+										"female"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "4326"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10e6-CdAA2ab/caiZYNq5vDidT0i2BlY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:28:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"64358c52a6f90676a7904f23\",\n        \"product_name\": \"Lock and Love Women's Removable Hoode\",\n        \"product_price\": 210000,\n        \"product_made\": \"NEW YORK\",\n        \"product_image\": \"images\\\\1681230930728-15.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket\",\n        \"createdAt\": \"2023-04-11T16:35:30.745Z\",\n        \"updatedAt\": \"2023-04-11T16:35:30.745Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358c8fa6f90676a7904f25\",\n        \"product_name\": \"Rain Jacket Women Windbreaker Striped Climbing Raincoats\",\n        \"product_price\": 175000,\n        \"product_made\": \"NEW YORK\",\n        \"product_image\": \"images\\\\1681230991176-16.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look.\",\n        \"createdAt\": \"2023-04-11T16:36:31.189Z\",\n        \"updatedAt\": \"2023-04-11T16:36:31.189Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358cd0a6f90676a7904f27\",\n        \"product_name\": \"MBJ Women's Solid Short Sleeve Boat Neck V\",\n        \"product_price\": 161000,\n        \"product_made\": \"CANADA\",\n        \"product_image\": \"images\\\\1681231056684-17.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem\",\n        \"createdAt\": \"2023-04-11T16:37:36.694Z\",\n        \"updatedAt\": \"2023-04-11T16:37:36.694Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358d09a6f90676a7904f29\",\n        \"product_name\": \"Opna Women's Short Sleeve Moisture\",\n        \"product_price\": 90000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681231113382-18.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort\",\n        \"createdAt\": \"2023-04-11T16:38:33.400Z\",\n        \"updatedAt\": \"2023-04-11T16:38:33.400Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"643913f52627d12a52c71076\",\n        \"product_name\": \"Womens T Shirt Casual Cotton Short\",\n        \"product_price\": 40000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681462260875-19.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-04-14T08:51:01.856Z\",\n        \"updatedAt\": \"2023-04-14T08:51:01.856Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"643919de47414d8da6ebae22\",\n        \"product_name\": \"Womens T Shirt Casual Cotton Short\",\n        \"product_price\": 40000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681463774485-2.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-04-14T09:16:14.856Z\",\n        \"updatedAt\": \"2023-04-14T09:16:14.856Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64545a21545147705d19972f\",\n        \"product_name\": \"baju\",\n        \"product_price\": 40000,\n        \"product_made\": \"Indo\",\n        \"product_image\": \"images\\\\1683249697871-7.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-05-05T01:21:37.913Z\",\n        \"updatedAt\": \"2023-05-05T01:21:37.913Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64545a5b545147705d199732\",\n        \"product_name\": \"baju baru\",\n        \"product_price\": 40000,\n        \"product_made\": \"Indo\",\n        \"product_image\": \"images\\\\1683249755153-7.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-05-05T01:22:35.164Z\",\n        \"updatedAt\": \"2023-05-05T01:22:35.164Z\",\n        \"__v\": 0\n    }\n]"
+						},
+						{
+							"name": "200- Jewelery",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/filter-by/jewelery",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"filter-by",
+										"jewelery"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1337"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"539-qBjf37bEqerZDPjVljdUK/RMSZ8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:28:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"64358b03a6f90676a7904f1c\",\n        \"product_name\": \"Solid Gold Petite Micropave\",\n        \"product_price\": 30000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230595287-5.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.\",\n        \"createdAt\": \"2023-04-11T16:29:55.330Z\",\n        \"updatedAt\": \"2023-04-11T16:29:55.330Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358b3ba6f90676a7904f1e\",\n        \"product_name\": \"White Gold Plated Princess\",\n        \"product_price\": 77000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230651154-6.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day\",\n        \"createdAt\": \"2023-04-11T16:30:51.175Z\",\n        \"updatedAt\": \"2023-04-11T16:30:51.175Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358b85a6f90676a7904f20\",\n        \"product_name\": \"Pierced Owl Rose Gold Plated Stainless Steel Double\",\n        \"product_price\": 88000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230725896-7.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel\",\n        \"createdAt\": \"2023-04-11T16:32:05.928Z\",\n        \"updatedAt\": \"2023-04-11T16:32:05.928Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Edit Product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product_name",
+									"value": "baju baru ya",
+									"type": "text"
+								},
+								{
+									"key": "product_price",
+									"value": "2222",
+									"type": "text"
+								},
+								{
+									"key": "product_made",
+									"value": "dada",
+									"type": "text"
+								},
+								{
+									"key": "product_image",
+									"type": "file",
+									"src": "/C:/Users/ASUS/Downloads/api/4.jpg"
+								},
+								{
+									"key": "desc",
+									"value": "dadada",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "female",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/products/edit/64545a5b545147705d199732",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products",
+								"edit",
+								"64545a5b545147705d199732"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "400 - Edit (By buyer)",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "product_name",
+											"value": "baju baru ya",
+											"type": "text"
+										},
+										{
+											"key": "product_price",
+											"value": "2222",
+											"type": "text"
+										},
+										{
+											"key": "product_made",
+											"value": "dada",
+											"type": "text"
+										},
+										{
+											"key": "product_image",
+											"type": "file",
+											"src": "/C:/Users/ASUS/Downloads/api/4.jpg"
+										},
+										{
+											"key": "desc",
+											"value": "dadada",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "female",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/products/edit/64545a5b545147705d199732",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"edit",
+										"64545a5b545147705d199732"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-d9b7IJYNsx79udVWFH0kGI07DuY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:35:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"This account not authorize to add any product\"\n}"
+						},
+						{
+							"name": "200 - Edit (By superadmin & admin))",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "product_name",
+											"value": "baju baru ya",
+											"type": "text"
+										},
+										{
+											"key": "product_price",
+											"value": "2222",
+											"type": "text"
+										},
+										{
+											"key": "product_made",
+											"value": "dada",
+											"type": "text"
+										},
+										{
+											"key": "product_image",
+											"type": "file",
+											"src": "/C:/Users/ASUS/Downloads/api/4.jpg"
+										},
+										{
+											"key": "desc",
+											"value": "dadada",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "female",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/products/edit/64545a5b545147705d199732",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"edit",
+										"64545a5b545147705d199732"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "17"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"11-Pv/lkFTpEd2QJkoNLoJpC9Rp0JA\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:36:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "\"Product edited!\""
+						}
+					]
+				},
+				{
+					"name": "Filter By Query",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/products/search/query?price=low&category=male",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products",
+								"search",
+								"query"
+							],
+							"query": [
+								{
+									"key": "price",
+									"value": "low"
+								},
+								{
+									"key": "category",
+									"value": "male"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - Low Price and Jewelery",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/search/query?price=low&category=jewelery",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"search",
+										"query"
+									],
+									"query": [
+										{
+											"key": "price",
+											"value": "low"
+										},
+										{
+											"key": "category",
+											"value": "jewelery"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "489"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e9-UcoAoSYMHKolp+1YqLlh55Lm8Rs\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:38:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"64358b03a6f90676a7904f1c\",\n        \"product_name\": \"Solid Gold Petite Micropave\",\n        \"product_price\": 30000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230595287-5.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.\",\n        \"createdAt\": \"2023-04-11T16:29:55.330Z\",\n        \"updatedAt\": \"2023-04-11T16:29:55.330Z\",\n        \"__v\": 0\n    }\n]"
+						},
+						{
+							"name": "200 - High Price and Jewelery",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/search/query?price=expensive&category=jewelery",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"search",
+										"query"
+									],
+									"query": [
+										{
+											"key": "price",
+											"value": "expensive"
+										},
+										{
+											"key": "category",
+											"value": "jewelery"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "849"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"351-N/tLGpyDSDaPbj5A37GSPUAMBUk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:38:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"64358b3ba6f90676a7904f1e\",\n        \"product_name\": \"White Gold Plated Princess\",\n        \"product_price\": 77000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230651154-6.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day\",\n        \"createdAt\": \"2023-04-11T16:30:51.175Z\",\n        \"updatedAt\": \"2023-04-11T16:30:51.175Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358b85a6f90676a7904f20\",\n        \"product_name\": \"Pierced Owl Rose Gold Plated Stainless Steel Double\",\n        \"product_price\": 88000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230725896-7.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel\",\n        \"createdAt\": \"2023-04-11T16:32:05.928Z\",\n        \"updatedAt\": \"2023-04-11T16:32:05.928Z\",\n        \"__v\": 0\n    }\n]"
+						},
+						{
+							"name": "200 - High Price and Male",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/search/query?price=expensive&category=male",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"search",
+										"query"
+									],
+									"query": [
+										{
+											"key": "price",
+											"value": "expensive"
+										},
+										{
+											"key": "category",
+											"value": "male"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1012"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f4-Ntzb/HSL68ovcR1iO7VkLVD+0wk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:39:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"6435898fa6f90676a7904f15\",\n        \"product_name\": \"Fjallraven - Foldsack No. 1 Backpack\",\n        \"product_price\": 200000,\n        \"product_made\": \"USA\",\n        \"product_image\": \"images\\\\1681230223863-1.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday\",\n        \"createdAt\": \"2023-04-11T16:23:43.910Z\",\n        \"updatedAt\": \"2023-04-11T16:23:43.910Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358a5ca6f90676a7904f19\",\n        \"product_name\": \"Mens Cotton Jacket\",\n        \"product_price\": 98000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230428278-3.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.\",\n        \"createdAt\": \"2023-04-11T16:27:08.288Z\",\n        \"updatedAt\": \"2023-04-11T16:27:08.288Z\",\n        \"__v\": 0\n    }\n]"
+						},
+						{
+							"name": "200 - High Price and Female",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/search/query?price=expensive&category=female",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"search",
+										"query"
+									],
+									"query": [
+										{
+											"key": "price",
+											"value": "expensive"
+										},
+										{
+											"key": "category",
+											"value": "female"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2344"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"928-MqwdoeqJH8jZQ8qumMWXUIgE6U0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:39:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"64358c52a6f90676a7904f23\",\n        \"product_name\": \"Lock and Love Women's Removable Hoode\",\n        \"product_price\": 210000,\n        \"product_made\": \"NEW YORK\",\n        \"product_image\": \"images\\\\1681230930728-15.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket\",\n        \"createdAt\": \"2023-04-11T16:35:30.745Z\",\n        \"updatedAt\": \"2023-04-11T16:35:30.745Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358c8fa6f90676a7904f25\",\n        \"product_name\": \"Rain Jacket Women Windbreaker Striped Climbing Raincoats\",\n        \"product_price\": 175000,\n        \"product_made\": \"NEW YORK\",\n        \"product_image\": \"images\\\\1681230991176-16.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look.\",\n        \"createdAt\": \"2023-04-11T16:36:31.189Z\",\n        \"updatedAt\": \"2023-04-11T16:36:31.189Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358cd0a6f90676a7904f27\",\n        \"product_name\": \"MBJ Women's Solid Short Sleeve Boat Neck V\",\n        \"product_price\": 161000,\n        \"product_made\": \"CANADA\",\n        \"product_image\": \"images\\\\1681231056684-17.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem\",\n        \"createdAt\": \"2023-04-11T16:37:36.694Z\",\n        \"updatedAt\": \"2023-04-11T16:37:36.694Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358d09a6f90676a7904f29\",\n        \"product_name\": \"Opna Women's Short Sleeve Moisture\",\n        \"product_price\": 90000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681231113382-18.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort\",\n        \"createdAt\": \"2023-04-11T16:38:33.400Z\",\n        \"updatedAt\": \"2023-04-11T16:38:33.400Z\",\n        \"__v\": 0\n    }\n]"
+						},
+						{
+							"name": "200 - Low Price and Female",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/search/query?price=low&category=female",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"search",
+										"query"
+									],
+									"query": [
+										{
+											"key": "price",
+											"value": "low"
+										},
+										{
+											"key": "category",
+											"value": "female"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1776"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6f0-VwI4HlTsciS2sO2aAfxp7+ec1Cg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:40:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"643913f52627d12a52c71076\",\n        \"product_name\": \"Womens T Shirt Casual Cotton Short\",\n        \"product_price\": 40000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681462260875-19.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-04-14T08:51:01.856Z\",\n        \"updatedAt\": \"2023-04-14T08:51:01.856Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"643919de47414d8da6ebae22\",\n        \"product_name\": \"Womens T Shirt Casual Cotton Short\",\n        \"product_price\": 40000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681463774485-2.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-04-14T09:16:14.856Z\",\n        \"updatedAt\": \"2023-04-14T09:16:14.856Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64545a21545147705d19972f\",\n        \"product_name\": \"baju\",\n        \"product_price\": 40000,\n        \"product_made\": \"Indo\",\n        \"product_image\": \"images\\\\1683249697871-7.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-05-05T01:21:37.913Z\",\n        \"updatedAt\": \"2023-05-05T01:21:37.913Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64545a5b545147705d199732\",\n        \"product_name\": \"baju baru ya\",\n        \"product_price\": 2222,\n        \"product_made\": \"dada\",\n        \"product_image\": \"images\\\\1683250604473-4.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"dadada\",\n        \"createdAt\": \"2023-05-05T01:22:35.164Z\",\n        \"updatedAt\": \"2023-05-05T01:36:44.485Z\",\n        \"__v\": 0\n    }\n]"
+						},
+						{
+							"name": "200- Low Price and Male",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/search/query?price=low&category=male",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"search",
+										"query"
+									],
+									"query": [
+										{
+											"key": "price",
+											"value": "low"
+										},
+										{
+											"key": "category",
+											"value": "male"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "570"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"23a-hBhIgSc4NdlhWEuaybo7vp0WlRA\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:41:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"64358a07a6f90676a7904f17\",\n        \"product_name\": \"Mens Casual Premium Slim Fit T-Shirts\",\n        \"product_price\": 40000,\n        \"product_made\": \"CANADA\",\n        \"product_image\": \"images\\\\1681230343928-2.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans.\",\n        \"createdAt\": \"2023-04-11T16:25:43.972Z\",\n        \"updatedAt\": \"2023-04-11T16:25:43.972Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Search Product Name",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/products/search-product?product_names=baj",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products",
+								"search-product"
+							],
+							"query": [
+								{
+									"key": "product_names",
+									"value": "baj"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/search-product?product_names=baj",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"search-product"
+									],
+									"query": [
+										{
+											"key": "product_names",
+											"value": "baj"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "755"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f3-8pW4j1gu93Q7T2OONSpMAS8CNa4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:43:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"64545a21545147705d19972f\",\n        \"product_name\": \"baju\",\n        \"product_price\": 40000,\n        \"product_made\": \"Indo\",\n        \"product_image\": \"images\\\\1683249697871-7.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-05-05T01:21:37.913Z\",\n        \"updatedAt\": \"2023-05-05T01:21:37.913Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64545a5b545147705d199732\",\n        \"product_name\": \"baju baru ya\",\n        \"product_price\": 2222,\n        \"product_made\": \"dada\",\n        \"product_image\": \"images\\\\1683250604473-4.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"dadada\",\n        \"createdAt\": \"2023-05-05T01:22:35.164Z\",\n        \"updatedAt\": \"2023-05-05T01:36:44.485Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/products/delete/64545a21545147705d19972f",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products",
+								"delete",
+								"64545a21545147705d19972f"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - By superadmin and admin",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/delete/64545a5b545147705d199732",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"delete",
+										"64545a5b545147705d199732"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e-OkPB2gvRutKjRhzD6OVslN+Y0z0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:45:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Product deleted!\"\n}"
+						},
+						{
+							"name": "400 - By user",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/delete/64545a21545147705d19972f",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"delete",
+										"64545a21545147705d19972f"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-d9b7IJYNsx79udVWFH0kGI07DuY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:46:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"This account not authorize to add any product\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Sort",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/products/sort-by/desc",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products",
+								"sort-by",
+								"desc"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - Ascending",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/sort-by/asc",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"sort-by",
+										"asc"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "6759"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1a67-oewwfHSpYjbxIcLYQQsbk/Vza5I\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:53:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"6435898fa6f90676a7904f15\",\n        \"product_name\": \"Fjallraven - Foldsack No. 1 Backpack\",\n        \"product_price\": 200000,\n        \"product_made\": \"USA\",\n        \"product_image\": \"images\\\\1681230223863-1.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday\",\n        \"createdAt\": \"2023-04-11T16:23:43.910Z\",\n        \"updatedAt\": \"2023-04-11T16:23:43.910Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358c52a6f90676a7904f23\",\n        \"product_name\": \"Lock and Love Women's Removable Hoode\",\n        \"product_price\": 210000,\n        \"product_made\": \"NEW YORK\",\n        \"product_image\": \"images\\\\1681230930728-15.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket\",\n        \"createdAt\": \"2023-04-11T16:35:30.745Z\",\n        \"updatedAt\": \"2023-04-11T16:35:30.745Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358cd0a6f90676a7904f27\",\n        \"product_name\": \"MBJ Women's Solid Short Sleeve Boat Neck V\",\n        \"product_price\": 161000,\n        \"product_made\": \"CANADA\",\n        \"product_image\": \"images\\\\1681231056684-17.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem\",\n        \"createdAt\": \"2023-04-11T16:37:36.694Z\",\n        \"updatedAt\": \"2023-04-11T16:37:36.694Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358a07a6f90676a7904f17\",\n        \"product_name\": \"Mens Casual Premium Slim Fit T-Shirts\",\n        \"product_price\": 40000,\n        \"product_made\": \"CANADA\",\n        \"product_image\": \"images\\\\1681230343928-2.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans.\",\n        \"createdAt\": \"2023-04-11T16:25:43.972Z\",\n        \"updatedAt\": \"2023-04-11T16:25:43.972Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358a5ca6f90676a7904f19\",\n        \"product_name\": \"Mens Cotton Jacket\",\n        \"product_price\": 98000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230428278-3.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.\",\n        \"createdAt\": \"2023-04-11T16:27:08.288Z\",\n        \"updatedAt\": \"2023-04-11T16:27:08.288Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358d09a6f90676a7904f29\",\n        \"product_name\": \"Opna Women's Short Sleeve Moisture\",\n        \"product_price\": 90000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681231113382-18.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort\",\n        \"createdAt\": \"2023-04-11T16:38:33.400Z\",\n        \"updatedAt\": \"2023-04-11T16:38:33.400Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358b85a6f90676a7904f20\",\n        \"product_name\": \"Pierced Owl Rose Gold Plated Stainless Steel Double\",\n        \"product_price\": 88000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230725896-7.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel\",\n        \"createdAt\": \"2023-04-11T16:32:05.928Z\",\n        \"updatedAt\": \"2023-04-11T16:32:05.928Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358c8fa6f90676a7904f25\",\n        \"product_name\": \"Rain Jacket Women Windbreaker Striped Climbing Raincoats\",\n        \"product_price\": 175000,\n        \"product_made\": \"NEW YORK\",\n        \"product_image\": \"images\\\\1681230991176-16.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look.\",\n        \"createdAt\": \"2023-04-11T16:36:31.189Z\",\n        \"updatedAt\": \"2023-04-11T16:36:31.189Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358b03a6f90676a7904f1c\",\n        \"product_name\": \"Solid Gold Petite Micropave\",\n        \"product_price\": 30000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230595287-5.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.\",\n        \"createdAt\": \"2023-04-11T16:29:55.330Z\",\n        \"updatedAt\": \"2023-04-11T16:29:55.330Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358b3ba6f90676a7904f1e\",\n        \"product_name\": \"White Gold Plated Princess\",\n        \"product_price\": 77000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230651154-6.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day\",\n        \"createdAt\": \"2023-04-11T16:30:51.175Z\",\n        \"updatedAt\": \"2023-04-11T16:30:51.175Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"643913f52627d12a52c71076\",\n        \"product_name\": \"Womens T Shirt Casual Cotton Short\",\n        \"product_price\": 40000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681462260875-19.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-04-14T08:51:01.856Z\",\n        \"updatedAt\": \"2023-04-14T08:51:01.856Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"643919de47414d8da6ebae22\",\n        \"product_name\": \"Womens T Shirt Casual Cotton Short\",\n        \"product_price\": 40000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681463774485-2.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-04-14T09:16:14.856Z\",\n        \"updatedAt\": \"2023-04-14T09:16:14.856Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64545a21545147705d19972f\",\n        \"product_name\": \"baju\",\n        \"product_price\": 40000,\n        \"product_made\": \"Indo\",\n        \"product_image\": \"images\\\\1683249697871-7.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-05-05T01:21:37.913Z\",\n        \"updatedAt\": \"2023-05-05T01:21:37.913Z\",\n        \"__v\": 0\n    }\n]"
+						},
+						{
+							"name": "200 - Descending",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/products/sort-by/desc",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products",
+										"sort-by",
+										"desc"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "6281"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1889-5VmYIcaYtHgG4UxJmvwgg/Qir7k\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 May 2023 01:56:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"643913f52627d12a52c71076\",\n        \"product_name\": \"Womens T Shirt Casual Cotton Short\",\n        \"product_price\": 40000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681462260875-19.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-04-14T08:51:01.856Z\",\n        \"updatedAt\": \"2023-04-14T08:51:01.856Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"643919de47414d8da6ebae22\",\n        \"product_name\": \"Womens T Shirt Casual Cotton Short\",\n        \"product_price\": 40000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681463774485-2.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.\",\n        \"createdAt\": \"2023-04-14T09:16:14.856Z\",\n        \"updatedAt\": \"2023-04-14T09:16:14.856Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358b3ba6f90676a7904f1e\",\n        \"product_name\": \"White Gold Plated Princess\",\n        \"product_price\": 77000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230651154-6.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day\",\n        \"createdAt\": \"2023-04-11T16:30:51.175Z\",\n        \"updatedAt\": \"2023-04-11T16:30:51.175Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358b03a6f90676a7904f1c\",\n        \"product_name\": \"Solid Gold Petite Micropave\",\n        \"product_price\": 30000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230595287-5.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.\",\n        \"createdAt\": \"2023-04-11T16:29:55.330Z\",\n        \"updatedAt\": \"2023-04-11T16:29:55.330Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358c8fa6f90676a7904f25\",\n        \"product_name\": \"Rain Jacket Women Windbreaker Striped Climbing Raincoats\",\n        \"product_price\": 175000,\n        \"product_made\": \"NEW YORK\",\n        \"product_image\": \"images\\\\1681230991176-16.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look.\",\n        \"createdAt\": \"2023-04-11T16:36:31.189Z\",\n        \"updatedAt\": \"2023-04-11T16:36:31.189Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358b85a6f90676a7904f20\",\n        \"product_name\": \"Pierced Owl Rose Gold Plated Stainless Steel Double\",\n        \"product_price\": 88000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230725896-7.jpg\",\n        \"category\": \"jewelery\",\n        \"desc\": \"Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel\",\n        \"createdAt\": \"2023-04-11T16:32:05.928Z\",\n        \"updatedAt\": \"2023-04-11T16:32:05.928Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358d09a6f90676a7904f29\",\n        \"product_name\": \"Opna Women's Short Sleeve Moisture\",\n        \"product_price\": 90000,\n        \"product_made\": \"RUSSIA\",\n        \"product_image\": \"images\\\\1681231113382-18.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort\",\n        \"createdAt\": \"2023-04-11T16:38:33.400Z\",\n        \"updatedAt\": \"2023-04-11T16:38:33.400Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358a5ca6f90676a7904f19\",\n        \"product_name\": \"Mens Cotton Jacket\",\n        \"product_price\": 98000,\n        \"product_made\": \"INDONESIA\",\n        \"product_image\": \"images\\\\1681230428278-3.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.\",\n        \"createdAt\": \"2023-04-11T16:27:08.288Z\",\n        \"updatedAt\": \"2023-04-11T16:27:08.288Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358a07a6f90676a7904f17\",\n        \"product_name\": \"Mens Casual Premium Slim Fit T-Shirts\",\n        \"product_price\": 40000,\n        \"product_made\": \"CANADA\",\n        \"product_image\": \"images\\\\1681230343928-2.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans.\",\n        \"createdAt\": \"2023-04-11T16:25:43.972Z\",\n        \"updatedAt\": \"2023-04-11T16:25:43.972Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358cd0a6f90676a7904f27\",\n        \"product_name\": \"MBJ Women's Solid Short Sleeve Boat Neck V\",\n        \"product_price\": 161000,\n        \"product_made\": \"CANADA\",\n        \"product_image\": \"images\\\\1681231056684-17.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem\",\n        \"createdAt\": \"2023-04-11T16:37:36.694Z\",\n        \"updatedAt\": \"2023-04-11T16:37:36.694Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"64358c52a6f90676a7904f23\",\n        \"product_name\": \"Lock and Love Women's Removable Hoode\",\n        \"product_price\": 210000,\n        \"product_made\": \"NEW YORK\",\n        \"product_image\": \"images\\\\1681230930728-15.jpg\",\n        \"category\": \"female\",\n        \"desc\": \"100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket\",\n        \"createdAt\": \"2023-04-11T16:35:30.745Z\",\n        \"updatedAt\": \"2023-04-11T16:35:30.745Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"6435898fa6f90676a7904f15\",\n        \"product_name\": \"Fjallraven - Foldsack No. 1 Backpack\",\n        \"product_price\": 200000,\n        \"product_made\": \"USA\",\n        \"product_image\": \"images\\\\1681230223863-1.jpg\",\n        \"category\": \"male\",\n        \"desc\": \"Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday\",\n        \"createdAt\": \"2023-04-11T16:23:43.910Z\",\n        \"updatedAt\": \"2023-04-11T16:23:43.910Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				}
+			]
+		}
+	]
+}

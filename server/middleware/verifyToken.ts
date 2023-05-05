@@ -30,7 +30,6 @@ export const verifyToken = async (
 		);
 		next();
 	} catch (error) {
-		if (error)
-			return res.status(400).json({ error: "Invalid adadadadsssssssssss" });
+		if (error) return res.status(400).json({ error: "Invalid" });
 	}
 };
