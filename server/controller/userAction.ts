@@ -5,6 +5,7 @@ import * as bcrypt from "bcrypt";
 import { Users } from "../models/userModel";
 import jwt from "jsonwebtoken";
 import { IGetUserAuthInfoRequest } from "../middleware/verifyToken";
+import { generateToken, generateTokenRefresh } from "../helper/generateToken";
 
 export const registerUser = async (req: Request, res: Response) => {
 	try {
@@ -73,18 +74,7 @@ export const loginUser = async (req: Request, res: Response) => {
 		const match = await bcrypt.compare(password, userPassword);
 		if (!match) return res.status(400).json({ message: "Invalid password" });
 
-		const token = jwt.sign(
-			{
-				id: user?._id,
-				username: user?.username,
-				email: user?.email,
-				role: user?.role,
-			},
-			process.env.SECRET_KEY as string,
-			{
-				expiresIn: "1h",
-			}
-		);
+		const token = generateToken(user);
 
 		if (req.cookies[`${user.username}`]) {
 			req.cookies[`${user.username}`] = "";
@@ -92,7 +82,6 @@ export const loginUser = async (req: Request, res: Response) => {
 
 		res.cookie(String(user.username), token, {
 			path: "/",
-			// expires: new Date(Date.now() + 1000 * 60 * 60), //115000000_600000
 			sameSite: "lax",
 			httpOnly: true,
 			maxAge: 6000000,
@@ -137,28 +126,13 @@ export const refreshToken = async (
 				return res.json(403).json("Authentication failed!");
 			}
 
-			console.log(user);
-			console.log(req.cookies[`${user.username}`]);
-
 			res.clearCookie(`${user.username}`);
 			req.cookies[`${user.username}`];
 
-			const newToken = jwt.sign(
-				{
-					id: user?._id,
-					username: user?.username,
-					email: user?.email,
-					role: user?.role,
-				},
-				process.env.SECRET_KEY as string,
-				{
-					expiresIn: "1h",
-				}
-			);
+			const newToken = generateTokenRefresh(user);
 
 			res.cookie(String(user.username), newToken, {
 				path: "/",
-				// expires: new Date(Date.now() + 1000 * 60 * 60), //115000000_600000
 				sameSite: "lax",
 				httpOnly: true,
 				maxAge: 6000000,

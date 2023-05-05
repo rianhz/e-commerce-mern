@@ -11,8 +11,6 @@ export const getProductPagination = async (req: Request, res: Response) => {
 	const perPage = req.query.perPage || 5;
 	let totalData;
 
-	console.log({ page, perPage });
-
 	await Product.find()
 		.countDocuments()
 		.then((counter) => {
