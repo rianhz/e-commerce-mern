@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./admin.css";
 import ReactPaginate from "react-paginate";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 const AdminZone = () => {
 	const [product, setProduct] = useState<IProduct[]>([]);
@@ -46,11 +47,20 @@ const AdminZone = () => {
 	return (
 		<Container>
 			<Row className="mt-5">
-				<Col>
-					<Link to="/add-product">
-						<Button>ADD PRODUCTS</Button>
-					</Link>
-					<Table>
+				<Col className="table-rapper ">
+					<div className="d-flex justify-content-between align-items-center">
+						<Link to="/add-product">
+							<Button>ADD PRODUCTS</Button>
+						</Link>
+
+						<Link to="/products" id="back">
+							<span>
+								<AiOutlineArrowLeft />
+							</span>
+							<span>Products</span>
+						</Link>
+					</div>
+					<Table striped id="ptable">
 						<thead>
 							<tr>
 								<th>Product</th>
