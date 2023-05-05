@@ -40,10 +40,7 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 	const [refresher, setRefresher] = useState<boolean>(false);
 
 	useEffect(() => {
-		if (render) {
-			getUserInfo();
-			render = false;
-		}
+		getUserInfo();
 
 		let interval = setInterval(() => {
 			refreshToken();
@@ -80,7 +77,6 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 			setUser(data);
 		} catch (error: any) {
 			console.log(error.response.data);
-
 			navigate("/sign-in");
 		}
 	};

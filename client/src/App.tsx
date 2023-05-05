@@ -10,7 +10,6 @@ import Landingpage from "./pages/Landingpage/Landingpage";
 import FormProduct from "./pages/FormAddProduct/FormProduct";
 import EditProduct from "./pages/EditProduct/EditProduct";
 import { IUser } from "./user";
-import { useAppSelector } from "./app/hooks";
 import MyCart from "./components/cart/MyCart";
 import AdminZone from "./pages/AdminZone/AdminZone";
 import UsersInfo from "./pages/Users/UsersInfo";
