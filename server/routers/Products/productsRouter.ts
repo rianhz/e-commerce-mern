@@ -63,12 +63,12 @@ productRouter.use(
 	)
 );
 productRouter.get("/", getProduct);
+productRouter.post("/", verifyAdmin, addProduct);
 productRouter.post("/list", getProductPagination);
 productRouter.get("/:id", getProductById);
 productRouter.post("/search/query", searchByQuery);
 productRouter.patch("/edit/:id", verifyAdmin, editProduct);
 productRouter.delete("/delete/:id", verifyAdmin, deleteProduct);
-productRouter.post("/", verifyAdmin, addProduct);
 productRouter.get("/filter-by/low-price", getProductLowPrice);
 productRouter.get("/filter-by/expensive-price", getProductExpensivePrice);
 productRouter.get("/filter-by/female", getProductFemale);

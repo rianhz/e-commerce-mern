@@ -24,7 +24,7 @@ import { useAppDispatch } from "../../app/hooks";
 import { addItem } from "../../features/cart/cartSlice";
 
 axios.defaults.withCredentials = true;
-let render = true;
+
 type PropsTypes = {
 	setUser: React.Dispatch<React.SetStateAction<IUser | undefined>>;
 	user: IUser | undefined;
@@ -287,9 +287,8 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 											alignItems: "center",
 										}}
 									>
-										<Image
-											src={`${process.env.REACT_APP_BASE_URL}/${el.product_image}`}
-										/>
+										<Image src={el.product_image} />
+										{/* src={`${process.env.REACT_APP_BASE_URL}/${el.product_image}`} */}
 									</div>
 									<Stack>
 										<Heading size="md">{el.product_name}</Heading>

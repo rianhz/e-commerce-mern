@@ -43,7 +43,6 @@ export const verifyAdmin = async (
 				return res.status(400).json({ message: "User not found as seller" });
 
 			const role = (user as IUser).role;
-			console.log(role);
 
 			if (role === "buyer")
 				return res

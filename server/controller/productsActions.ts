@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
 import { Product } from "../models/productModel";
+import cloud from "cloudinary";
+
+const cloudinary = cloud.v2;
 
 export const getProduct = async (req: Request, res: Response) => {
 	const product = await Product.find();
@@ -38,6 +41,17 @@ export const editProduct = async (req: Request, res: Response) => {
 
 	const product_image = req.file?.path;
 
+	cloudinary.config({
+		cloud_name: "dib36cwwr",
+		api_key: "242859779424657",
+		api_secret: "uNRQyN9p2FsT6ZdFvtpyaYGpV2c",
+	});
+
+	const resCloud = await cloudinary.uploader.upload(product_image as string);
+
+	// Generate
+	const url = cloudinary.url(resCloud.public_id);
+
 	await Product.findOneAndUpdate(
 		{ _id: id },
 		{
@@ -46,7 +60,7 @@ export const editProduct = async (req: Request, res: Response) => {
 			product_made,
 			category,
 			desc,
-			product_image,
+			product_image: url,
 		}
 	);
 	res.json("Product edited!");
@@ -55,6 +69,10 @@ export const editProduct = async (req: Request, res: Response) => {
 export const addProduct = async (req: Request, res: Response) => {
 	const { product_name, product_price, product_made, category, desc } =
 		req.body;
+
+	const product_image = req.file?.path;
+
+	// const product_image = req.file?.originalname;
 
 	try {
 		if (!product_price || !product_name || !product_made || !desc) {
@@ -65,12 +83,21 @@ export const addProduct = async (req: Request, res: Response) => {
 			return res.status(422).json({ message: "Image file is required" });
 		}
 
-		const product_image = req.file?.path;
+		cloudinary.config({
+			cloud_name: "dib36cwwr",
+			api_key: "242859779424657",
+			api_secret: "uNRQyN9p2FsT6ZdFvtpyaYGpV2c",
+		});
+
+		const resCloud = await cloudinary.uploader.upload(product_image as string);
+
+		// Generate
+		const url = cloudinary.url(resCloud.public_id);
 
 		await Product.create({
 			product_name,
 			product_price,
-			product_image,
+			product_image: url,
 			product_made,
 			category,
 			desc,
