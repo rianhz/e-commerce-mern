@@ -28,19 +28,21 @@ const LoginUser: React.FC = () => {
 		e.preventDefault();
 
 		try {
-			await axios.post(
-				"https://e-commerce-mern-api-nu.vercel.app/users/login",
-				{
-					username: username,
-					password: password,
-				},
-				{
-					withCredentials: true,
-					headers: {
-						"Content-Type": `multipart/form-data`,
+			await axios
+				.post(
+					"https://e-commerce-mern-api-nu.vercel.app/users/login",
+					{
+						username: username,
+						password: password,
 					},
-				}
-			);
+					{
+						withCredentials: true,
+						headers: {
+							"Content-Type": `application/x-www-form-urlencoded`,
+						},
+					}
+				)
+				.then((data) => console.log(data));
 
 			navigate("/products");
 		} catch (error: any) {
