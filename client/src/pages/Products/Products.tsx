@@ -58,7 +58,10 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 	// main functions
 	const getProducts = async () => {
 		const res = await axios.get(
-			"https://e-commerce-mern-api-nu.vercel.app/products"
+			"https://e-commerce-mern-api-nu.vercel.app/products",
+			{
+				withCredentials: true,
+			}
 		);
 
 		const data = await res.data;
@@ -79,9 +82,6 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 				"https://e-commerce-mern-api-nu.vercel.app/users/profile",
 				{
 					withCredentials: true,
-					headers: {
-						"Content-Type": `application/x-www-form-urlencoded`,
-					},
 				}
 			);
 			const data = await res.data;
