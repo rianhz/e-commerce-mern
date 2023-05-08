@@ -29,7 +29,7 @@ const LoginUser: React.FC = () => {
 
 		try {
 			await axios.post(
-				`${process.env.REACT_APP_LOGIN}`,
+				"https://e-commerce-mern-api-nu.vercel.app/users/login",
 				{
 					username: username,
 					password: password,

@@ -57,7 +57,9 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 	// main functions
 	const getProducts = async () => {
-		const res = await axios.get(`${process.env.REACT_APP_GET_PRODUCTS}`);
+		const res = await axios.get(
+			"https://e-commerce-mern-api-nu.vercel.app/products"
+		);
 
 		const data = await res.data;
 		setProduct(data);
@@ -65,7 +67,7 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 	const handleSearchInput = async () => {
 		const res = await axios.post(
-			`${process.env.REACT_APP_PRODUCTS_SEARCH}?product_names=${search}`
+			`https://e-commerce-mern-api-nu.vercel.app/products/search-product?product_names=${search}`
 		);
 		const data = await res.data;
 		setProduct(data);
@@ -73,9 +75,12 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 	const getUserInfo = async () => {
 		try {
-			const res = await axios.get(`${process.env.REACT_APP_GET_USER}`, {
-				withCredentials: true,
-			});
+			const res = await axios.get(
+				"https://e-commerce-mern-api-nu.vercel.app/users/profile",
+				{
+					withCredentials: true,
+				}
+			);
 			const data = await res.data;
 			setUser(data);
 		} catch (error: any) {
@@ -85,9 +90,12 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 	};
 	const refreshToken = async () => {
 		try {
-			const res = await axios.get(`${process.env.REACT_APP_REFRESH_TOKEN}`, {
-				withCredentials: true,
-			});
+			const res = await axios.get(
+				"https://e-commerce-mern-api-nu.vercel.app/users/refresh",
+				{
+					withCredentials: true,
+				}
+			);
 			const data = await res.data;
 			setUser(data);
 		} catch (error: any) {
@@ -101,7 +109,7 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 		try {
 			const res = await axios.post(
-				`${process.env.REACT_APP_PRODUCTS_SEARCH_QUERY}?price=${price}&category=${category}`
+				`https://e-commerce-mern-api-nu.vercel.app/products/search/query?price=${price}&category=${category}`
 			);
 			const data = await res.data;
 			setProduct(data);
@@ -112,7 +120,7 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 	const handleDeleteProduct = async (e: number) => {
 		await axios
-			.delete(`${process.env.REACT_APP_PRODUCTS_DELETE}/${e}`)
+			.delete(`https://e-commerce-mern-api-nu.vercel.app/products/delete/${e}`)
 			.then((response) => console.log(response.data));
 
 		setRefresher(!refresher);
@@ -137,11 +145,15 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 	const handleRadio = async (val: React.ChangeEvent<HTMLInputElement>) => {
 		if (val.target.value === "az") {
-			const res = await axios.get(`${process.env.REACT_APP_PRODUCTS_ASC}`);
+			const res = await axios.get(
+				"https://e-commerce-mern-api-nu.vercel.app/products/sort-by/asc"
+			);
 			const data = await res.data;
 			setProduct(data);
 		} else if (val.target.value === "za") {
-			const res = await axios.get(`${process.env.REACT_APP_PRODUCTS_DSC}`);
+			const res = await axios.get(
+				"https://e-commerce-mern-api-nu.vercel.app/products/sort-by/desc"
+			);
 			const data = await res.data;
 			setProduct(data);
 		} else {
@@ -152,7 +164,7 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 	const handleKeyup = async (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === "Enter") {
 			const res = await axios.post(
-				`${process.env.REACT_APP_PRODUCTS_SEARCH}?product_names=${search}`
+				`https://e-commerce-mern-api-nu.vercel.app/products/search-product?product_names=${search}`
 			);
 			const data = await res.data;
 			setProduct(data);

@@ -41,7 +41,7 @@ const FormProduct: React.FC = () => {
 		try {
 			const res = await axios
 				.post(
-					`${process.env.REACT_APP_ADD_PRODUCTS}`,
+					"https://e-commerce-mern-api-nu.vercel.app/products",
 					{
 						product_name: pname,
 						product_price: parseInt(price),
