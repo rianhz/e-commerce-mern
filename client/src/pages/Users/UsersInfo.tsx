@@ -8,7 +8,7 @@ const UsersInfo = () => {
 	const [users, setUsers] = useState<IUser[]>([]);
 	const [refresher, setRefresher] = useState<boolean>(false);
 
-	// ALERT
+	// ALERT SET
 	const [alertStatus, setAlertStatus] = useState<boolean>(false);
 	const [alertText, setAlertText] = useState<string>("");
 	const [alertColor, setAlertColor] = useState<string>("");
