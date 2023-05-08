@@ -79,21 +79,16 @@ export const loginUser = async (req: Request, res: Response) => {
 		}
 
 		res.cookie(String(user.username), token, {
-			path: "https://e-commerce-mern-phi.vercel.app",
+			domain: "https://e-commerce-mern-phi.vercel.app",
+			path: "/",
 			sameSite: "lax",
 			httpOnly: true,
 			maxAge: 6000000,
 			secure: true,
-			domain: "https://e-commerce-mern-phi.vercel.app",
 		});
-
-		const cook = req.headers.cookie;
 
 		return res.status(200).send({
 			message: "Login success",
-			cook: cook,
-			usernames: username,
-			cookiesss: req.cookies,
 		});
 	} catch (error: any) {
 		return res.status(400).json(error);
@@ -102,10 +97,15 @@ export const loginUser = async (req: Request, res: Response) => {
 
 export const getProfile = async (req: Request, res: Response) => {
 	const username = (req as IGetUserAuthInfoRequest).username;
-
+	const cook = req.headers.cookie;
 	try {
 		const user = await Users.findOne({ username }, "-password");
-		return res.json(user);
+		return res.json({
+			user,
+			cook: cook,
+			usernames: username,
+			cookiesss: req.cookies,
+		});
 	} catch (error: any) {
 		console.log(error);
 
@@ -139,12 +139,12 @@ export const refreshToken = async (
 			const newToken = generateTokenRefresh(user);
 
 			res.cookie(String(user.username), newToken, {
-				path: "https://e-commerce-mern-phi.vercel.app",
+				domain: "https://e-commerce-mern-phi.vercel.app",
+				path: "/",
 				sameSite: "lax",
 				httpOnly: true,
 				maxAge: 6000000,
 				secure: true,
-				domain: "https://e-commerce-mern-phi.vercel.app",
 			});
 
 			(req as IGetUserAuthInfoRequest).username = user.username;
