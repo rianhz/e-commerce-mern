@@ -96,6 +96,11 @@ export const loginUser = async (req: Request, res: Response) => {
 export const getProfile = async (req: Request, res: Response) => {
 	const username = (req as IGetUserAuthInfoRequest).username;
 
+	const cook = req.headers.cookie;
+	console.log(cook);
+
+	console.log(username);
+	console.log(req.cookies);
 	try {
 		const user = await Users.findOne({ username }, "-password");
 		return res.json(user);
