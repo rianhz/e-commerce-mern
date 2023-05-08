@@ -32,7 +32,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.listen(5000, (): void => {
-	console.log("Server Running");
+	console.log("Server Running on port 5000");
 });
 
 db.on("error", (err) => {

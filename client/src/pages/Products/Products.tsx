@@ -57,12 +57,9 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 	// main functions
 	const getProducts = async () => {
-		const res = await axios.get(
-			"https://e-commerce-mern-api-nu.vercel.app/products",
-			{
-				withCredentials: true,
-			}
-		);
+		const res = await axios.get(`${process.env.REACT_APP_GET_PRODUCTS}`, {
+			withCredentials: true,
+		});
 
 		const data = await res.data;
 		setProduct(data);
@@ -70,7 +67,7 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 	const handleSearchInput = async () => {
 		const res = await axios.post(
-			`https://e-commerce-mern-api-nu.vercel.app/products/search-product?product_names=${search}`
+			`${process.env.REACT_APP_PRODUCTS_SEARCH}?product_names=${search}`
 		);
 		const data = await res.data;
 		setProduct(data);
@@ -78,12 +75,9 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 	const getUserInfo = async () => {
 		try {
-			const res = await axios.get(
-				"https://e-commerce-mern-api-nu.vercel.app/users/profile",
-				{
-					withCredentials: true,
-				}
-			);
+			const res = await axios.get(`${process.env.REACT_APP_GET_USER}`, {
+				withCredentials: true,
+			});
 			const data = await res.data;
 			setUser(data);
 		} catch (error: any) {
@@ -93,12 +87,9 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 	};
 	const refreshToken = async () => {
 		try {
-			const res = await axios.get(
-				"https://e-commerce-mern-api-nu.vercel.app/users/refresh",
-				{
-					withCredentials: true,
-				}
-			);
+			const res = await axios.get(`${process.env.REACT_APP_REFRESH_TOKEN}`, {
+				withCredentials: true,
+			});
 			const data = await res.data;
 			setUser(data);
 		} catch (error: any) {
@@ -112,7 +103,7 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 		try {
 			const res = await axios.post(
-				`https://e-commerce-mern-api-nu.vercel.app/products/search/query?price=${price}&category=${category}`
+				`${process.env.REACT_APP_PRODUCTS_SEARCH_QUERY}?price=${price}&category=${category}`
 			);
 			const data = await res.data;
 			setProduct(data);
@@ -123,7 +114,7 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 	const handleDeleteProduct = async (e: number) => {
 		await axios
-			.delete(`https://e-commerce-mern-api-nu.vercel.app/products/delete/${e}`)
+			.delete(`${process.env.REACT_APP_PRODUCTS_DELETE}/${e}`)
 			.then((response) => console.log(response.data));
 
 		setRefresher(!refresher);

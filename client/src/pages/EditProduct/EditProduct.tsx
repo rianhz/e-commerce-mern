@@ -35,9 +35,7 @@ const EditProduct = () => {
 	};
 
 	const getProducts = async () => {
-		const res = await axios.get(
-			`https://e-commerce-mern-api-nu.vercel.app/products/${id}`
-		);
+		const res = await axios.get(`${process.env.REACT_APP_GET_PRODUCTS}/${id}`);
 
 		const data = await res.data;
 
@@ -62,7 +60,7 @@ const EditProduct = () => {
 
 		try {
 			const res = await axios.patch(
-				`https://e-commerce-mern-api-nu.vercel.app/products/edit/${id}`,
+				`${process.env.REACT_APP_PRODUCTS_EDIT}/${id}`,
 				{
 					product_name: pname,
 					product_price: parseInt(price),

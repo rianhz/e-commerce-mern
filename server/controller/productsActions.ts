@@ -72,8 +72,6 @@ export const addProduct = async (req: Request, res: Response) => {
 
 	const product_image = req.file?.path;
 
-	// const product_image = req.file?.originalname;
-
 	try {
 		if (!product_price || !product_name || !product_made || !desc) {
 			return res.status(400).json({ message: "All data is required" });

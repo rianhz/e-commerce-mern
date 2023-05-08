@@ -24,16 +24,14 @@ const UsersInfo = () => {
 	};
 
 	const getUsers = async () => {
-		const res = await axios.get(
-			"https://e-commerce-mern-api-nu.vercel.app/users"
-		);
+		const res = await axios.get(`${process.env.REACT_APP_ALL_USERS}`);
 		const data = await res.data;
 		setUsers(data);
 	};
 
 	const deleteUser = async (u: any) => {
 		const res = await axios.delete(
-			`https://e-commerce-mern-api-nu.vercel.app/users/${u}`
+			`${process.env.REACT_APP_DELETE_USERS}/${u}`
 		);
 		handleAlert(true, res.data.message, "success");
 	};

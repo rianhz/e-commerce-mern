@@ -8,22 +8,11 @@ import {
 	deleteUser,
 	refreshToken,
 } from "../../controller/userAction";
-import cors from "cors";
 
 import { verifyToken } from "../../middleware/verifyToken";
 import { verifySuperAdmin } from "../../middleware/verifyAdmin";
 
 const userRouter = express.Router();
-
-userRouter.use(
-	cors({
-		origin: process.env.BASE_URL,
-		credentials: true,
-		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-		allowedHeaders:
-			"Origin, X-Requested-With, Content-Type, Accept, Authorization",
-	})
-);
 
 userRouter.get("/", verifyToken, verifySuperAdmin, getAllUsers);
 userRouter.delete("/:id", verifyToken, verifySuperAdmin, deleteUser);

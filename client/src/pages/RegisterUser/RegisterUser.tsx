@@ -40,7 +40,7 @@ const RegisterUser: React.FC = () => {
 		try {
 			await axios
 				.post(
-					"https://e-commerce-mern-api-nu.vercel.app/users/register",
+					`${process.env.REACT_APP_REGISTER}`,
 					{
 						username: username,
 						email: email,

@@ -19,16 +19,14 @@ const AdminZone = () => {
 	}, [pagiSetter, refresher]);
 
 	const getAllProducts = async () => {
-		const res = await axios.get(
-			"https://e-commerce-mern-api-nu.vercel.app/products"
-		);
+		const res = await axios.get(`${process.env.REACT_APP_GET_PRODUCTS}`);
 		const data = await res.data;
 		setAllProduct(data);
 	};
 
 	const getProducts = async () => {
 		const res = await axios.post(
-			`https://e-commerce-mern-api-nu.vercel.app/products/list?page=${pagiSetter}`
+			`${process.env.REACT_APP_GET_PRODUCTS_PAGINATION}?page=${pagiSetter}`
 		);
 		const data = await res.data;
 		setProduct(data);
@@ -40,7 +38,7 @@ const AdminZone = () => {
 
 	const handleDeleteProduct = async (e: number) => {
 		await axios
-			.delete(`https://e-commerce-mern-api-nu.vercel.app/products/delete/${e}`)
+			.delete(`${process.env.REACT_APP_PRODUCTS_DELETE}/${e}`)
 			.then((response) => console.log(response.data));
 
 		setRefresher(!refresher);
