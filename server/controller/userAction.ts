@@ -79,7 +79,7 @@ export const loginUser = async (req: Request, res: Response) => {
 		}
 
 		res.cookie(String(user.username), token, {
-			path: "/",
+			path: "https://e-commerce-mern-phi.vercel.app",
 			sameSite: "lax",
 			httpOnly: true,
 			maxAge: 6000000,
@@ -89,14 +89,12 @@ export const loginUser = async (req: Request, res: Response) => {
 
 		const cook = req.headers.cookie;
 
-		return res
-			.status(200)
-			.send({
-				message: "Login success",
-				cook: cook,
-				usernames: username,
-				cookiesss: req.cookies,
-			});
+		return res.status(200).send({
+			message: "Login success",
+			cook: cook,
+			usernames: username,
+			cookiesss: req.cookies,
+		});
 	} catch (error: any) {
 		return res.status(400).json(error);
 	}
@@ -141,7 +139,7 @@ export const refreshToken = async (
 			const newToken = generateTokenRefresh(user);
 
 			res.cookie(String(user.username), newToken, {
-				path: "/",
+				path: "https://e-commerce-mern-phi.vercel.app",
 				sameSite: "lax",
 				httpOnly: true,
 				maxAge: 6000000,
