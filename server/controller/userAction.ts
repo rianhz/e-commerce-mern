@@ -84,7 +84,7 @@ export const loginUser = async (req: Request, res: Response) => {
 			httpOnly: true,
 			maxAge: 6000000,
 			secure: true,
-			domain: "https://e-commerce-mern-phi.vercel.app/",
+			domain: "https://e-commerce-mern-phi.vercel.app",
 		});
 
 		return res.status(200).send({ message: "Login success" });
@@ -142,7 +142,7 @@ export const refreshToken = async (
 				httpOnly: true,
 				maxAge: 6000000,
 				secure: true,
-				domain: "https://e-commerce-mern-phi.vercel.app/",
+				domain: "https://e-commerce-mern-phi.vercel.app",
 			});
 
 			(req as IGetUserAuthInfoRequest).username = user.username;
