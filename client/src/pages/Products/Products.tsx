@@ -79,6 +79,9 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 				"https://e-commerce-mern-api-nu.vercel.app/users/profile",
 				{
 					withCredentials: true,
+					headers: {
+						"Content-Type": `application/x-www-form-urlencoded`,
+					},
 				}
 			);
 			const data = await res.data;

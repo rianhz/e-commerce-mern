@@ -24,7 +24,7 @@ function App() {
 
 	const handleLogout = async () => {
 		await axios
-			.post(`${process.env.REACT_APP_LOGOUT}`)
+			.post("https://e-commerce-mern-api-nu.vercel.app/users/logout")
 			.then(() => {
 				setUser(undefined);
 				setMobile(!mobile);

@@ -39,13 +39,21 @@ const RegisterUser: React.FC = () => {
 
 		try {
 			await axios
-				.post("https://e-commerce-mern-api-nu.vercel.app/users/register", {
-					username: username,
-					email: email,
-					password: password,
-					confirmPassword: confirmPassword,
-					role: isAdmin,
-				})
+				.post(
+					"https://e-commerce-mern-api-nu.vercel.app/users/register",
+					{
+						username: username,
+						email: email,
+						password: password,
+						confirmPassword: confirmPassword,
+						role: isAdmin,
+					},
+					{
+						headers: {
+							"Content-Type": `application/x-www-form-urlencoded`,
+						},
+					}
+				)
 				.then((response) => {
 					handleAlert(true, response.data.message, "success");
 					setTimeout(() => {
