@@ -36,6 +36,9 @@ const LoginUser: React.FC = () => {
 				},
 				{
 					withCredentials: true,
+					headers: {
+						"Content-Type": `multipart/form-data`,
+					},
 				}
 			);
 
