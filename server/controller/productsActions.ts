@@ -6,7 +6,7 @@ const cloudinary = cloud.v2;
 
 export const getProduct = async (req: Request, res: Response) => {
 	const product = await Product.find();
-	return res.json(product);
+	return res.status(200).json({ status: "200", data: product });
 };
 
 export const getProductPagination = async (req: Request, res: Response) => {
@@ -32,7 +32,7 @@ export const getProductById = async (req: Request, res: Response) => {
 	const { id } = req.params;
 
 	const product = await Product.find({ _id: id });
-	res.json(product);
+	res.status(200).json({ status: "200", data: product });
 };
 export const editProduct = async (req: Request, res: Response) => {
 	const { id } = req.params;
@@ -63,7 +63,11 @@ export const editProduct = async (req: Request, res: Response) => {
 			product_image: url,
 		}
 	);
-	res.json("Product edited!");
+
+	res.status(200).json({
+		status: "200",
+		message: "Product edited!",
+	});
 };
 
 export const addProduct = async (req: Request, res: Response) => {
@@ -74,11 +78,15 @@ export const addProduct = async (req: Request, res: Response) => {
 
 	try {
 		if (!product_price || !product_name || !product_made || !desc) {
-			return res.status(400).json({ message: "All data is required" });
+			return res
+				.status(400)
+				.json({ status: "400", message: "All data is required" });
 		}
 
 		if (!req.file) {
-			return res.status(422).json({ message: "Image file is required" });
+			return res
+				.status(422)
+				.json({ status: "400", message: "Image file is required" });
 		}
 
 		cloudinary.config({
@@ -101,9 +109,9 @@ export const addProduct = async (req: Request, res: Response) => {
 			desc,
 		});
 
-		res.json({ message: "Product added!" });
+		res.status(201).json({ status: "201", message: "Product added!" });
 	} catch (error) {
-		res.status(500).json({ message: "Server error" });
+		res.status(500).json({ status: "500", message: "Server error" });
 	}
 };
 
@@ -111,16 +119,18 @@ export const deleteProduct = async (req: Request, res: Response) => {
 	const { id } = req.params;
 	try {
 		await Product.findOneAndDelete({ _id: id });
-		return res.status(200).json({ message: "Product deleted!" });
+		return res.status(200).json({ status: "200", message: "Product deleted!" });
 	} catch (error) {
-		return res.status(500).json({ message: "Internal server error" });
+		return res
+			.status(500)
+			.json({ status: "500", message: "Internal server error" });
 	}
 };
 
 export const getProductLowPrice = async (req: Request, res: Response) => {
 	const products = await Product.find({ product_price: { $lt: 50000 } });
 
-	res.json(products);
+	res.status(200).json({ status: "200", data: products });
 };
 
 export const searchByQuery = async (req: Request, res: Response) => {
@@ -133,7 +143,7 @@ export const searchByQuery = async (req: Request, res: Response) => {
 		) {
 			const products = await Product.find();
 
-			return res.status(200).json(products);
+			return res.status(200).json({ status: "200", data: products });
 		}
 
 		if ((price == undefined || price === "") && category !== undefined) {
@@ -141,7 +151,7 @@ export const searchByQuery = async (req: Request, res: Response) => {
 				category: category,
 			});
 
-			return res.status(200).json(products);
+			return res.status(200).json({ status: "200", data: products });
 		}
 
 		if ((category == undefined || category === "") && price !== undefined) {
@@ -149,7 +159,7 @@ export const searchByQuery = async (req: Request, res: Response) => {
 				product_price: price === "low" ? { $lt: 100000 } : { $gt: 100001 },
 			});
 
-			return res.status(200).json(products);
+			return res.status(200).json({ status: "200", data: products });
 		}
 
 		const products = await Product.find({
@@ -157,44 +167,44 @@ export const searchByQuery = async (req: Request, res: Response) => {
 			category: category,
 		});
 
-		return res.status(200).json(products);
+		return res.status(200).json({ status: "200", data: products });
 	} catch (error) {
-		return res.json(error);
+		return res.json({ message: error });
 	}
 };
 
 export const getProductExpensivePrice = async (req: Request, res: Response) => {
 	const products = await Product.find({ product_price: { $gt: 50000 } });
 
-	res.json(products);
+	res.status(200).json({ status: "200", data: products });
 };
 export const getProductMale = async (req: Request, res: Response) => {
 	const products = await Product.find({ category: "male" });
 
-	res.json(products);
+	res.status(200).json({ status: "200", data: products });
 };
 
 export const getProductFemale = async (req: Request, res: Response) => {
 	const products = await Product.find({ category: "female" });
 
-	res.json(products);
+	res.status(200).json({ status: "200", data: products });
 };
 
 export const getProductJewelery = async (req: Request, res: Response) => {
 	const products = await Product.find({ category: "jewelery" });
 
-	res.json(products);
+	res.status(200).json({ status: "200", data: products });
 };
 
 export const sortASC = async (req: Request, res: Response) => {
 	const products = await Product.find().sort({ product_name: "asc" });
 
-	res.json(products);
+	res.status(200).json({ status: "200", data: products });
 };
 export const sortDESC = async (req: Request, res: Response) => {
 	const products = await Product.find().sort({ product_name: "desc" });
 
-	res.json(products);
+	res.status(200).json({ status: "200", data: products });
 };
 
 export const getProductInput = async (req: Request, res: Response) => {
@@ -204,5 +214,5 @@ export const getProductInput = async (req: Request, res: Response) => {
 		product_name: new RegExp(`${product_names}`, "i"),
 	});
 
-	return res.json(product);
+	res.status(200).json({ status: "200", data: product });
 };

@@ -51,6 +51,7 @@ export const registerUser = async (req: Request, res: Response) => {
 		});
 
 		return res.status(201).json({
+			status: "201",
 			message: "User has been created!",
 		});
 	} catch (err) {
@@ -83,10 +84,10 @@ export const loginUser = async (req: Request, res: Response) => {
 			sameSite: false,
 			httpOnly: true,
 			maxAge: 6000000,
-			secure: true,
 		});
 
 		return res.status(200).send({
+			status: "200",
 			message: "Login success",
 		});
 	} catch (error: any) {
@@ -99,11 +100,15 @@ export const getProfile = async (req: Request, res: Response) => {
 
 	try {
 		const user = await Users.findOne({ username }, "-password");
-		return res.json(user);
+		return res.status(200).json({
+			status: "200",
+			data: user,
+		});
 	} catch (error: any) {
-		console.log(error);
-
-		return res.status(404).json(error);
+		return res.status(404).json({
+			status: "404",
+			message: error,
+		});
 	}
 };
 
@@ -116,7 +121,10 @@ export const refreshToken = async (
 	const token = cookies?.split("=")[1];
 
 	if (!token) {
-		return res.status(400).json("No Token! Failed to refresh token!");
+		return res.status(400).json({
+			status: "400",
+			message: "No Token! Failed to refresh token!",
+		});
 	}
 	jwt.verify(
 		String(token),
@@ -124,7 +132,10 @@ export const refreshToken = async (
 		(err: any, user: any) => {
 			if (err) {
 				console.log(err);
-				return res.json(403).json("Authentication failed!");
+				return res.json(403).json({
+					status: "403",
+					message: "Authentication failed!",
+				});
 			}
 
 			res.clearCookie(`${user.username}`);
@@ -137,7 +148,6 @@ export const refreshToken = async (
 				sameSite: false,
 				httpOnly: true,
 				maxAge: 6000000,
-				secure: true,
 			});
 
 			(req as IGetUserAuthInfoRequest).username = user.username;
@@ -160,7 +170,9 @@ export const logoutUser = async (req: Request, res: Response) => {
 	const prevToken = cookies?.split("=")[1];
 
 	if (!prevToken) {
-		return res.status(400).json({ message: "Couldn't find token" });
+		return res
+			.status(400)
+			.json({ status: "400", message: "Couldn't find token" });
 	}
 
 	jwt.verify(
@@ -168,12 +180,16 @@ export const logoutUser = async (req: Request, res: Response) => {
 		process.env.SECRET_KEY as string,
 		(err: any, user: any) => {
 			if (err) {
-				return res.status(403).json({ message: "Authentication failed" });
+				return res
+					.status(403)
+					.json({ status: "400", message: "Authentication failed" });
 			}
 
 			res.clearCookie(`${user.username}`);
 			req.cookies[`${user.username}`] = "";
-			return res.status(200).json({ message: "Successfully Logged Out" });
+			return res
+				.status(200)
+				.json({ status: "200", message: "Successfully Logged Out" });
 		}
 	);
 };
@@ -183,8 +199,10 @@ export const deleteUser = async (req: Request, res: Response) => {
 
 	try {
 		await Users.findOneAndDelete({ _id: id });
-		return res.status(200).json({ message: "User deleted!" });
+		return res.status(200).json({ status: "200", message: "User deleted!" });
 	} catch (error) {
-		return res.status(500).json({ message: "Internal server error" });
+		return res
+			.status(500)
+			.json({ status: "500", message: "Internal server error" });
 	}
 };
