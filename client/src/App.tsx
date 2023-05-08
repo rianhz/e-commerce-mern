@@ -32,8 +32,6 @@ function App() {
 			.catch((error) => console.log(error.response.data));
 	};
 
-	console.log(user);
-
 	return (
 		<div className="App">
 			<Navigation

@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { Col, Container, Form, Row, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
+import { motion } from "framer-motion";
 
 import {
 	Input,
@@ -38,6 +39,7 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 	const [price, setPrice] = useState<string>("");
 	const [category, setCategory] = useState<string>("");
 	const [refresher, setRefresher] = useState<boolean>(false);
+	const [isSpin, setIsSpin] = useState<boolean>(false);
 
 	useEffect(() => {
 		getUserInfo();
@@ -50,12 +52,13 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 	}, []);
 
 	useEffect(() => {
-		getProducts();
+		getProducts().finally(() => setIsSpin(true));
 	}, [refresher]);
 
 	// main functions
 	const getProducts = async () => {
 		const res = await axios.get(`${process.env.REACT_APP_GET_PRODUCTS}`);
+
 		const data = await res.data;
 		setProduct(data);
 	};
@@ -262,6 +265,13 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 				</Col>
 			</Row>
 			<Row className="mt-3 d-flex justify-content-center align-items-center">
+				{isSpin ? (
+					""
+				) : (
+					<Spinner animation="border" role="status">
+						<span className="visually-hidden">Loading...</span>
+					</Spinner>
+				)}
 				{product?.map((el, i) => {
 					return (
 						<Col
@@ -271,77 +281,84 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 							key={i}
 							className="mt-3 d-flex justify-content-center align-items-center"
 						>
-							<Card width="15rem" boxShadow="0 3px 5px -2px black">
-								<CardBody
-									display="flex"
-									flexDirection="column"
-									justifyContent="space-between"
-									height="100%"
-								>
-									<div
-										style={{
-											height: "170px",
-											width: "100%",
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-										}}
+							<motion.div
+								layout
+								animate={{ opacity: 1 }}
+								initial={{ opacity: 0 }}
+								exit={{ opacity: 0 }}
+								transition={{ duration: 0.7 }}
+							>
+								<Card width="15rem" boxShadow="0 3px 5px -2px black">
+									<CardBody
+										display="flex"
+										flexDirection="column"
+										justifyContent="space-between"
+										height="100%"
 									>
-										<Image src={el.product_image} />
-										{/* src={`${process.env.REACT_APP_BASE_URL}/${el.product_image}`} */}
-									</div>
-									<Stack>
-										<Heading size="md">{el.product_name}</Heading>
-										<Text color="blue.600" fontSize="2xl">
-											Rp. {el.product_price}
-										</Text>
-									</Stack>
+										<div
+											style={{
+												height: "170px",
+												width: "100%",
+												display: "flex",
+												justifyContent: "center",
+												alignItems: "center",
+											}}
+										>
+											<Image src={el.product_image} />
+										</div>
+										<Stack>
+											<Heading size="md">{el.product_name}</Heading>
+											<Text color="blue.600" fontSize="2xl">
+												Rp. {el.product_price}
+											</Text>
+										</Stack>
 
-									{user?.role === "buyer" ? (
-										<ButtonGroup
-											spacing="2"
-											display="flex"
-											justifyContent="center"
-											alignItems="center"
-										>
-											<Button
-												variant="solid"
-												colorScheme="blue"
-												onClick={() => dispatch(addItem(el))}
+										{user?.role === "buyer" ? (
+											<ButtonGroup
+												spacing="2"
+												display="flex"
+												justifyContent="center"
+												alignItems="center"
 											>
-												Add to cart
-											</Button>
-										</ButtonGroup>
-									) : (
-										<ButtonGroup
-											spacing="2"
-											display="flex"
-											justifyContent="center"
-											gap="10px"
-											alignItems="center"
-										>
-											<Link to={`/edit-product/${el._id}`}>
 												<Button
 													variant="solid"
 													colorScheme="blue"
-													width="100%"
-													padding="0 30px"
+													onClick={() => dispatch(addItem(el))}
 												>
-													Edit
+													Add to cart
 												</Button>
-											</Link>
-											<Button
-												padding="0 20px"
-												variant="ghost"
-												colorScheme="blue"
-												onClick={() => handleDeleteProduct(el._id)}
+											</ButtonGroup>
+										) : (
+											<ButtonGroup
+												spacing="2"
+												display="flex"
+												justifyContent="center"
+												gap="10px"
+												alignItems="center"
 											>
-												Delete
-											</Button>
-										</ButtonGroup>
-									)}
-								</CardBody>
-							</Card>
+												<Link to={`/edit-product/${el._id}`}>
+													<Button
+														variant="solid"
+														colorScheme="blue"
+														width="100%"
+														padding="0 30px"
+													>
+														Edit
+													</Button>
+												</Link>
+												<Button
+													padding="0 20px"
+													variant="ghost"
+													colorScheme="blue"
+													onClick={() => handleDeleteProduct(el._id)}
+												>
+													Delete
+												</Button>
+											</ButtonGroup>
+										)}
+									</CardBody>
+								</Card>
+							</motion.div>
 						</Col>
 					);
 				})}

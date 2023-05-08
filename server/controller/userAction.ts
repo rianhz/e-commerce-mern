@@ -1,5 +1,3 @@
-import * as dotenv from "dotenv";
-dotenv.config();
 import { NextFunction, Request, Response } from "express";
 import * as bcrypt from "bcrypt";
 import { Users } from "../models/userModel";
@@ -36,7 +34,7 @@ export const registerUser = async (req: Request, res: Response) => {
 				.json({ message: "Wrong combination password, try again!" });
 
 		//regex email
-		let regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
+		const regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
 
 		if (!regex.test(email))
 			return res.status(400).json({ message: "Invalid Email!" });
@@ -82,9 +80,10 @@ export const loginUser = async (req: Request, res: Response) => {
 
 		res.cookie(String(user.username), token, {
 			path: "/",
-			sameSite: "lax",
+			sameSite: false,
 			httpOnly: true,
 			maxAge: 6000000,
+			secure: true,
 		});
 
 		return res.status(200).send({ message: "Login success" });
@@ -94,7 +93,7 @@ export const loginUser = async (req: Request, res: Response) => {
 };
 
 export const getProfile = async (req: Request, res: Response) => {
-	let username = (req as IGetUserAuthInfoRequest).username;
+	const username = (req as IGetUserAuthInfoRequest).username;
 
 	try {
 		const user = await Users.findOne({ username }, "-password");
@@ -133,9 +132,10 @@ export const refreshToken = async (
 
 			res.cookie(String(user.username), newToken, {
 				path: "/",
-				sameSite: "lax",
+				sameSite: false,
 				httpOnly: true,
 				maxAge: 6000000,
+				secure: true,
 			});
 
 			(req as IGetUserAuthInfoRequest).username = user.username;

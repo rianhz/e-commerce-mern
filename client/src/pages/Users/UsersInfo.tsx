@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Alert, Button, Col, Container, Row, Table } from "react-bootstrap";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import "./users.css";
 import { IUser } from "../../user";
 

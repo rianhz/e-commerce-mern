@@ -24,7 +24,7 @@ const FormProduct: React.FC = () => {
 		setAlertColor(color);
 		setTimeout(() => {
 			setAlertStatus(false);
-		}, 1500);
+		}, 1000);
 	};
 
 	const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,20 +39,22 @@ const FormProduct: React.FC = () => {
 		e.preventDefault();
 
 		try {
-			const res = await axios.post(
-				`${process.env.REACT_APP_ADD_PRODUCTS}`,
-				{
-					product_name: pname,
-					product_price: parseInt(price),
-					product_made: pmade,
-					product_image: pImage,
-					category: category,
-					desc: description,
-				},
-				{
-					headers: { "Content-Type": `multipart/form-data` },
-				}
-			);
+			const res = await axios
+				.post(
+					`${process.env.REACT_APP_ADD_PRODUCTS}`,
+					{
+						product_name: pname,
+						product_price: parseInt(price),
+						product_made: pmade,
+						product_image: pImage,
+						category: category,
+						desc: description,
+					},
+					{
+						headers: { "Content-Type": `multipart/form-data` },
+					}
+				)
+				.finally();
 			const data = await res.data;
 			navigate("/products");
 

@@ -1,6 +1,6 @@
 import * as dotenv from "dotenv";
 dotenv.config();
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import productRouter from "./routers/Products/productsRouter";
 import path from "path";
@@ -9,14 +9,18 @@ import { db } from "./config/db";
 import userRouter from "./routers/Users/userRouter";
 
 const app = express();
-app.use(express.urlencoded({ extended: true }));
+
 app.use(
 	cors({
-		origin: "http://localhost:3000",
+		origin: process.env.BASE_URL,
 		credentials: true,
+		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+		allowedHeaders:
+			"Origin, X-Requested-With, Content-Type, Accept, Authorization",
 	})
 );
 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/images", express.static(path.join(__dirname, "images")));
