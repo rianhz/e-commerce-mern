@@ -87,7 +87,16 @@ export const loginUser = async (req: Request, res: Response) => {
 			domain: "https://e-commerce-mern-phi.vercel.app",
 		});
 
-		return res.status(200).send({ message: "Login success" });
+		const cook = req.headers.cookie;
+
+		return res
+			.status(200)
+			.send({
+				message: "Login success",
+				cook: cook,
+				usernames: username,
+				cookiesss: req.cookies,
+			});
 	} catch (error: any) {
 		return res.status(400).json(error);
 	}
@@ -96,11 +105,6 @@ export const loginUser = async (req: Request, res: Response) => {
 export const getProfile = async (req: Request, res: Response) => {
 	const username = (req as IGetUserAuthInfoRequest).username;
 
-	const cook = req.headers.cookie;
-	console.log(cook);
-
-	console.log(username);
-	console.log(req.cookies);
 	try {
 		const user = await Users.findOne({ username }, "-password");
 		return res.json(user);
