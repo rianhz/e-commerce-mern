@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import "./admin.css";
 import ReactPaginate from "react-paginate";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+import { BsDatabaseDash } from "react-icons/bs";
 
 const AdminZone = () => {
 	const [product, setProduct] = useState<IProduct[]>([]);
@@ -20,7 +21,8 @@ const AdminZone = () => {
 
 	const getAllProducts = async () => {
 		const res = await axios.get(`${process.env.REACT_APP_GET_PRODUCTS}`);
-		const data = await res.data;
+		const data = await res.data.data;
+
 		setAllProduct(data);
 	};
 
@@ -29,6 +31,7 @@ const AdminZone = () => {
 			`${process.env.REACT_APP_GET_PRODUCTS_PAGINATION}?page=${pagiSetter}`
 		);
 		const data = await res.data;
+
 		setProduct(data);
 	};
 

@@ -1,0 +1,2416 @@
+openapi: 3.0.0
+info:
+  title: MART
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000
+tags:
+  - name: User
+  - name: Products
+paths:
+  /users/login:
+    post:
+      tags:
+        - User
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                username:
+                  type: string
+                  example: a
+                password:
+                  type: string
+                  example: a
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: http://localhost:3000
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Set-Cookie:
+              schema:
+                type: string
+                example: >-
+                  a=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzhkNGQ5ZDRmMmNkZmU5NzUzYTY3ZiIsInVzZXJuYW1lIjoiYSIsImVtYWlsIjoiYnl5YkBnbWFpbC5jb20iLCJyb2xlIjoic2VsbGVyIiwiaWF0IjoxNjgzNTQ2OTM2LCJleHAiOjE2ODM1NTA1MzZ9.JZ5Rtoaz0rf02wd6BnqJrCvLAD9_ie7xsN3lh0WLd9w;
+                  Max-Age=6000; Path=/; Expires=Mon, 08 May 2023 13:35:36 GMT;
+                  HttpOnly
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "42"
+            ETag:
+              schema:
+                type: string
+                example: W/"2a-FBhEny2O9o1KJ/zpfZ7+yFX9DCg"
+            Date:
+              schema:
+                type: string
+                example: Mon, 08 May 2023 11:55:36 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: "200"
+                message: Login success
+  /users/register:
+    post:
+      tags:
+        - User
+      summary: Register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                username:
+                  type: string
+                  example: rian
+                password:
+                  type: string
+                  example: rian12345
+                email:
+                  type: string
+                  example: rianhidayat@gmail.com
+                confirmPassword:
+                  type: string
+                  example: rian12345
+                role:
+                  type: string
+                  example: buyer
+      responses:
+        "201":
+          description: Created
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: http://localhost:3000
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "51"
+            ETag:
+              schema:
+                type: string
+                example: W/"33-Xme7g5bHCUHFYMd5D9ZhyUermhE"
+            Date:
+              schema:
+                type: string
+                example: Mon, 08 May 2023 11:56:59 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: "201"
+                message: User has been created!
+  /users/profile:
+    get:
+      tags:
+        - User
+      summary: Profile
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: http://localhost:3000
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "200"
+            ETag:
+              schema:
+                type: string
+                example: W/"c8-BI+BF810KXuuQLqO6zitpHuZvq0"
+            Date:
+              schema:
+                type: string
+                example: Mon, 08 May 2023 11:57:48 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: "200"
+                data:
+                  _id: 6438d4d9d4f2cdfe9753a67f
+                  username: a
+                  email: byyb@gmail.com
+                  role: seller
+                  createdAt: "2023-04-14T04:21:45.328Z"
+                  updatedAt: "2023-04-14T04:21:45.328Z"
+                  __v: 0
+  /users:
+    get:
+      tags:
+        - User
+      summary: Info All User
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: http://localhost:3000
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "1029"
+            ETag:
+              schema:
+                type: string
+                example: W/"405-4O7Qs+xRtI8KoaRha5RoGTvzqZY"
+            Date:
+              schema:
+                type: string
+                example: Mon, 08 May 2023 12:00:31 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - _id: 6438d4d9d4f2cdfe9753a67f
+                  username: a
+                  password: $2b$10$J65Lu8zMun9dJP7VtMnyrOjDNt9RkDFxwaaDMdizPsTUo2G.JQqtC
+                  email: byyb@gmail.com
+                  role: seller
+                  createdAt: "2023-04-14T04:21:45.328Z"
+                  updatedAt: "2023-04-14T04:21:45.328Z"
+                  __v: 0
+                - _id: 6438f0e0a2a558362d44c67c
+                  username: b
+                  password: $2b$10$Jc3Tix9r29Ajqa5M6hmF5e1k3TH.LHiKhrc3ifSuHw9gyGjHHoSka
+                  email: b@gmail.com
+                  role: buyer
+                  createdAt: "2023-04-14T06:21:20.465Z"
+                  updatedAt: "2023-04-14T06:21:20.465Z"
+                  __v: 0
+                - _id: 644dd89a8e9c1b39340fba75
+                  username: superadmin
+                  password: $2b$10$/jU2bySC8YS3zj9PRN5C7.KBGR8sEgdH1V7UUmG71d6OveLyH.C7e
+                  email: superadmin@gmail.com
+                  role: superadmin
+                  createdAt: "2023-04-30T02:55:22.703Z"
+                  updatedAt: "2023-04-30T02:55:22.703Z"
+                  __v: 0
+                - _id: 6458e38b6093b183c158d445
+                  username: rian
+                  password: $2b$10$xgz1twJhVS27ybSKg08JuehLBoJkcKSEbKTMEhlbdMnxipP8O1xLG
+                  email: rianhidayat@gmail.com
+                  role: buyer
+                  createdAt: "2023-05-08T11:56:59.878Z"
+                  updatedAt: "2023-05-08T11:56:59.878Z"
+                  __v: 0
+        "400":
+          description: Bad Request
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: http://localhost:3000
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "74"
+            ETag:
+              schema:
+                type: string
+                example: W/"4a-Vi4qccSfSeIgPjJg7Q8Xk9LENGE"
+            Date:
+              schema:
+                type: string
+                example: Mon, 08 May 2023 12:07:13 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: "400"
+                message: This account not authorize to delete any user
+  /products:
+    post:
+      tags:
+        - Products
+      summary: Add Product
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                product_name:
+                  type: string
+                  example: baju baru
+                product_price:
+                  type: integer
+                  example: "40000"
+                product_made:
+                  type: string
+                  example: Indo
+                product_image:
+                  type: string
+                  format: binary
+                desc:
+                  type: string
+                  example: >-
+                    95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter
+                    Print,V-Neck,Fashion Tees, The fabric is soft and has some
+                    stretch., Occasion: Casual/Office/Beach/School/Home/Street.
+                    Season: Spring,Summer,Autumn,Winter.
+                category:
+                  type: string
+                  example: female
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: http://localhost:3000
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "28"
+            ETag:
+              schema:
+                type: string
+                example: W/"1c-Ef6kcntVBH3rXXK4roL6sk8Z12A"
+            Date:
+              schema:
+                type: string
+                example: Fri, 05 May 2023 01:21:37 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: 200 - By superadmin
+                  value:
+                    message: Product added!
+                example-1:
+                  summary: 200 - By admin
+                  value:
+                    message: Product added!
+        "400":
+          description: Bad Request
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: http://localhost:3000
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "59"
+            ETag:
+              schema:
+                type: string
+                example: W/"3b-d9b7IJYNsx79udVWFH0kGI07DuY"
+            Date:
+              schema:
+                type: string
+                example: Fri, 05 May 2023 01:23:14 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: This account not authorize to add any product
+    get:
+      tags:
+        - Products
+      summary: Get All Products
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: http://localhost:3000
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "7242"
+            ETag:
+              schema:
+                type: string
+                example: W/"1c4a-W0QBZddWbCFvJoQeaPVbI/aqkqw"
+            Date:
+              schema:
+                type: string
+                example: Fri, 05 May 2023 01:24:45 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: 200 - All Products
+                  value:
+                    - _id: 6435898fa6f90676a7904f15
+                      product_name: Fjallraven - Foldsack No. 1 Backpack
+                      product_price: 200000
+                      product_made: USA
+                      product_image: images\1681230223863-1.jpg
+                      category: male
+                      desc: >-
+                        Your perfect pack for everyday use and walks in the
+                        forest. Stash your laptop (up to 15 inches) in the
+                        padded sleeve, your everyday
+                      createdAt: "2023-04-11T16:23:43.910Z"
+                      updatedAt: "2023-04-11T16:23:43.910Z"
+                      __v: 0
+                    - _id: 64358a07a6f90676a7904f17
+                      product_name: Mens Casual Premium Slim Fit T-Shirts
+                      product_price: 40000
+                      product_made: CANADA
+                      product_image: images\1681230343928-2.jpg
+                      category: male
+                      desc: >-
+                        Slim-fitting style, contrast raglan long sleeve,
+                        three-button henley placket, light weight & soft fabric
+                        for breathable and comfortable wearing. And Solid
+                        stitched shirts with round neck made for durability and
+                        a great fit for casual fashion wear and diehard baseball
+                        fans.
+                      createdAt: "2023-04-11T16:25:43.972Z"
+                      updatedAt: "2023-04-11T16:25:43.972Z"
+                      __v: 0
+                    - _id: 64358a5ca6f90676a7904f19
+                      product_name: Mens Cotton Jacket
+                      product_price: 98000
+                      product_made: INDONESIA
+                      product_image: images\1681230428278-3.jpg
+                      category: male
+                      desc: >-
+                        Great outerwear jackets for Spring/Autumn/Winter,
+                        suitable for many occasions, such as working, hiking,
+                        camping, mountain/rock climbing, cycling, traveling or
+                        other outdoors. Good gift choice for you or your family
+                        member. A warm hearted love to Father, husband or son in
+                        this thanksgiving or Christmas Day.
+                      createdAt: "2023-04-11T16:27:08.288Z"
+                      updatedAt: "2023-04-11T16:27:08.288Z"
+                      __v: 0
+                    - _id: 64358b03a6f90676a7904f1c
+                      product_name: Solid Gold Petite Micropave
+                      product_price: 30000
+                      product_made: INDONESIA
+                      product_image: images\1681230595287-5.jpg
+                      category: jewelery
+                      desc: >-
+                        Satisfaction Guaranteed. Return or exchange any order
+                        within 30 days.Designed and sold by Hafeez Center in the
+                        United States. Satisfaction Guaranteed. Return or
+                        exchange any order within 30 days.
+                      createdAt: "2023-04-11T16:29:55.330Z"
+                      updatedAt: "2023-04-11T16:29:55.330Z"
+                      __v: 0
+                    - _id: 64358b3ba6f90676a7904f1e
+                      product_name: White Gold Plated Princess
+                      product_price: 77000
+                      product_made: INDONESIA
+                      product_image: images\1681230651154-6.jpg
+                      category: jewelery
+                      desc: >-
+                        Classic Created Wedding Engagement Solitaire Diamond
+                        Promise Ring for Her. Gifts to spoil your love more for
+                        Engagement, Wedding, Anniversary, Valentine's Day
+                      createdAt: "2023-04-11T16:30:51.175Z"
+                      updatedAt: "2023-04-11T16:30:51.175Z"
+                      __v: 0
+                    - _id: 64358b85a6f90676a7904f20
+                      product_name: Pierced Owl Rose Gold Plated Stainless Steel Double
+                      product_price: 88000
+                      product_made: INDONESIA
+                      product_image: images\1681230725896-7.jpg
+                      category: jewelery
+                      desc: >-
+                        Rose Gold Plated Double Flared Tunnel Plug Earrings.
+                        Made of 316L Stainless Steel
+                      createdAt: "2023-04-11T16:32:05.928Z"
+                      updatedAt: "2023-04-11T16:32:05.928Z"
+                      __v: 0
+                    - _id: 64358c52a6f90676a7904f23
+                      product_name: Lock and Love Women's Removable Hoode
+                      product_price: 210000
+                      product_made: NEW YORK
+                      product_image: images\1681230930728-15.jpg
+                      category: female
+                      desc: >-
+                        100% POLYURETHANE(shell) 100% POLYESTER(lining) 75%
+                        POLYESTER 25% COTTON (SWEATER), Faux leather material
+                        for style and comfort / 2 pockets of front, 2-For-One
+                        Hooded denim style faux leather jacket
+                      createdAt: "2023-04-11T16:35:30.745Z"
+                      updatedAt: "2023-04-11T16:35:30.745Z"
+                      __v: 0
+                    - _id: 64358c8fa6f90676a7904f25
+                      product_name: Rain Jacket Women Windbreaker Striped Climbing Raincoats
+                      product_price: 175000
+                      product_made: NEW YORK
+                      product_image: images\1681230991176-16.jpg
+                      category: female
+                      desc: >-
+                        Lightweight perfet for trip or casual wear---Long sleeve
+                        with hooded, adjustable drawstring waist design. Button
+                        and zipper front closure raincoat, fully stripes Lined
+                        and The Raincoat has 2 side pockets are a good size to
+                        hold all kinds of things, it covers the hips, and the
+                        hood is generous but doesn't overdo it.Attached Cotton
+                        Lined Hood with Adjustable Drawstrings give it a real
+                        styled look.
+                      createdAt: "2023-04-11T16:36:31.189Z"
+                      updatedAt: "2023-04-11T16:36:31.189Z"
+                      __v: 0
+                    - _id: 64358cd0a6f90676a7904f27
+                      product_name: MBJ Women's Solid Short Sleeve Boat Neck V
+                      product_price: 161000
+                      product_made: CANADA
+                      product_image: images\1681231056684-17.jpg
+                      category: female
+                      desc: >-
+                        95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not
+                        Bleach, Lightweight fabric with great stretch for
+                        comfort, Ribbed on sleeves and neckline / Double
+                        stitching on bottom hem
+                      createdAt: "2023-04-11T16:37:36.694Z"
+                      updatedAt: "2023-04-11T16:37:36.694Z"
+                      __v: 0
+                    - _id: 64358d09a6f90676a7904f29
+                      product_name: Opna Women's Short Sleeve Moisture
+                      product_price: 90000
+                      product_made: RUSSIA
+                      product_image: images\1681231113382-18.jpg
+                      category: female
+                      desc: >-
+                        100% Polyester, Machine wash, 100% cationic polyester
+                        interlock, Machine Wash & Pre Shrunk for a Great Fit,
+                        Lightweight, roomy and highly breathable with moisture
+                        wicking fabric which helps to keep moisture away, Soft
+                        Lightweight Fabric with comfortable V-neck collar and a
+                        slimmer fit, delivers a sleek, more feminine silhouette
+                        and Added Comfort
+                      createdAt: "2023-04-11T16:38:33.400Z"
+                      updatedAt: "2023-04-11T16:38:33.400Z"
+                      __v: 0
+                    - _id: 643913f52627d12a52c71076
+                      product_name: Womens T Shirt Casual Cotton Short
+                      product_price: 40000
+                      product_made: RUSSIA
+                      product_image: images\1681462260875-19.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-04-14T08:51:01.856Z"
+                      updatedAt: "2023-04-14T08:51:01.856Z"
+                      __v: 0
+                    - _id: 643919de47414d8da6ebae22
+                      product_name: Womens T Shirt Casual Cotton Short
+                      product_price: 40000
+                      product_made: RUSSIA
+                      product_image: images\1681463774485-2.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-04-14T09:16:14.856Z"
+                      updatedAt: "2023-04-14T09:16:14.856Z"
+                      __v: 0
+                    - _id: 64545a21545147705d19972f
+                      product_name: baju
+                      product_price: 40000
+                      product_made: Indo
+                      product_image: images\1683249697871-7.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-05-05T01:21:37.913Z"
+                      updatedAt: "2023-05-05T01:21:37.913Z"
+                      __v: 0
+                    - _id: 64545a5b545147705d199732
+                      product_name: baju baru
+                      product_price: 40000
+                      product_made: Indo
+                      product_image: images\1683249755153-7.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-05-05T01:22:35.164Z"
+                      updatedAt: "2023-05-05T01:22:35.164Z"
+                      __v: 0
+                example-1:
+                  summary: 200 - All Products Pagination
+                  value:
+                    - _id: 6435898fa6f90676a7904f15
+                      product_name: Fjallraven - Foldsack No. 1 Backpack
+                      product_price: 200000
+                      product_made: USA
+                      product_image: images\1681230223863-1.jpg
+                      category: male
+                      desc: >-
+                        Your perfect pack for everyday use and walks in the
+                        forest. Stash your laptop (up to 15 inches) in the
+                        padded sleeve, your everyday
+                      createdAt: "2023-04-11T16:23:43.910Z"
+                      updatedAt: "2023-04-11T16:23:43.910Z"
+                      __v: 0
+                    - _id: 64358a07a6f90676a7904f17
+                      product_name: Mens Casual Premium Slim Fit T-Shirts
+                      product_price: 40000
+                      product_made: CANADA
+                      product_image: images\1681230343928-2.jpg
+                      category: male
+                      desc: >-
+                        Slim-fitting style, contrast raglan long sleeve,
+                        three-button henley placket, light weight & soft fabric
+                        for breathable and comfortable wearing. And Solid
+                        stitched shirts with round neck made for durability and
+                        a great fit for casual fashion wear and diehard baseball
+                        fans.
+                      createdAt: "2023-04-11T16:25:43.972Z"
+                      updatedAt: "2023-04-11T16:25:43.972Z"
+                      __v: 0
+                    - _id: 64358a5ca6f90676a7904f19
+                      product_name: Mens Cotton Jacket
+                      product_price: 98000
+                      product_made: INDONESIA
+                      product_image: images\1681230428278-3.jpg
+                      category: male
+                      desc: >-
+                        Great outerwear jackets for Spring/Autumn/Winter,
+                        suitable for many occasions, such as working, hiking,
+                        camping, mountain/rock climbing, cycling, traveling or
+                        other outdoors. Good gift choice for you or your family
+                        member. A warm hearted love to Father, husband or son in
+                        this thanksgiving or Christmas Day.
+                      createdAt: "2023-04-11T16:27:08.288Z"
+                      updatedAt: "2023-04-11T16:27:08.288Z"
+                      __v: 0
+                    - _id: 64358b03a6f90676a7904f1c
+                      product_name: Solid Gold Petite Micropave
+                      product_price: 30000
+                      product_made: INDONESIA
+                      product_image: images\1681230595287-5.jpg
+                      category: jewelery
+                      desc: >-
+                        Satisfaction Guaranteed. Return or exchange any order
+                        within 30 days.Designed and sold by Hafeez Center in the
+                        United States. Satisfaction Guaranteed. Return or
+                        exchange any order within 30 days.
+                      createdAt: "2023-04-11T16:29:55.330Z"
+                      updatedAt: "2023-04-11T16:29:55.330Z"
+                      __v: 0
+                    - _id: 64358b3ba6f90676a7904f1e
+                      product_name: White Gold Plated Princess
+                      product_price: 77000
+                      product_made: INDONESIA
+                      product_image: images\1681230651154-6.jpg
+                      category: jewelery
+                      desc: >-
+                        Classic Created Wedding Engagement Solitaire Diamond
+                        Promise Ring for Her. Gifts to spoil your love more for
+                        Engagement, Wedding, Anniversary, Valentine's Day
+                      createdAt: "2023-04-11T16:30:51.175Z"
+                      updatedAt: "2023-04-11T16:30:51.175Z"
+                      __v: 0
+  /images/1681231156383-19.jpg:
+    get:
+      tags:
+        - Products
+      summary: Get Image
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /products/filter-by/low-price:
+    get:
+      tags:
+        - Products
+      summary: Filter By Price
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: http://localhost:3000
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "4203"
+            ETag:
+              schema:
+                type: string
+                example: W/"106b-A+n4HtgQJjOtWJYSS9dcYEaKfX4"
+            Date:
+              schema:
+                type: string
+                example: Fri, 05 May 2023 01:26:20 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: 200 - High Price
+                  value:
+                    - _id: 6435898fa6f90676a7904f15
+                      product_name: Fjallraven - Foldsack No. 1 Backpack
+                      product_price: 200000
+                      product_made: USA
+                      product_image: images\1681230223863-1.jpg
+                      category: male
+                      desc: >-
+                        Your perfect pack for everyday use and walks in the
+                        forest. Stash your laptop (up to 15 inches) in the
+                        padded sleeve, your everyday
+                      createdAt: "2023-04-11T16:23:43.910Z"
+                      updatedAt: "2023-04-11T16:23:43.910Z"
+                      __v: 0
+                    - _id: 64358a5ca6f90676a7904f19
+                      product_name: Mens Cotton Jacket
+                      product_price: 98000
+                      product_made: INDONESIA
+                      product_image: images\1681230428278-3.jpg
+                      category: male
+                      desc: >-
+                        Great outerwear jackets for Spring/Autumn/Winter,
+                        suitable for many occasions, such as working, hiking,
+                        camping, mountain/rock climbing, cycling, traveling or
+                        other outdoors. Good gift choice for you or your family
+                        member. A warm hearted love to Father, husband or son in
+                        this thanksgiving or Christmas Day.
+                      createdAt: "2023-04-11T16:27:08.288Z"
+                      updatedAt: "2023-04-11T16:27:08.288Z"
+                      __v: 0
+                    - _id: 64358b3ba6f90676a7904f1e
+                      product_name: White Gold Plated Princess
+                      product_price: 77000
+                      product_made: INDONESIA
+                      product_image: images\1681230651154-6.jpg
+                      category: jewelery
+                      desc: >-
+                        Classic Created Wedding Engagement Solitaire Diamond
+                        Promise Ring for Her. Gifts to spoil your love more for
+                        Engagement, Wedding, Anniversary, Valentine's Day
+                      createdAt: "2023-04-11T16:30:51.175Z"
+                      updatedAt: "2023-04-11T16:30:51.175Z"
+                      __v: 0
+                    - _id: 64358b85a6f90676a7904f20
+                      product_name: Pierced Owl Rose Gold Plated Stainless Steel Double
+                      product_price: 88000
+                      product_made: INDONESIA
+                      product_image: images\1681230725896-7.jpg
+                      category: jewelery
+                      desc: >-
+                        Rose Gold Plated Double Flared Tunnel Plug Earrings.
+                        Made of 316L Stainless Steel
+                      createdAt: "2023-04-11T16:32:05.928Z"
+                      updatedAt: "2023-04-11T16:32:05.928Z"
+                      __v: 0
+                    - _id: 64358c52a6f90676a7904f23
+                      product_name: Lock and Love Women's Removable Hoode
+                      product_price: 210000
+                      product_made: NEW YORK
+                      product_image: images\1681230930728-15.jpg
+                      category: female
+                      desc: >-
+                        100% POLYURETHANE(shell) 100% POLYESTER(lining) 75%
+                        POLYESTER 25% COTTON (SWEATER), Faux leather material
+                        for style and comfort / 2 pockets of front, 2-For-One
+                        Hooded denim style faux leather jacket
+                      createdAt: "2023-04-11T16:35:30.745Z"
+                      updatedAt: "2023-04-11T16:35:30.745Z"
+                      __v: 0
+                    - _id: 64358c8fa6f90676a7904f25
+                      product_name: Rain Jacket Women Windbreaker Striped Climbing Raincoats
+                      product_price: 175000
+                      product_made: NEW YORK
+                      product_image: images\1681230991176-16.jpg
+                      category: female
+                      desc: >-
+                        Lightweight perfet for trip or casual wear---Long sleeve
+                        with hooded, adjustable drawstring waist design. Button
+                        and zipper front closure raincoat, fully stripes Lined
+                        and The Raincoat has 2 side pockets are a good size to
+                        hold all kinds of things, it covers the hips, and the
+                        hood is generous but doesn't overdo it.Attached Cotton
+                        Lined Hood with Adjustable Drawstrings give it a real
+                        styled look.
+                      createdAt: "2023-04-11T16:36:31.189Z"
+                      updatedAt: "2023-04-11T16:36:31.189Z"
+                      __v: 0
+                    - _id: 64358cd0a6f90676a7904f27
+                      product_name: MBJ Women's Solid Short Sleeve Boat Neck V
+                      product_price: 161000
+                      product_made: CANADA
+                      product_image: images\1681231056684-17.jpg
+                      category: female
+                      desc: >-
+                        95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not
+                        Bleach, Lightweight fabric with great stretch for
+                        comfort, Ribbed on sleeves and neckline / Double
+                        stitching on bottom hem
+                      createdAt: "2023-04-11T16:37:36.694Z"
+                      updatedAt: "2023-04-11T16:37:36.694Z"
+                      __v: 0
+                    - _id: 64358d09a6f90676a7904f29
+                      product_name: Opna Women's Short Sleeve Moisture
+                      product_price: 90000
+                      product_made: RUSSIA
+                      product_image: images\1681231113382-18.jpg
+                      category: female
+                      desc: >-
+                        100% Polyester, Machine wash, 100% cationic polyester
+                        interlock, Machine Wash & Pre Shrunk for a Great Fit,
+                        Lightweight, roomy and highly breathable with moisture
+                        wicking fabric which helps to keep moisture away, Soft
+                        Lightweight Fabric with comfortable V-neck collar and a
+                        slimmer fit, delivers a sleek, more feminine silhouette
+                        and Added Comfort
+                      createdAt: "2023-04-11T16:38:33.400Z"
+                      updatedAt: "2023-04-11T16:38:33.400Z"
+                      __v: 0
+                example-1:
+                  summary: 200 - Low Price
+                  value:
+                    - _id: 64358a07a6f90676a7904f17
+                      product_name: Mens Casual Premium Slim Fit T-Shirts
+                      product_price: 40000
+                      product_made: CANADA
+                      product_image: images\1681230343928-2.jpg
+                      category: male
+                      desc: >-
+                        Slim-fitting style, contrast raglan long sleeve,
+                        three-button henley placket, light weight & soft fabric
+                        for breathable and comfortable wearing. And Solid
+                        stitched shirts with round neck made for durability and
+                        a great fit for casual fashion wear and diehard baseball
+                        fans.
+                      createdAt: "2023-04-11T16:25:43.972Z"
+                      updatedAt: "2023-04-11T16:25:43.972Z"
+                      __v: 0
+                    - _id: 64358b03a6f90676a7904f1c
+                      product_name: Solid Gold Petite Micropave
+                      product_price: 30000
+                      product_made: INDONESIA
+                      product_image: images\1681230595287-5.jpg
+                      category: jewelery
+                      desc: >-
+                        Satisfaction Guaranteed. Return or exchange any order
+                        within 30 days.Designed and sold by Hafeez Center in the
+                        United States. Satisfaction Guaranteed. Return or
+                        exchange any order within 30 days.
+                      createdAt: "2023-04-11T16:29:55.330Z"
+                      updatedAt: "2023-04-11T16:29:55.330Z"
+                      __v: 0
+                    - _id: 643913f52627d12a52c71076
+                      product_name: Womens T Shirt Casual Cotton Short
+                      product_price: 40000
+                      product_made: RUSSIA
+                      product_image: images\1681462260875-19.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-04-14T08:51:01.856Z"
+                      updatedAt: "2023-04-14T08:51:01.856Z"
+                      __v: 0
+                    - _id: 643919de47414d8da6ebae22
+                      product_name: Womens T Shirt Casual Cotton Short
+                      product_price: 40000
+                      product_made: RUSSIA
+                      product_image: images\1681463774485-2.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-04-14T09:16:14.856Z"
+                      updatedAt: "2023-04-14T09:16:14.856Z"
+                      __v: 0
+                    - _id: 64545a21545147705d19972f
+                      product_name: baju
+                      product_price: 40000
+                      product_made: Indo
+                      product_image: images\1683249697871-7.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-05-05T01:21:37.913Z"
+                      updatedAt: "2023-05-05T01:21:37.913Z"
+                      __v: 0
+                    - _id: 64545a5b545147705d199732
+                      product_name: baju baru
+                      product_price: 40000
+                      product_made: Indo
+                      product_image: images\1683249755153-7.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-05-05T01:22:35.164Z"
+                      updatedAt: "2023-05-05T01:22:35.164Z"
+                      __v: 0
+  /products/filter-by/jewelery:
+    get:
+      tags:
+        - Products
+      summary: Filter By Category
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: http://localhost:3000
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "1581"
+            ETag:
+              schema:
+                type: string
+                example: W/"62d-dpndWNCOrG9eErYCEjxAkFhdLDI"
+            Date:
+              schema:
+                type: string
+                example: Fri, 05 May 2023 01:28:17 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: 200 - Male
+                  value:
+                    - _id: 6435898fa6f90676a7904f15
+                      product_name: Fjallraven - Foldsack No. 1 Backpack
+                      product_price: 200000
+                      product_made: USA
+                      product_image: images\1681230223863-1.jpg
+                      category: male
+                      desc: >-
+                        Your perfect pack for everyday use and walks in the
+                        forest. Stash your laptop (up to 15 inches) in the
+                        padded sleeve, your everyday
+                      createdAt: "2023-04-11T16:23:43.910Z"
+                      updatedAt: "2023-04-11T16:23:43.910Z"
+                      __v: 0
+                    - _id: 64358a07a6f90676a7904f17
+                      product_name: Mens Casual Premium Slim Fit T-Shirts
+                      product_price: 40000
+                      product_made: CANADA
+                      product_image: images\1681230343928-2.jpg
+                      category: male
+                      desc: >-
+                        Slim-fitting style, contrast raglan long sleeve,
+                        three-button henley placket, light weight & soft fabric
+                        for breathable and comfortable wearing. And Solid
+                        stitched shirts with round neck made for durability and
+                        a great fit for casual fashion wear and diehard baseball
+                        fans.
+                      createdAt: "2023-04-11T16:25:43.972Z"
+                      updatedAt: "2023-04-11T16:25:43.972Z"
+                      __v: 0
+                    - _id: 64358a5ca6f90676a7904f19
+                      product_name: Mens Cotton Jacket
+                      product_price: 98000
+                      product_made: INDONESIA
+                      product_image: images\1681230428278-3.jpg
+                      category: male
+                      desc: >-
+                        Great outerwear jackets for Spring/Autumn/Winter,
+                        suitable for many occasions, such as working, hiking,
+                        camping, mountain/rock climbing, cycling, traveling or
+                        other outdoors. Good gift choice for you or your family
+                        member. A warm hearted love to Father, husband or son in
+                        this thanksgiving or Christmas Day.
+                      createdAt: "2023-04-11T16:27:08.288Z"
+                      updatedAt: "2023-04-11T16:27:08.288Z"
+                      __v: 0
+                example-1:
+                  summary: 200 - Female
+                  value:
+                    - _id: 64358c52a6f90676a7904f23
+                      product_name: Lock and Love Women's Removable Hoode
+                      product_price: 210000
+                      product_made: NEW YORK
+                      product_image: images\1681230930728-15.jpg
+                      category: female
+                      desc: >-
+                        100% POLYURETHANE(shell) 100% POLYESTER(lining) 75%
+                        POLYESTER 25% COTTON (SWEATER), Faux leather material
+                        for style and comfort / 2 pockets of front, 2-For-One
+                        Hooded denim style faux leather jacket
+                      createdAt: "2023-04-11T16:35:30.745Z"
+                      updatedAt: "2023-04-11T16:35:30.745Z"
+                      __v: 0
+                    - _id: 64358c8fa6f90676a7904f25
+                      product_name: Rain Jacket Women Windbreaker Striped Climbing Raincoats
+                      product_price: 175000
+                      product_made: NEW YORK
+                      product_image: images\1681230991176-16.jpg
+                      category: female
+                      desc: >-
+                        Lightweight perfet for trip or casual wear---Long sleeve
+                        with hooded, adjustable drawstring waist design. Button
+                        and zipper front closure raincoat, fully stripes Lined
+                        and The Raincoat has 2 side pockets are a good size to
+                        hold all kinds of things, it covers the hips, and the
+                        hood is generous but doesn't overdo it.Attached Cotton
+                        Lined Hood with Adjustable Drawstrings give it a real
+                        styled look.
+                      createdAt: "2023-04-11T16:36:31.189Z"
+                      updatedAt: "2023-04-11T16:36:31.189Z"
+                      __v: 0
+                    - _id: 64358cd0a6f90676a7904f27
+                      product_name: MBJ Women's Solid Short Sleeve Boat Neck V
+                      product_price: 161000
+                      product_made: CANADA
+                      product_image: images\1681231056684-17.jpg
+                      category: female
+                      desc: >-
+                        95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not
+                        Bleach, Lightweight fabric with great stretch for
+                        comfort, Ribbed on sleeves and neckline / Double
+                        stitching on bottom hem
+                      createdAt: "2023-04-11T16:37:36.694Z"
+                      updatedAt: "2023-04-11T16:37:36.694Z"
+                      __v: 0
+                    - _id: 64358d09a6f90676a7904f29
+                      product_name: Opna Women's Short Sleeve Moisture
+                      product_price: 90000
+                      product_made: RUSSIA
+                      product_image: images\1681231113382-18.jpg
+                      category: female
+                      desc: >-
+                        100% Polyester, Machine wash, 100% cationic polyester
+                        interlock, Machine Wash & Pre Shrunk for a Great Fit,
+                        Lightweight, roomy and highly breathable with moisture
+                        wicking fabric which helps to keep moisture away, Soft
+                        Lightweight Fabric with comfortable V-neck collar and a
+                        slimmer fit, delivers a sleek, more feminine silhouette
+                        and Added Comfort
+                      createdAt: "2023-04-11T16:38:33.400Z"
+                      updatedAt: "2023-04-11T16:38:33.400Z"
+                      __v: 0
+                    - _id: 643913f52627d12a52c71076
+                      product_name: Womens T Shirt Casual Cotton Short
+                      product_price: 40000
+                      product_made: RUSSIA
+                      product_image: images\1681462260875-19.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-04-14T08:51:01.856Z"
+                      updatedAt: "2023-04-14T08:51:01.856Z"
+                      __v: 0
+                    - _id: 643919de47414d8da6ebae22
+                      product_name: Womens T Shirt Casual Cotton Short
+                      product_price: 40000
+                      product_made: RUSSIA
+                      product_image: images\1681463774485-2.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-04-14T09:16:14.856Z"
+                      updatedAt: "2023-04-14T09:16:14.856Z"
+                      __v: 0
+                    - _id: 64545a21545147705d19972f
+                      product_name: baju
+                      product_price: 40000
+                      product_made: Indo
+                      product_image: images\1683249697871-7.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-05-05T01:21:37.913Z"
+                      updatedAt: "2023-05-05T01:21:37.913Z"
+                      __v: 0
+                    - _id: 64545a5b545147705d199732
+                      product_name: baju baru
+                      product_price: 40000
+                      product_made: Indo
+                      product_image: images\1683249755153-7.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-05-05T01:22:35.164Z"
+                      updatedAt: "2023-05-05T01:22:35.164Z"
+                      __v: 0
+                example-2:
+                  summary: 200- Jewelery
+                  value:
+                    - _id: 64358b03a6f90676a7904f1c
+                      product_name: Solid Gold Petite Micropave
+                      product_price: 30000
+                      product_made: INDONESIA
+                      product_image: images\1681230595287-5.jpg
+                      category: jewelery
+                      desc: >-
+                        Satisfaction Guaranteed. Return or exchange any order
+                        within 30 days.Designed and sold by Hafeez Center in the
+                        United States. Satisfaction Guaranteed. Return or
+                        exchange any order within 30 days.
+                      createdAt: "2023-04-11T16:29:55.330Z"
+                      updatedAt: "2023-04-11T16:29:55.330Z"
+                      __v: 0
+                    - _id: 64358b3ba6f90676a7904f1e
+                      product_name: White Gold Plated Princess
+                      product_price: 77000
+                      product_made: INDONESIA
+                      product_image: images\1681230651154-6.jpg
+                      category: jewelery
+                      desc: >-
+                        Classic Created Wedding Engagement Solitaire Diamond
+                        Promise Ring for Her. Gifts to spoil your love more for
+                        Engagement, Wedding, Anniversary, Valentine's Day
+                      createdAt: "2023-04-11T16:30:51.175Z"
+                      updatedAt: "2023-04-11T16:30:51.175Z"
+                      __v: 0
+                    - _id: 64358b85a6f90676a7904f20
+                      product_name: Pierced Owl Rose Gold Plated Stainless Steel Double
+                      product_price: 88000
+                      product_made: INDONESIA
+                      product_image: images\1681230725896-7.jpg
+                      category: jewelery
+                      desc: >-
+                        Rose Gold Plated Double Flared Tunnel Plug Earrings.
+                        Made of 316L Stainless Steel
+                      createdAt: "2023-04-11T16:32:05.928Z"
+                      updatedAt: "2023-04-11T16:32:05.928Z"
+                      __v: 0
+  /products/edit/64545a5b545147705d199732:
+    patch:
+      tags:
+        - Products
+      summary: Edit Product
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                product_name:
+                  type: string
+                  example: baju baru ya
+                product_price:
+                  type: integer
+                  example: "2222"
+                product_made:
+                  type: string
+                  example: dada
+                product_image:
+                  type: string
+                  format: binary
+                desc:
+                  type: string
+                  example: dadada
+                category:
+                  type: string
+                  example: female
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: http://localhost:3000
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "17"
+            ETag:
+              schema:
+                type: string
+                example: W/"11-Pv/lkFTpEd2QJkoNLoJpC9Rp0JA"
+            Date:
+              schema:
+                type: string
+                example: Fri, 05 May 2023 01:36:44 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example: Product edited!
+        "400":
+          description: Bad Request
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: http://localhost:3000
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "59"
+            ETag:
+              schema:
+                type: string
+                example: W/"3b-d9b7IJYNsx79udVWFH0kGI07DuY"
+            Date:
+              schema:
+                type: string
+                example: Fri, 05 May 2023 01:35:41 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: This account not authorize to add any product
+  /products/search/query:
+    post:
+      tags:
+        - Products
+      summary: Filter By Query
+      requestBody:
+        content: {}
+      parameters:
+        - name: price
+          in: query
+          schema:
+            type: string
+          example: low
+        - name: category
+          in: query
+          schema:
+            type: string
+          example: male
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: http://localhost:3000
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "489"
+            ETag:
+              schema:
+                type: string
+                example: W/"1e9-UcoAoSYMHKolp+1YqLlh55Lm8Rs"
+            Date:
+              schema:
+                type: string
+                example: Fri, 05 May 2023 01:38:04 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: 200 - Low Price and Jewelery
+                  value:
+                    - _id: 64358b03a6f90676a7904f1c
+                      product_name: Solid Gold Petite Micropave
+                      product_price: 30000
+                      product_made: INDONESIA
+                      product_image: images\1681230595287-5.jpg
+                      category: jewelery
+                      desc: >-
+                        Satisfaction Guaranteed. Return or exchange any order
+                        within 30 days.Designed and sold by Hafeez Center in the
+                        United States. Satisfaction Guaranteed. Return or
+                        exchange any order within 30 days.
+                      createdAt: "2023-04-11T16:29:55.330Z"
+                      updatedAt: "2023-04-11T16:29:55.330Z"
+                      __v: 0
+                example-1:
+                  summary: 200 - High Price and Jewelery
+                  value:
+                    - _id: 64358b3ba6f90676a7904f1e
+                      product_name: White Gold Plated Princess
+                      product_price: 77000
+                      product_made: INDONESIA
+                      product_image: images\1681230651154-6.jpg
+                      category: jewelery
+                      desc: >-
+                        Classic Created Wedding Engagement Solitaire Diamond
+                        Promise Ring for Her. Gifts to spoil your love more for
+                        Engagement, Wedding, Anniversary, Valentine's Day
+                      createdAt: "2023-04-11T16:30:51.175Z"
+                      updatedAt: "2023-04-11T16:30:51.175Z"
+                      __v: 0
+                    - _id: 64358b85a6f90676a7904f20
+                      product_name: Pierced Owl Rose Gold Plated Stainless Steel Double
+                      product_price: 88000
+                      product_made: INDONESIA
+                      product_image: images\1681230725896-7.jpg
+                      category: jewelery
+                      desc: >-
+                        Rose Gold Plated Double Flared Tunnel Plug Earrings.
+                        Made of 316L Stainless Steel
+                      createdAt: "2023-04-11T16:32:05.928Z"
+                      updatedAt: "2023-04-11T16:32:05.928Z"
+                      __v: 0
+                example-2:
+                  summary: 200 - High Price and Male
+                  value:
+                    - _id: 6435898fa6f90676a7904f15
+                      product_name: Fjallraven - Foldsack No. 1 Backpack
+                      product_price: 200000
+                      product_made: USA
+                      product_image: images\1681230223863-1.jpg
+                      category: male
+                      desc: >-
+                        Your perfect pack for everyday use and walks in the
+                        forest. Stash your laptop (up to 15 inches) in the
+                        padded sleeve, your everyday
+                      createdAt: "2023-04-11T16:23:43.910Z"
+                      updatedAt: "2023-04-11T16:23:43.910Z"
+                      __v: 0
+                    - _id: 64358a5ca6f90676a7904f19
+                      product_name: Mens Cotton Jacket
+                      product_price: 98000
+                      product_made: INDONESIA
+                      product_image: images\1681230428278-3.jpg
+                      category: male
+                      desc: >-
+                        Great outerwear jackets for Spring/Autumn/Winter,
+                        suitable for many occasions, such as working, hiking,
+                        camping, mountain/rock climbing, cycling, traveling or
+                        other outdoors. Good gift choice for you or your family
+                        member. A warm hearted love to Father, husband or son in
+                        this thanksgiving or Christmas Day.
+                      createdAt: "2023-04-11T16:27:08.288Z"
+                      updatedAt: "2023-04-11T16:27:08.288Z"
+                      __v: 0
+                example-3:
+                  summary: 200 - High Price and Female
+                  value:
+                    - _id: 64358c52a6f90676a7904f23
+                      product_name: Lock and Love Women's Removable Hoode
+                      product_price: 210000
+                      product_made: NEW YORK
+                      product_image: images\1681230930728-15.jpg
+                      category: female
+                      desc: >-
+                        100% POLYURETHANE(shell) 100% POLYESTER(lining) 75%
+                        POLYESTER 25% COTTON (SWEATER), Faux leather material
+                        for style and comfort / 2 pockets of front, 2-For-One
+                        Hooded denim style faux leather jacket
+                      createdAt: "2023-04-11T16:35:30.745Z"
+                      updatedAt: "2023-04-11T16:35:30.745Z"
+                      __v: 0
+                    - _id: 64358c8fa6f90676a7904f25
+                      product_name: Rain Jacket Women Windbreaker Striped Climbing Raincoats
+                      product_price: 175000
+                      product_made: NEW YORK
+                      product_image: images\1681230991176-16.jpg
+                      category: female
+                      desc: >-
+                        Lightweight perfet for trip or casual wear---Long sleeve
+                        with hooded, adjustable drawstring waist design. Button
+                        and zipper front closure raincoat, fully stripes Lined
+                        and The Raincoat has 2 side pockets are a good size to
+                        hold all kinds of things, it covers the hips, and the
+                        hood is generous but doesn't overdo it.Attached Cotton
+                        Lined Hood with Adjustable Drawstrings give it a real
+                        styled look.
+                      createdAt: "2023-04-11T16:36:31.189Z"
+                      updatedAt: "2023-04-11T16:36:31.189Z"
+                      __v: 0
+                    - _id: 64358cd0a6f90676a7904f27
+                      product_name: MBJ Women's Solid Short Sleeve Boat Neck V
+                      product_price: 161000
+                      product_made: CANADA
+                      product_image: images\1681231056684-17.jpg
+                      category: female
+                      desc: >-
+                        95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not
+                        Bleach, Lightweight fabric with great stretch for
+                        comfort, Ribbed on sleeves and neckline / Double
+                        stitching on bottom hem
+                      createdAt: "2023-04-11T16:37:36.694Z"
+                      updatedAt: "2023-04-11T16:37:36.694Z"
+                      __v: 0
+                    - _id: 64358d09a6f90676a7904f29
+                      product_name: Opna Women's Short Sleeve Moisture
+                      product_price: 90000
+                      product_made: RUSSIA
+                      product_image: images\1681231113382-18.jpg
+                      category: female
+                      desc: >-
+                        100% Polyester, Machine wash, 100% cationic polyester
+                        interlock, Machine Wash & Pre Shrunk for a Great Fit,
+                        Lightweight, roomy and highly breathable with moisture
+                        wicking fabric which helps to keep moisture away, Soft
+                        Lightweight Fabric with comfortable V-neck collar and a
+                        slimmer fit, delivers a sleek, more feminine silhouette
+                        and Added Comfort
+                      createdAt: "2023-04-11T16:38:33.400Z"
+                      updatedAt: "2023-04-11T16:38:33.400Z"
+                      __v: 0
+                example-4:
+                  summary: 200 - Low Price and Female
+                  value:
+                    - _id: 643913f52627d12a52c71076
+                      product_name: Womens T Shirt Casual Cotton Short
+                      product_price: 40000
+                      product_made: RUSSIA
+                      product_image: images\1681462260875-19.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-04-14T08:51:01.856Z"
+                      updatedAt: "2023-04-14T08:51:01.856Z"
+                      __v: 0
+                    - _id: 643919de47414d8da6ebae22
+                      product_name: Womens T Shirt Casual Cotton Short
+                      product_price: 40000
+                      product_made: RUSSIA
+                      product_image: images\1681463774485-2.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-04-14T09:16:14.856Z"
+                      updatedAt: "2023-04-14T09:16:14.856Z"
+                      __v: 0
+                    - _id: 64545a21545147705d19972f
+                      product_name: baju
+                      product_price: 40000
+                      product_made: Indo
+                      product_image: images\1683249697871-7.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-05-05T01:21:37.913Z"
+                      updatedAt: "2023-05-05T01:21:37.913Z"
+                      __v: 0
+                    - _id: 64545a5b545147705d199732
+                      product_name: baju baru ya
+                      product_price: 2222
+                      product_made: dada
+                      product_image: images\1683250604473-4.jpg
+                      category: female
+                      desc: dadada
+                      createdAt: "2023-05-05T01:22:35.164Z"
+                      updatedAt: "2023-05-05T01:36:44.485Z"
+                      __v: 0
+                example-5:
+                  summary: 200- Low Price and Male
+                  value:
+                    - _id: 64358a07a6f90676a7904f17
+                      product_name: Mens Casual Premium Slim Fit T-Shirts
+                      product_price: 40000
+                      product_made: CANADA
+                      product_image: images\1681230343928-2.jpg
+                      category: male
+                      desc: >-
+                        Slim-fitting style, contrast raglan long sleeve,
+                        three-button henley placket, light weight & soft fabric
+                        for breathable and comfortable wearing. And Solid
+                        stitched shirts with round neck made for durability and
+                        a great fit for casual fashion wear and diehard baseball
+                        fans.
+                      createdAt: "2023-04-11T16:25:43.972Z"
+                      updatedAt: "2023-04-11T16:25:43.972Z"
+                      __v: 0
+  /products/search-product:
+    post:
+      tags:
+        - Products
+      summary: Search Product Name
+      requestBody:
+        content: {}
+      parameters:
+        - name: product_names
+          in: query
+          schema:
+            type: string
+          example: baj
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: http://localhost:3000
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "755"
+            ETag:
+              schema:
+                type: string
+                example: W/"2f3-8pW4j1gu93Q7T2OONSpMAS8CNa4"
+            Date:
+              schema:
+                type: string
+                example: Fri, 05 May 2023 01:43:21 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - _id: 64545a21545147705d19972f
+                  product_name: baju
+                  product_price: 40000
+                  product_made: Indo
+                  product_image: images\1683249697871-7.jpg
+                  category: female
+                  desc: >-
+                    95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter
+                    Print,V-Neck,Fashion Tees, The fabric is soft and has some
+                    stretch., Occasion: Casual/Office/Beach/School/Home/Street.
+                    Season: Spring,Summer,Autumn,Winter.
+                  createdAt: "2023-05-05T01:21:37.913Z"
+                  updatedAt: "2023-05-05T01:21:37.913Z"
+                  __v: 0
+                - _id: 64545a5b545147705d199732
+                  product_name: baju baru ya
+                  product_price: 2222
+                  product_made: dada
+                  product_image: images\1683250604473-4.jpg
+                  category: female
+                  desc: dadada
+                  createdAt: "2023-05-05T01:22:35.164Z"
+                  updatedAt: "2023-05-05T01:36:44.485Z"
+                  __v: 0
+  /products/delete/64545a21545147705d19972f:
+    delete:
+      tags:
+        - Products
+      summary: Delete Product
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: http://localhost:3000
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "30"
+            ETag:
+              schema:
+                type: string
+                example: W/"1e-OkPB2gvRutKjRhzD6OVslN+Y0z0"
+            Date:
+              schema:
+                type: string
+                example: Fri, 05 May 2023 01:45:18 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Product deleted!
+        "400":
+          description: Bad Request
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: http://localhost:3000
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "59"
+            ETag:
+              schema:
+                type: string
+                example: W/"3b-d9b7IJYNsx79udVWFH0kGI07DuY"
+            Date:
+              schema:
+                type: string
+                example: Fri, 05 May 2023 01:46:30 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: This account not authorize to add any product
+  /products/sort-by/desc:
+    get:
+      tags:
+        - Products
+      summary: Sort
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: http://localhost:3000
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Access-Control-Allow-Credentials:
+              schema:
+                type: boolean
+                example: "true"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "6759"
+            ETag:
+              schema:
+                type: string
+                example: W/"1a67-oewwfHSpYjbxIcLYQQsbk/Vza5I"
+            Date:
+              schema:
+                type: string
+                example: Fri, 05 May 2023 01:53:24 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: 200 - Ascending
+                  value:
+                    - _id: 6435898fa6f90676a7904f15
+                      product_name: Fjallraven - Foldsack No. 1 Backpack
+                      product_price: 200000
+                      product_made: USA
+                      product_image: images\1681230223863-1.jpg
+                      category: male
+                      desc: >-
+                        Your perfect pack for everyday use and walks in the
+                        forest. Stash your laptop (up to 15 inches) in the
+                        padded sleeve, your everyday
+                      createdAt: "2023-04-11T16:23:43.910Z"
+                      updatedAt: "2023-04-11T16:23:43.910Z"
+                      __v: 0
+                    - _id: 64358c52a6f90676a7904f23
+                      product_name: Lock and Love Women's Removable Hoode
+                      product_price: 210000
+                      product_made: NEW YORK
+                      product_image: images\1681230930728-15.jpg
+                      category: female
+                      desc: >-
+                        100% POLYURETHANE(shell) 100% POLYESTER(lining) 75%
+                        POLYESTER 25% COTTON (SWEATER), Faux leather material
+                        for style and comfort / 2 pockets of front, 2-For-One
+                        Hooded denim style faux leather jacket
+                      createdAt: "2023-04-11T16:35:30.745Z"
+                      updatedAt: "2023-04-11T16:35:30.745Z"
+                      __v: 0
+                    - _id: 64358cd0a6f90676a7904f27
+                      product_name: MBJ Women's Solid Short Sleeve Boat Neck V
+                      product_price: 161000
+                      product_made: CANADA
+                      product_image: images\1681231056684-17.jpg
+                      category: female
+                      desc: >-
+                        95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not
+                        Bleach, Lightweight fabric with great stretch for
+                        comfort, Ribbed on sleeves and neckline / Double
+                        stitching on bottom hem
+                      createdAt: "2023-04-11T16:37:36.694Z"
+                      updatedAt: "2023-04-11T16:37:36.694Z"
+                      __v: 0
+                    - _id: 64358a07a6f90676a7904f17
+                      product_name: Mens Casual Premium Slim Fit T-Shirts
+                      product_price: 40000
+                      product_made: CANADA
+                      product_image: images\1681230343928-2.jpg
+                      category: male
+                      desc: >-
+                        Slim-fitting style, contrast raglan long sleeve,
+                        three-button henley placket, light weight & soft fabric
+                        for breathable and comfortable wearing. And Solid
+                        stitched shirts with round neck made for durability and
+                        a great fit for casual fashion wear and diehard baseball
+                        fans.
+                      createdAt: "2023-04-11T16:25:43.972Z"
+                      updatedAt: "2023-04-11T16:25:43.972Z"
+                      __v: 0
+                    - _id: 64358a5ca6f90676a7904f19
+                      product_name: Mens Cotton Jacket
+                      product_price: 98000
+                      product_made: INDONESIA
+                      product_image: images\1681230428278-3.jpg
+                      category: male
+                      desc: >-
+                        Great outerwear jackets for Spring/Autumn/Winter,
+                        suitable for many occasions, such as working, hiking,
+                        camping, mountain/rock climbing, cycling, traveling or
+                        other outdoors. Good gift choice for you or your family
+                        member. A warm hearted love to Father, husband or son in
+                        this thanksgiving or Christmas Day.
+                      createdAt: "2023-04-11T16:27:08.288Z"
+                      updatedAt: "2023-04-11T16:27:08.288Z"
+                      __v: 0
+                    - _id: 64358d09a6f90676a7904f29
+                      product_name: Opna Women's Short Sleeve Moisture
+                      product_price: 90000
+                      product_made: RUSSIA
+                      product_image: images\1681231113382-18.jpg
+                      category: female
+                      desc: >-
+                        100% Polyester, Machine wash, 100% cationic polyester
+                        interlock, Machine Wash & Pre Shrunk for a Great Fit,
+                        Lightweight, roomy and highly breathable with moisture
+                        wicking fabric which helps to keep moisture away, Soft
+                        Lightweight Fabric with comfortable V-neck collar and a
+                        slimmer fit, delivers a sleek, more feminine silhouette
+                        and Added Comfort
+                      createdAt: "2023-04-11T16:38:33.400Z"
+                      updatedAt: "2023-04-11T16:38:33.400Z"
+                      __v: 0
+                    - _id: 64358b85a6f90676a7904f20
+                      product_name: Pierced Owl Rose Gold Plated Stainless Steel Double
+                      product_price: 88000
+                      product_made: INDONESIA
+                      product_image: images\1681230725896-7.jpg
+                      category: jewelery
+                      desc: >-
+                        Rose Gold Plated Double Flared Tunnel Plug Earrings.
+                        Made of 316L Stainless Steel
+                      createdAt: "2023-04-11T16:32:05.928Z"
+                      updatedAt: "2023-04-11T16:32:05.928Z"
+                      __v: 0
+                    - _id: 64358c8fa6f90676a7904f25
+                      product_name: Rain Jacket Women Windbreaker Striped Climbing Raincoats
+                      product_price: 175000
+                      product_made: NEW YORK
+                      product_image: images\1681230991176-16.jpg
+                      category: female
+                      desc: >-
+                        Lightweight perfet for trip or casual wear---Long sleeve
+                        with hooded, adjustable drawstring waist design. Button
+                        and zipper front closure raincoat, fully stripes Lined
+                        and The Raincoat has 2 side pockets are a good size to
+                        hold all kinds of things, it covers the hips, and the
+                        hood is generous but doesn't overdo it.Attached Cotton
+                        Lined Hood with Adjustable Drawstrings give it a real
+                        styled look.
+                      createdAt: "2023-04-11T16:36:31.189Z"
+                      updatedAt: "2023-04-11T16:36:31.189Z"
+                      __v: 0
+                    - _id: 64358b03a6f90676a7904f1c
+                      product_name: Solid Gold Petite Micropave
+                      product_price: 30000
+                      product_made: INDONESIA
+                      product_image: images\1681230595287-5.jpg
+                      category: jewelery
+                      desc: >-
+                        Satisfaction Guaranteed. Return or exchange any order
+                        within 30 days.Designed and sold by Hafeez Center in the
+                        United States. Satisfaction Guaranteed. Return or
+                        exchange any order within 30 days.
+                      createdAt: "2023-04-11T16:29:55.330Z"
+                      updatedAt: "2023-04-11T16:29:55.330Z"
+                      __v: 0
+                    - _id: 64358b3ba6f90676a7904f1e
+                      product_name: White Gold Plated Princess
+                      product_price: 77000
+                      product_made: INDONESIA
+                      product_image: images\1681230651154-6.jpg
+                      category: jewelery
+                      desc: >-
+                        Classic Created Wedding Engagement Solitaire Diamond
+                        Promise Ring for Her. Gifts to spoil your love more for
+                        Engagement, Wedding, Anniversary, Valentine's Day
+                      createdAt: "2023-04-11T16:30:51.175Z"
+                      updatedAt: "2023-04-11T16:30:51.175Z"
+                      __v: 0
+                    - _id: 643913f52627d12a52c71076
+                      product_name: Womens T Shirt Casual Cotton Short
+                      product_price: 40000
+                      product_made: RUSSIA
+                      product_image: images\1681462260875-19.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-04-14T08:51:01.856Z"
+                      updatedAt: "2023-04-14T08:51:01.856Z"
+                      __v: 0
+                    - _id: 643919de47414d8da6ebae22
+                      product_name: Womens T Shirt Casual Cotton Short
+                      product_price: 40000
+                      product_made: RUSSIA
+                      product_image: images\1681463774485-2.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-04-14T09:16:14.856Z"
+                      updatedAt: "2023-04-14T09:16:14.856Z"
+                      __v: 0
+                    - _id: 64545a21545147705d19972f
+                      product_name: baju
+                      product_price: 40000
+                      product_made: Indo
+                      product_image: images\1683249697871-7.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-05-05T01:21:37.913Z"
+                      updatedAt: "2023-05-05T01:21:37.913Z"
+                      __v: 0
+                example-1:
+                  summary: 200 - Descending
+                  value:
+                    - _id: 643913f52627d12a52c71076
+                      product_name: Womens T Shirt Casual Cotton Short
+                      product_price: 40000
+                      product_made: RUSSIA
+                      product_image: images\1681462260875-19.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-04-14T08:51:01.856Z"
+                      updatedAt: "2023-04-14T08:51:01.856Z"
+                      __v: 0
+                    - _id: 643919de47414d8da6ebae22
+                      product_name: Womens T Shirt Casual Cotton Short
+                      product_price: 40000
+                      product_made: RUSSIA
+                      product_image: images\1681463774485-2.jpg
+                      category: female
+                      desc: >-
+                        95%Cotton,5%Spandex, Features: Casual, Short Sleeve,
+                        Letter Print,V-Neck,Fashion Tees, The fabric is soft and
+                        has some stretch., Occasion:
+                        Casual/Office/Beach/School/Home/Street. Season:
+                        Spring,Summer,Autumn,Winter.
+                      createdAt: "2023-04-14T09:16:14.856Z"
+                      updatedAt: "2023-04-14T09:16:14.856Z"
+                      __v: 0
+                    - _id: 64358b3ba6f90676a7904f1e
+                      product_name: White Gold Plated Princess
+                      product_price: 77000
+                      product_made: INDONESIA
+                      product_image: images\1681230651154-6.jpg
+                      category: jewelery
+                      desc: >-
+                        Classic Created Wedding Engagement Solitaire Diamond
+                        Promise Ring for Her. Gifts to spoil your love more for
+                        Engagement, Wedding, Anniversary, Valentine's Day
+                      createdAt: "2023-04-11T16:30:51.175Z"
+                      updatedAt: "2023-04-11T16:30:51.175Z"
+                      __v: 0
+                    - _id: 64358b03a6f90676a7904f1c
+                      product_name: Solid Gold Petite Micropave
+                      product_price: 30000
+                      product_made: INDONESIA
+                      product_image: images\1681230595287-5.jpg
+                      category: jewelery
+                      desc: >-
+                        Satisfaction Guaranteed. Return or exchange any order
+                        within 30 days.Designed and sold by Hafeez Center in the
+                        United States. Satisfaction Guaranteed. Return or
+                        exchange any order within 30 days.
+                      createdAt: "2023-04-11T16:29:55.330Z"
+                      updatedAt: "2023-04-11T16:29:55.330Z"
+                      __v: 0
+                    - _id: 64358c8fa6f90676a7904f25
+                      product_name: Rain Jacket Women Windbreaker Striped Climbing Raincoats
+                      product_price: 175000
+                      product_made: NEW YORK
+                      product_image: images\1681230991176-16.jpg
+                      category: female
+                      desc: >-
+                        Lightweight perfet for trip or casual wear---Long sleeve
+                        with hooded, adjustable drawstring waist design. Button
+                        and zipper front closure raincoat, fully stripes Lined
+                        and The Raincoat has 2 side pockets are a good size to
+                        hold all kinds of things, it covers the hips, and the
+                        hood is generous but doesn't overdo it.Attached Cotton
+                        Lined Hood with Adjustable Drawstrings give it a real
+                        styled look.
+                      createdAt: "2023-04-11T16:36:31.189Z"
+                      updatedAt: "2023-04-11T16:36:31.189Z"
+                      __v: 0
+                    - _id: 64358b85a6f90676a7904f20
+                      product_name: Pierced Owl Rose Gold Plated Stainless Steel Double
+                      product_price: 88000
+                      product_made: INDONESIA
+                      product_image: images\1681230725896-7.jpg
+                      category: jewelery
+                      desc: >-
+                        Rose Gold Plated Double Flared Tunnel Plug Earrings.
+                        Made of 316L Stainless Steel
+                      createdAt: "2023-04-11T16:32:05.928Z"
+                      updatedAt: "2023-04-11T16:32:05.928Z"
+                      __v: 0
+                    - _id: 64358d09a6f90676a7904f29
+                      product_name: Opna Women's Short Sleeve Moisture
+                      product_price: 90000
+                      product_made: RUSSIA
+                      product_image: images\1681231113382-18.jpg
+                      category: female
+                      desc: >-
+                        100% Polyester, Machine wash, 100% cationic polyester
+                        interlock, Machine Wash & Pre Shrunk for a Great Fit,
+                        Lightweight, roomy and highly breathable with moisture
+                        wicking fabric which helps to keep moisture away, Soft
+                        Lightweight Fabric with comfortable V-neck collar and a
+                        slimmer fit, delivers a sleek, more feminine silhouette
+                        and Added Comfort
+                      createdAt: "2023-04-11T16:38:33.400Z"
+                      updatedAt: "2023-04-11T16:38:33.400Z"
+                      __v: 0
+                    - _id: 64358a5ca6f90676a7904f19
+                      product_name: Mens Cotton Jacket
+                      product_price: 98000
+                      product_made: INDONESIA
+                      product_image: images\1681230428278-3.jpg
+                      category: male
+                      desc: >-
+                        Great outerwear jackets for Spring/Autumn/Winter,
+                        suitable for many occasions, such as working, hiking,
+                        camping, mountain/rock climbing, cycling, traveling or
+                        other outdoors. Good gift choice for you or your family
+                        member. A warm hearted love to Father, husband or son in
+                        this thanksgiving or Christmas Day.
+                      createdAt: "2023-04-11T16:27:08.288Z"
+                      updatedAt: "2023-04-11T16:27:08.288Z"
+                      __v: 0
+                    - _id: 64358a07a6f90676a7904f17
+                      product_name: Mens Casual Premium Slim Fit T-Shirts
+                      product_price: 40000
+                      product_made: CANADA
+                      product_image: images\1681230343928-2.jpg
+                      category: male
+                      desc: >-
+                        Slim-fitting style, contrast raglan long sleeve,
+                        three-button henley placket, light weight & soft fabric
+                        for breathable and comfortable wearing. And Solid
+                        stitched shirts with round neck made for durability and
+                        a great fit for casual fashion wear and diehard baseball
+                        fans.
+                      createdAt: "2023-04-11T16:25:43.972Z"
+                      updatedAt: "2023-04-11T16:25:43.972Z"
+                      __v: 0
+                    - _id: 64358cd0a6f90676a7904f27
+                      product_name: MBJ Women's Solid Short Sleeve Boat Neck V
+                      product_price: 161000
+                      product_made: CANADA
+                      product_image: images\1681231056684-17.jpg
+                      category: female
+                      desc: >-
+                        95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not
+                        Bleach, Lightweight fabric with great stretch for
+                        comfort, Ribbed on sleeves and neckline / Double
+                        stitching on bottom hem
+                      createdAt: "2023-04-11T16:37:36.694Z"
+                      updatedAt: "2023-04-11T16:37:36.694Z"
+                      __v: 0
+                    - _id: 64358c52a6f90676a7904f23
+                      product_name: Lock and Love Women's Removable Hoode
+                      product_price: 210000
+                      product_made: NEW YORK
+                      product_image: images\1681230930728-15.jpg
+                      category: female
+                      desc: >-
+                        100% POLYURETHANE(shell) 100% POLYESTER(lining) 75%
+                        POLYESTER 25% COTTON (SWEATER), Faux leather material
+                        for style and comfort / 2 pockets of front, 2-For-One
+                        Hooded denim style faux leather jacket
+                      createdAt: "2023-04-11T16:35:30.745Z"
+                      updatedAt: "2023-04-11T16:35:30.745Z"
+                      __v: 0
+                    - _id: 6435898fa6f90676a7904f15
+                      product_name: Fjallraven - Foldsack No. 1 Backpack
+                      product_price: 200000
+                      product_made: USA
+                      product_image: images\1681230223863-1.jpg
+                      category: male
+                      desc: >-
+                        Your perfect pack for everyday use and walks in the
+                        forest. Stash your laptop (up to 15 inches) in the
+                        padded sleeve, your everyday
+                      createdAt: "2023-04-11T16:23:43.910Z"
+                      updatedAt: "2023-04-11T16:23:43.910Z"
+                      __v: 0

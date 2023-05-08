@@ -61,7 +61,8 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 			withCredentials: true,
 		});
 
-		const data = await res.data;
+		const data = await res.data.data;
+
 		setProduct(data);
 	};
 
@@ -69,7 +70,8 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 		const res = await axios.post(
 			`${process.env.REACT_APP_PRODUCTS_SEARCH}?product_names=${search}`
 		);
-		const data = await res.data;
+		const data = await res.data.data;
+
 		setProduct(data);
 	};
 
@@ -78,7 +80,8 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 			const res = await axios.get(`${process.env.REACT_APP_GET_USER}`, {
 				withCredentials: true,
 			});
-			const data = await res.data;
+			const data = await res.data.data;
+
 			setUser(data);
 		} catch (error: any) {
 			console.log(error.response.data);
@@ -105,7 +108,8 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 			const res = await axios.post(
 				`${process.env.REACT_APP_PRODUCTS_SEARCH_QUERY}?price=${price}&category=${category}`
 			);
-			const data = await res.data;
+			const data = await res.data.data;
+
 			setProduct(data);
 		} catch (error) {
 			console.log(error);
@@ -139,16 +143,14 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 	const handleRadio = async (val: React.ChangeEvent<HTMLInputElement>) => {
 		if (val.target.value === "az") {
-			const res = await axios.get(
-				"https://e-commerce-mern-api-nu.vercel.app/products/sort-by/asc"
-			);
-			const data = await res.data;
+			const res = await axios.get(`${process.env.REACT_APP_PRODUCTS_ASC}`);
+			const data = await res.data.data;
+
 			setProduct(data);
 		} else if (val.target.value === "za") {
-			const res = await axios.get(
-				"https://e-commerce-mern-api-nu.vercel.app/products/sort-by/desc"
-			);
-			const data = await res.data;
+			const res = await axios.get(`${process.env.REACT_APP_PRODUCTS_DSC}`);
+			const data = await res.data.data;
+
 			setProduct(data);
 		} else {
 			getProducts();

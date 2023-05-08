@@ -17,10 +17,11 @@ export const verifySuperAdmin = async (
 
 			const role = (user as IUser).role;
 
-			if (role === "buyer" || role === "admin")
-				return res
-					.status(400)
-					.json({ message: "This account not authorize to delete any user" });
+			if (role === "buyer" || role === "seller")
+				return res.status(400).json({
+					status: "400",
+					message: "This account not authorize to delete any user",
+				});
 
 			next();
 		});

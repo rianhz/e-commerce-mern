@@ -7,12 +7,15 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import { db } from "./config/db";
 import userRouter from "./routers/Users/userRouter";
+import swaggerUi from "swagger-ui-express";
+import fs from "fs";
+import YAML from "yaml";
 
 const app = express();
 
 app.use(
 	cors({
-		origin: process.env.BASE_URL,
+		origin: [`${process.env.BASE_URL}`, "http://localhost:5000/api-docs"],
 		credentials: true,
 		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 		allowedHeaders:
@@ -42,3 +45,8 @@ db.on("error", (err) => {
 db.once("open", () => {
 	console.log("MongoDB ready!");
 });
+
+const file = fs.readFileSync("./swagger.yaml", "utf8");
+const swaggerDocument = YAML.parse(file);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));

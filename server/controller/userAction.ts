@@ -159,7 +159,7 @@ export const refreshToken = async (
 export const getAllUsers = async (req: Request, res: Response) => {
 	try {
 		const users = await Users.find();
-		return res.json(users);
+		return res.status(200).json({ status: "200", data: users });
 	} catch (error: any) {
 		return res.status(404).json(error);
 	}

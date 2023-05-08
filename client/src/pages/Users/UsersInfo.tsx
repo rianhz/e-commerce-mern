@@ -25,7 +25,7 @@ const UsersInfo = () => {
 
 	const getUsers = async () => {
 		const res = await axios.get(`${process.env.REACT_APP_ALL_USERS}`);
-		const data = await res.data;
+		const data = await res.data.data;
 		setUsers(data);
 	};
 

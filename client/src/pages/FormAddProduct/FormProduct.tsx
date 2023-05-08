@@ -24,14 +24,24 @@ const FormProduct: React.FC = () => {
 		setAlertColor(color);
 		setTimeout(() => {
 			setAlertStatus(false);
-		}, 1000);
+		}, 1500);
+	};
+
+	const handleAlertSuccess = (status: boolean, text: string, color: string) => {
+		setAlertStatus(status);
+		setAlertText(text);
+		setAlertColor(color);
+		setTimeout(() => {
+			setAlertStatus(false);
+			navigate("/products");
+		}, 1500);
 	};
 
 	const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const target = e.target;
 
 		const file: File = (target.files as FileList)[0];
-
+		console.log(file);
 		setpImage(file);
 	};
 
@@ -39,26 +49,23 @@ const FormProduct: React.FC = () => {
 		e.preventDefault();
 
 		try {
-			const res = await axios
-				.post(
-					`${process.env.REACT_APP_ADD_PRODUCTS}`,
-					{
-						product_name: pname,
-						product_price: parseInt(price),
-						product_made: pmade,
-						product_image: pImage,
-						category: category,
-						desc: description,
-					},
-					{
-						headers: { "Content-Type": `multipart/form-data` },
-					}
-				)
-				.finally();
+			const res = await axios.post(
+				`${process.env.REACT_APP_ADD_PRODUCTS}`,
+				{
+					product_name: pname,
+					product_price: parseInt(price),
+					product_made: pmade,
+					product_image: pImage,
+					category: category,
+					desc: description,
+				},
+				{
+					headers: { "Content-Type": `multipart/form-data` },
+				}
+			);
 			const data = await res.data;
-			navigate("/products");
 
-			handleAlert(true, data.message, "success");
+			handleAlertSuccess(true, data.message, "success");
 
 			setPname("");
 			setPmade("");
@@ -78,13 +85,14 @@ const FormProduct: React.FC = () => {
 						className="m-auto border border-1 border-dark p-3 rounded"
 						onSubmit={handleSubmit}
 					>
-						<h2>Add Product</h2>
 						<Alert
 							variant={alertColor}
 							className={alertStatus ? "d-block" : "d-none"}
 						>
 							{alertText}
 						</Alert>
+						<h2>Add Product</h2>
+
 						<Form.Group className="mb-2 mt-3">
 							<Form.Control
 								type="text"
