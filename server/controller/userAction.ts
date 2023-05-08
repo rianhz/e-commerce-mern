@@ -80,8 +80,8 @@ export const loginUser = async (req: Request, res: Response) => {
 
 		res.cookie(String(user.username), token, {
 			path: "/",
-			sameSite: false,
-			httpOnly: true,
+			sameSite: "lax",
+			// httpOnly: true,
 			maxAge: 6000000,
 			secure: true,
 		});
