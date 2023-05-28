@@ -20,19 +20,15 @@ import {
 } from "@chakra-ui/react";
 import "./products.css";
 import { IProduct } from "../../product";
-import { IUser } from "../../user";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { addItem } from "../../features/cart/cartSlice";
+import jwt_decode from "jwt-decode";
+import { addUser } from "../../features/user/userSlice";
+import toast, { Toaster } from "react-hot-toast";
 
-axios.defaults.withCredentials = true;
-
-type PropsTypes = {
-	setUser: React.Dispatch<React.SetStateAction<IUser | undefined>>;
-	user: IUser | undefined;
-};
-
-const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
+const Products: React.FC = () => {
 	const navigate = useNavigate();
+
 	// main state
 	const [product, setProduct] = useState<IProduct[]>();
 	const [search, setSearch] = useState<string>("");
@@ -40,15 +36,12 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 	const [category, setCategory] = useState<string>("");
 	const [refresher, setRefresher] = useState<boolean>(false);
 	const [isSpin, setIsSpin] = useState<boolean>(false);
+	const token = useAppSelector((state) => state.user.token);
+	const user = useAppSelector((state) => state.user.user);
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		getUserInfo();
-
-		let interval = setInterval(() => {
-			refreshToken();
-		}, 6000000);
-
-		return () => clearInterval(interval);
 	}, []);
 
 	useEffect(() => {
@@ -59,11 +52,20 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 	const getProducts = async () => {
 		const res = await axios.get(`${process.env.REACT_APP_GET_PRODUCTS}`, {
 			withCredentials: true,
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
 		});
 
 		const data = await res.data.data;
-
 		setProduct(data);
+	};
+
+	const getUserInfo = async () => {
+		if (token === "" || token === undefined) return navigate("/sign-in");
+
+		const temp = jwt_decode(token);
+		dispatch(addUser(temp));
 	};
 
 	const handleSearchInput = async () => {
@@ -75,32 +77,6 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 		setProduct(data);
 	};
 
-	const getUserInfo = async () => {
-		try {
-			const res = await axios.get(`${process.env.REACT_APP_GET_USER}`, {
-				withCredentials: true,
-			});
-			const data = await res.data.data;
-
-			setUser(data);
-		} catch (error: any) {
-			console.log(error.response.data);
-			navigate("/sign-in");
-		}
-	};
-	const refreshToken = async () => {
-		try {
-			const res = await axios.get(`${process.env.REACT_APP_REFRESH_TOKEN}`, {
-				withCredentials: true,
-			});
-			const data = await res.data;
-			setUser(data);
-		} catch (error: any) {
-			console.log(error.response.data);
-
-			navigate("/sign-in");
-		}
-	};
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 
@@ -118,8 +94,12 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 
 	const handleDeleteProduct = async (e: number) => {
 		await axios
-			.delete(`${process.env.REACT_APP_PRODUCTS_DELETE}/${e}`)
-			.then((response) => console.log(response.data));
+			.delete(`${process.env.REACT_APP_PRODUCTS_DELETE}/${e}`, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			})
+			.then((response) => toast.success(response.data.message));
 
 		setRefresher(!refresher);
 	};
@@ -167,23 +147,22 @@ const Products: React.FC<PropsTypes> = ({ setUser, user }) => {
 		}
 	};
 
-	const dispatch = useAppDispatch();
-
 	return (
-		<Container className="contain">
+		<Container>
+			<Toaster />
 			<Row
 				style={{
 					boxShadow: "0 5px 15px -10px black",
 					borderRadius: "20px",
 					padding: "20px",
+					marginTop: "15px",
 				}}
-				className="mt-5"
 			>
 				<Col
 					lg={3}
 					md={12}
 					sm={12}
-					className="mt-lg-5 mt-md-3 mt-sm-3 d-flex align-items-center"
+					className="d-flex align-items-center justify-content-center"
 				>
 					<div className="radios" onChange={handleRadio}>
 						<Form.Check

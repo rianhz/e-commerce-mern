@@ -1,9 +1,10 @@
 import "./regis.css";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Toaster, toast } from "react-hot-toast";
 
 const RegisterUser: React.FC = () => {
 	const [username, setUsername] = useState<string>("");
@@ -12,25 +13,10 @@ const RegisterUser: React.FC = () => {
 	const [confirmPassword, setConfimPassword] = useState<string>("");
 	const [isAdmin, setIsAdmin] = useState<string>("");
 
-	const [alertStatus, setAlertStatus] = useState<boolean>(false);
-	const [alertText, setAlertText] = useState<string>("");
-	const [alertColor, setAlertColor] = useState<string>("");
-
 	const navigate = useNavigate();
-
-	const handleAlert = (status: boolean, text: string, color: string) => {
-		setAlertStatus(status);
-		setAlertText(text);
-		setAlertColor(color);
-		setTimeout(() => {
-			setAlertStatus(false);
-		}, 1500);
-	};
 
 	const handleAdmin = (e: React.ChangeEvent<HTMLInputElement>) => {
 		let val = e.target.value;
-
-		console.log(val);
 
 		setIsAdmin(val === "seller" ? "seller" : "buyer");
 	};
@@ -55,18 +41,20 @@ const RegisterUser: React.FC = () => {
 					}
 				)
 				.then((response) => {
-					handleAlert(true, response.data.message, "success");
+					toast.success(response.data.message);
+
 					setTimeout(() => {
 						navigate("/sign-in");
 					}, 1000);
+
+					setUsername("");
+					setPassword("");
+					setEmail("");
+					setConfimPassword("");
 				});
 		} catch (error: any) {
-			handleAlert(true, error.response.data.message, "danger");
+			toast.error(error.response.data.message);
 		}
-
-		setUsername("");
-		setPassword("");
-		setConfimPassword("");
 	};
 	return (
 		<div className="regis-container">
@@ -79,12 +67,7 @@ const RegisterUser: React.FC = () => {
 			>
 				<Form onSubmit={handleSubmit}>
 					<h2 className="text-uppercase text-center pb-3">sign up</h2>
-					<Alert
-						variant={alertColor}
-						className={alertStatus ? "d-block" : "d-none"}
-					>
-						{alertText}
-					</Alert>
+
 					<Form.Group className="mb-2">
 						<Form.Control
 							placeholder="Username"
@@ -135,7 +118,7 @@ const RegisterUser: React.FC = () => {
 						/>
 					</Form.Group>
 					<span id="acc">
-						Already have account? Sign in{" "}
+						Already have account? Sign in
 						<Link to="/sign-in" id="linkSign">
 							here
 						</Link>
@@ -145,6 +128,7 @@ const RegisterUser: React.FC = () => {
 					</Button>
 				</Form>
 			</motion.div>
+			<Toaster />
 		</div>
 	);
 };

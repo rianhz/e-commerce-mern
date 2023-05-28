@@ -1,34 +1,25 @@
-import { Alert, Button, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./login.css";
 import { motion } from "framer-motion";
+import { useAppDispatch } from "../../app/hooks";
+import { addToken } from "../../features/user/userSlice";
+import { Toaster, toast } from "react-hot-toast";
 
 const LoginUser: React.FC = () => {
 	const [username, setUsername] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 
-	const [alertStatus, setAlertStatus] = useState<boolean>(false);
-	const [alertText, setAlertText] = useState<string>("");
-	const [alertColor, setAlertColor] = useState<string>("");
-
-	const handleAlert = (status: boolean, text: string, color: string) => {
-		setAlertStatus(status);
-		setAlertText(text);
-		setAlertColor(color);
-		setTimeout(() => {
-			setAlertStatus(false);
-		}, 1200);
-	};
-
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
 	const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		try {
-			await axios.post(
+		await axios
+			.post(
 				`${process.env.REACT_APP_LOGIN}`,
 				{
 					username: username,
@@ -37,15 +28,19 @@ const LoginUser: React.FC = () => {
 				{
 					withCredentials: true,
 				}
-			);
-
-			navigate("/products");
-		} catch (error: any) {
-			handleAlert(true, error.response.data.message, "danger");
-		}
+			)
+			.then((data) => {
+				dispatch(addToken(data.data.token));
+				navigate("/products");
+			})
+			.catch((err: any) => {
+				toast.error(err.response.data.message);
+			});
 	};
+
 	return (
 		<div className="login-container">
+			<Toaster />
 			<motion.div
 				className="form-login-wrapper"
 				initial={{ opacity: 0, position: "absolute", top: "-400px" }}
@@ -55,12 +50,7 @@ const LoginUser: React.FC = () => {
 			>
 				<Form onSubmit={handleLogin}>
 					<h2 className="text-uppercase text-center pb-3">sign in</h2>
-					<Alert
-						variant={alertColor}
-						className={alertStatus ? "d-block" : "d-none"}
-					>
-						{alertText}
-					</Alert>
+
 					<Form.Group className="mb-2">
 						<Form.Control
 							placeholder="Username"

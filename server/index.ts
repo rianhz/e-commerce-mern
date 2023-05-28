@@ -1,6 +1,6 @@
 import * as dotenv from "dotenv";
 dotenv.config();
-import express, { NextFunction, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import productRouter from "./routers/Products/productsRouter";
 import path from "path";
@@ -15,7 +15,7 @@ const app = express();
 
 app.use(
 	cors({
-		origin: [`${process.env.BASE_URL}`, "http://localhost:5000/api-docs"],
+		origin: `${process.env.BASE_URL}`,
 		credentials: true,
 		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 		allowedHeaders:

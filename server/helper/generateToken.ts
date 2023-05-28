@@ -7,34 +7,10 @@ interface UserProps {
 	role?: string;
 }
 
-interface UserPropsRefresh {
-	id?: any;
-	username?: string;
-	email?: string;
-	role?: string;
-}
-
 export const generateToken = (user: UserProps) => {
 	const token = jwt.sign(
 		{
 			id: user?._id,
-			username: user?.username,
-			email: user?.email,
-			role: user?.role,
-		},
-		process.env.SECRET_KEY as string,
-		{
-			expiresIn: "1h",
-		}
-	);
-
-	return token;
-};
-
-export const generateTokenRefresh = (user: UserPropsRefresh) => {
-	const token = jwt.sign(
-		{
-			id: user?.id,
 			username: user?.username,
 			email: user?.email,
 			role: user?.role,

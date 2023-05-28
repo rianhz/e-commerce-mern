@@ -7,20 +7,18 @@ export const verifySuperAdmin = async (
 	res: Response,
 	next: NextFunction
 ) => {
-	const cookie = req.headers.cookie;
-	const token = cookie?.split("=")[1];
+	const token = req.headers.authorization?.split(" ")[1];
 
 	try {
 		jwt.verify(String(token), process.env.SECRET_KEY as string, (err, user) => {
-			if (err)
-				return res.status(400).json({ message: "User not found as seller" });
+			if (err) return res.status(400).json({ message: err.message });
 
 			const role = (user as IUser).role;
 
 			if (role === "buyer" || role === "seller")
 				return res.status(400).json({
 					status: "400",
-					message: "This account not authorize to delete any user",
+					message: "Unauthorize",
 				});
 
 			next();
@@ -35,13 +33,11 @@ export const verifyAdmin = async (
 	res: Response,
 	next: NextFunction
 ) => {
-	const cookie = req.headers.cookie;
-	const token = cookie?.split("=")[1];
+	const token = req.headers.authorization?.split(" ")[1];
 
 	try {
 		jwt.verify(String(token), process.env.SECRET_KEY as string, (err, user) => {
-			if (err)
-				return res.status(400).json({ message: "User not found as seller" });
+			if (err) return res.status(400).json({ message: err });
 
 			const role = (user as IUser).role;
 

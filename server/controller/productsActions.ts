@@ -49,7 +49,6 @@ export const editProduct = async (req: Request, res: Response) => {
 
 	const resCloud = await cloudinary.uploader.upload(product_image as string);
 
-	// Generate
 	const url = cloudinary.url(resCloud.public_id);
 
 	await Product.findOneAndUpdate(
@@ -100,7 +99,7 @@ export const addProduct = async (req: Request, res: Response) => {
 		// Generate
 		const url = cloudinary.url(resCloud.public_id);
 
-		await Product.create({
+		const product = await Product.create({
 			product_name,
 			product_price,
 			product_image: url,
@@ -109,7 +108,9 @@ export const addProduct = async (req: Request, res: Response) => {
 			desc,
 		});
 
-		res.status(201).json({ status: "201", message: "Product added!" });
+		res
+			.status(201)
+			.json({ status: "201", message: "Product added!", product: product });
 	} catch (error) {
 		res.status(500).json({ status: "500", message: "Server error" });
 	}

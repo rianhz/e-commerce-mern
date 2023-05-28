@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Alert, Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../app/hooks";
+import { Toaster, toast } from "react-hot-toast";
 
 const FormProduct: React.FC = () => {
 	const [pname, setPname] = useState<string>("");
@@ -13,35 +15,12 @@ const FormProduct: React.FC = () => {
 
 	const navigate = useNavigate();
 
-	// ALERT
-	const [alertStatus, setAlertStatus] = useState<boolean>(false);
-	const [alertText, setAlertText] = useState<string>("");
-	const [alertColor, setAlertColor] = useState<string>("");
-
-	const handleAlert = (status: boolean, text: string, color: string) => {
-		setAlertStatus(status);
-		setAlertText(text);
-		setAlertColor(color);
-		setTimeout(() => {
-			setAlertStatus(false);
-		}, 1500);
-	};
-
-	const handleAlertSuccess = (status: boolean, text: string, color: string) => {
-		setAlertStatus(status);
-		setAlertText(text);
-		setAlertColor(color);
-		setTimeout(() => {
-			setAlertStatus(false);
-			navigate("/products");
-		}, 1500);
-	};
+	const token = useAppSelector((state) => state.user.token);
 
 	const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const target = e.target;
 
 		const file: File = (target.files as FileList)[0];
-		console.log(file);
 		setpImage(file);
 	};
 
@@ -60,12 +39,19 @@ const FormProduct: React.FC = () => {
 					desc: description,
 				},
 				{
-					headers: { "Content-Type": `multipart/form-data` },
+					headers: {
+						"Content-Type": `multipart/form-data`,
+						Authorization: `Bearer ${token}`,
+					},
 				}
 			);
 			const data = await res.data;
 
-			handleAlertSuccess(true, data.message, "success");
+			toast.success(data.message);
+
+			setTimeout(() => {
+				navigate("/products");
+			}, 1000);
 
 			setPname("");
 			setPmade("");
@@ -74,23 +60,19 @@ const FormProduct: React.FC = () => {
 			setCategory("");
 			setDescription("");
 		} catch (error: any) {
-			handleAlert(true, error.response.data.message, "danger");
+			console.log(error);
+			toast.error(error.response.data.message);
 		}
 	};
 	return (
 		<Container>
+			<Toaster />
 			<Row>
 				<Col lg={6} md={8} sm={8} className="pt-5 mt-3 ps-2 pe-2 offset-md-2">
 					<Form
 						className="m-auto border border-1 border-dark p-3 rounded"
 						onSubmit={handleSubmit}
 					>
-						<Alert
-							variant={alertColor}
-							className={alertStatus ? "d-block" : "d-none"}
-						>
-							{alertText}
-						</Alert>
 						<h2>Add Product</h2>
 
 						<Form.Group className="mb-2 mt-3">

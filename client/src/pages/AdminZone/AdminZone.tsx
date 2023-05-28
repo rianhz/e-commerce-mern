@@ -2,17 +2,21 @@ import { useEffect, useState } from "react";
 import { Button, Col, Container, Row, Table } from "react-bootstrap";
 import { IProduct } from "../../product";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./admin.css";
 import ReactPaginate from "react-paginate";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-import { BsDatabaseDash } from "react-icons/bs";
+import { useAppSelector } from "../../app/hooks";
+import toast, { Toaster } from "react-hot-toast";
 
 const AdminZone = () => {
 	const [product, setProduct] = useState<IProduct[]>([]);
 	const [allProduct, setAllProduct] = useState<IProduct[]>([]);
 	const [pagiSetter, setPagiSetter] = useState<number>(1);
 	const [refresher, setRefresher] = useState<boolean>(false);
+
+	const token = useAppSelector((state) => state.user.token);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		getProducts();
@@ -41,14 +45,22 @@ const AdminZone = () => {
 
 	const handleDeleteProduct = async (e: number) => {
 		await axios
-			.delete(`${process.env.REACT_APP_PRODUCTS_DELETE}/${e}`)
-			.then((response) => console.log(response.data));
+			.delete(`${process.env.REACT_APP_PRODUCTS_DELETE}/${e}`, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			})
+			.then((response) => {
+				toast.success(response.data.message);
+				navigate("/products");
+			});
 
 		setRefresher(!refresher);
 	};
 
 	return (
 		<Container>
+			<Toaster />
 			<Row className="mt-5">
 				<Col className="table-rapper ">
 					<div className="d-flex justify-content-between align-items-center">

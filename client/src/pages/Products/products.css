@@ -49,7 +49,8 @@
 	display: flex;
 	gap: 15px;
 	justify-content: flex-start;
-	align-items: center;
+	align-items: center !important;
+	justify-content: center !important;
 }
 
 @media only screen and (max-width: 768px) {

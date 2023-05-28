@@ -2,26 +2,37 @@ import { NavLink } from "react-router-dom";
 import "./nav.css";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose, AiOutlineShoppingCart } from "react-icons/ai";
-import React from "react";
-import { IUser } from "../../user";
-import { useAppSelector } from "../../app/hooks";
+import React, { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import axios from "axios";
+import { logoutUser } from "../../features/user/userSlice";
 
 type PropsTypes = {
-	user: IUser | undefined;
-	handleLogout: () => void;
-	mobile: boolean;
-	setMobile: React.Dispatch<React.SetStateAction<boolean>>;
 	handleShowCart: () => void;
 };
 
-const Navigation: React.FC<PropsTypes> = ({
-	user,
-	handleLogout,
-	mobile,
-	setMobile,
-	handleShowCart,
-}) => {
+const Navigation: React.FC<PropsTypes> = ({ handleShowCart }) => {
+	const [mobile, setMobile] = useState<boolean>(false);
+	const token = useAppSelector((state) => state.user.token);
 	const cart = useAppSelector((state) => state.cart.cart);
+	const user = useAppSelector((state) => state.user.user);
+
+	const dispatch = useAppDispatch();
+
+	const handleLogout = async () => {
+		await axios
+			.post(`${process.env.REACT_APP_LOGOUT}`, "", {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			})
+			.then(() => {
+				dispatch(logoutUser());
+				setMobile(!mobile);
+			})
+			.catch((error) => console.log(error.response.data));
+	};
+
 	return (
 		<nav>
 			<NavLink to="/" id="brand">
@@ -68,7 +79,7 @@ const Navigation: React.FC<PropsTypes> = ({
 				</div>
 
 				<div className="nav-sign">
-					{user ? (
+					{user.username !== "" ? (
 						<div
 							style={{
 								display: "flex",

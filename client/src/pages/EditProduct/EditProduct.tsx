@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Alert, Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
+import { useAppSelector } from "../../app/hooks";
+import { Toaster, toast } from "react-hot-toast";
 
 const EditProduct = () => {
 	const params = useParams();
@@ -14,6 +16,8 @@ const EditProduct = () => {
 	const [category, setCategory] = useState<string>("");
 	const [description, setDescription] = useState<string>("");
 	const [pImage, setpImage] = useState<File | string>("");
+
+	const token = useAppSelector((state) => state.user.token);
 
 	useEffect(() => {
 		getProducts();
@@ -35,16 +39,15 @@ const EditProduct = () => {
 	};
 
 	const getProducts = async () => {
-		const res = await axios.get(`${process.env.REACT_APP_GET_PRODUCTS}/${id}`);
+		const res = await axios.post(`${process.env.REACT_APP_GET_PRODUCTS}/${id}`);
+		const data = await res.data.data[0];
 
-		const data = await res.data;
-
-		setPname(data[0].product_name);
-		setPrice(data[0].product_price);
-		setPmade(data[0].product_made);
-		setCategory(data[0].category);
-		setDescription(data[0].desc);
-		setpImage(data[0].product_image);
+		setPname(data.product_name);
+		setPrice(data.product_price);
+		setPmade(data.product_made);
+		setCategory(data.category);
+		setDescription(data.desc);
+		setpImage(data.product_image);
 	};
 
 	const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,32 +73,40 @@ const EditProduct = () => {
 					desc: description,
 				},
 				{
-					headers: { "Content-Type": `multipart/form-data` },
+					headers: {
+						"Content-Type": `multipart/form-data`,
+						Authorization: `Bearer ${token}`,
+					},
 				}
 			);
 			const data = await res.data;
-
-			handleAlert(true, data, "success");
+			toast.success(data);
+			setTimeout(() => {
+				navigate("/products");
+			}, 1000);
 		} catch (error: any) {
-			handleAlert(true, error.response.data.message, "danger");
+			toast.success(error.response.data.message);
 		}
 	};
 
 	return (
 		<Container>
+			<Toaster />
 			<Row>
-				<Col lg={6} md={8} sm={8} className="pt-5 mt-3 ps-2 pe-2 offset-md-2">
+				<Col
+					lg={12}
+					md={8}
+					sm={8}
+					className="pt-5 mt-3 ps-2 pe-2 d-flex justify-content-center align-items-center"
+				>
 					<Form
-						className="m-auto border border-1 border-dark p-3 rounded"
+						className="m-auto border border-1 border-dark p-3"
 						onSubmit={handleSubmit}
+						style={{
+							width: "500px",
+						}}
 					>
 						<h2>Edit Product</h2>
-						<Alert
-							variant={alertColor}
-							className={alertStatus ? "d-block" : "d-none"}
-						>
-							{alertText}
-						</Alert>
 						<Form.Group className="mb-2 mt-3">
 							<Form.Control
 								type="text"

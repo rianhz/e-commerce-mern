@@ -1,9 +1,7 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import * as bcrypt from "bcrypt";
 import { Users } from "../models/userModel";
-import jwt from "jsonwebtoken";
-import { IGetUserAuthInfoRequest } from "../middleware/verifyToken";
-import { generateToken, generateTokenRefresh } from "../helper/generateToken";
+import { generateToken } from "../helper/generateToken";
 
 export const registerUser = async (req: Request, res: Response) => {
 	try {
@@ -75,85 +73,14 @@ export const loginUser = async (req: Request, res: Response) => {
 
 		const token = generateToken(user);
 
-		if (req.cookies[`${user.username}`]) {
-			req.cookies[`${user.username}`] = "";
-		}
-
-		res.cookie(String(user.username), token, {
-			path: "/",
-			sameSite: false,
-			httpOnly: true,
-			maxAge: 6000000,
-		});
-
 		return res.status(200).send({
 			status: "200",
-			message: "Login success",
+			name: user.username,
+			token: token,
 		});
 	} catch (error: any) {
 		return res.status(400).json(error);
 	}
-};
-
-export const getProfile = async (req: Request, res: Response) => {
-	const username = (req as IGetUserAuthInfoRequest).username;
-
-	try {
-		const user = await Users.findOne({ username }, "-password");
-		return res.status(200).json({
-			status: "200",
-			data: user,
-		});
-	} catch (error: any) {
-		return res.status(404).json({
-			status: "404",
-			message: error,
-		});
-	}
-};
-
-export const refreshToken = async (
-	req: Request,
-	res: Response,
-	next: NextFunction
-) => {
-	const cookies = req.headers.cookie;
-	const token = cookies?.split("=")[1];
-
-	if (!token) {
-		return res.status(400).json({
-			status: "400",
-			message: "No Token! Failed to refresh token!",
-		});
-	}
-	jwt.verify(
-		String(token),
-		process.env.SECRET_KEY as string,
-		(err: any, user: any) => {
-			if (err) {
-				console.log(err);
-				return res.json(403).json({
-					status: "403",
-					message: "Authentication failed!",
-				});
-			}
-
-			res.clearCookie(`${user.username}`);
-			req.cookies[`${user.username}`];
-
-			const newToken = generateTokenRefresh(user);
-
-			res.cookie(String(user.username), newToken, {
-				path: "/",
-				sameSite: false,
-				httpOnly: true,
-				maxAge: 6000000,
-			});
-
-			(req as IGetUserAuthInfoRequest).username = user.username;
-			next();
-		}
-	);
 };
 
 export const getAllUsers = async (req: Request, res: Response) => {
@@ -166,32 +93,17 @@ export const getAllUsers = async (req: Request, res: Response) => {
 };
 
 export const logoutUser = async (req: Request, res: Response) => {
-	const cookies = req.headers.cookie;
-	const prevToken = cookies?.split("=")[1];
+	const bearer = req.headers.authorization;
+	const prevToken = bearer?.split(" ")[1];
 
-	if (!prevToken) {
+	if (prevToken === "" || prevToken === undefined)
 		return res
 			.status(400)
 			.json({ status: "400", message: "Couldn't find token" });
-	}
 
-	jwt.verify(
-		String(prevToken),
-		process.env.SECRET_KEY as string,
-		(err: any, user: any) => {
-			if (err) {
-				return res
-					.status(403)
-					.json({ status: "400", message: "Authentication failed" });
-			}
-
-			res.clearCookie(`${user.username}`);
-			req.cookies[`${user.username}`] = "";
-			return res
-				.status(200)
-				.json({ status: "200", message: "Successfully Logged Out" });
-		}
-	);
+	return res
+		.status(200)
+		.json({ status: "200", message: "Successfully Logged Out" });
 };
 
 export const deleteUser = async (req: Request, res: Response) => {
