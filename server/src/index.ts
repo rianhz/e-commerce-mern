@@ -45,8 +45,3 @@ db.on("error", (err) => {
 db.once("open", () => {
 	console.log("MongoDB ready!");
 });
-
-const file = fs.readFileSync("./swagger.yaml", "utf8");
-const swaggerDocument = YAML.parse(file);
-
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
