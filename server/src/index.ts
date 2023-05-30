@@ -7,6 +7,9 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import { db } from "./config/db";
 import userRouter from "./routers/Users/userRouter";
+import swaggerUi from "swagger-ui-express";
+import fs from "fs";
+import YAML from "yaml";
 
 const app = express();
 
@@ -34,3 +37,16 @@ app.get("/", (req: Request, res: Response) => {
 app.listen(5000, (): void => {
 	console.log("Server Running on port 5000");
 });
+
+db.on("error", (err) => {
+	console.log(err);
+});
+
+db.once("open", () => {
+	console.log("MongoDB ready!");
+});
+
+const file = fs.readFileSync("./swagger.yaml", "utf8");
+const swaggerDocument = YAML.parse(file);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
