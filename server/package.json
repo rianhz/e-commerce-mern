@@ -2,12 +2,12 @@
 	"name": "server",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.ts",
+	"main": "src/index.ts",
 	"scripts": {
-		"start": "ts-node index.ts",
+		"start": "ts-node src/index.ts",
 		"build": "tsc",
 		"lint": "eslint . --ext .ts",
-		"dev": "nodemon index.ts"
+		"dev": "nodemon src/index.ts"
 	},
 	"keywords": [],
 	"author": "",
