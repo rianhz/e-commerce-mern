@@ -35,9 +35,9 @@ const path_1 = __importDefault(require("path"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const db_1 = require("./config/db");
 const userRouter_1 = __importDefault(require("./routers/Users/userRouter"));
-const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
-const fs_1 = __importDefault(require("fs"));
-const yaml_1 = __importDefault(require("yaml"));
+// import swaggerUi from "swagger-ui-express";
+// import fs from "fs";
+// import YAML from "yaml";
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
     origin: [`${process.env.BASE_URL}`, `${process.env.BASE_URL_LOCAL}`],
@@ -63,7 +63,7 @@ db_1.db.on("error", (err) => {
 db_1.db.once("open", () => {
     console.log("MongoDB ready!");
 });
-const file = fs_1.default.readFileSync("./swagger.yaml", "utf8");
-const swaggerDocument = yaml_1.default.parse(file);
-app.use("/api-docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerDocument));
+// const file = fs.readFileSync("./swagger.yaml", "utf8");
+// const swaggerDocument = YAML.parse(file);
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //# sourceMappingURL=index.js.map
