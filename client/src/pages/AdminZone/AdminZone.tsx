@@ -89,7 +89,7 @@ const AdminZone = () => {
 									<tr key={i}>
 										<td>{el.product_name}</td>
 										<td>{el.product_price}</td>
-										<td className="d-flex gap-2 text-center">
+										<td className="d-flex gap-2 align-items-center justify-content-center tditems">
 											<Link to={`/edit-product/${el._id}`}>
 												<Button>Edit</Button>
 											</Link>

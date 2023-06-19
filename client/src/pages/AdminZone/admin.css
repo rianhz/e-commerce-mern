@@ -7,15 +7,16 @@
 .pagination {
 	position: absolute;
 	width: 100%;
-	top: 72%;
+	bottom: 0;
 	left: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 .table-rapper {
-	height: 75vh;
+	padding-bottom: 50px;
 }
+
 .activePagi {
 	background-color: blue !important;
 }
