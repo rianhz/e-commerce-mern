@@ -13,15 +13,7 @@ import userRouter from "./routers/Users/userRouter";
 
 const app = express();
 
-app.use(
-	cors({
-		origin: [`${process.env.BASE_URL}`, `${process.env.BASE_URL_LOCAL}`],
-		credentials: true,
-		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-		allowedHeaders:
-			"Origin, X-Requested-With, Content-Type, Accept, Authorization",
-	})
-);
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
