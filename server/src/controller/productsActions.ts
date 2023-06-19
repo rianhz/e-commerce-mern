@@ -210,6 +210,7 @@ export const sortDESC = async (req: Request, res: Response) => {
 
 export const getProductInput = async (req: Request, res: Response) => {
 	const { product_names } = req.query;
+	console.log(product_names);
 
 	const product = await Product.find({
 		product_name: new RegExp(`${product_names}`, "i"),

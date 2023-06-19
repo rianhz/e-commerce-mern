@@ -69,9 +69,16 @@ const Products: React.FC = () => {
 	};
 
 	const handleSearchInput = async () => {
-		const res = await axios.post(
-			`${process.env.REACT_APP_PRODUCTS_SEARCH}?product_names=${search}`
+		const res = await axios.get(
+			`${process.env.REACT_APP_PRODUCTS_SEARCH}?product_names=${search}`,
+			{
+				withCredentials: true,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}
 		);
+
 		const data = await res.data.data;
 
 		setProduct(data);
