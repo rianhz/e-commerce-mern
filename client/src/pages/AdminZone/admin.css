@@ -5,15 +5,18 @@
 }
 
 .pagination {
-	position: absolute;
 	width: 100%;
-	bottom: 0;
-	left: 0;
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 .table-rapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+
 	padding-bottom: 50px;
 }
 
@@ -33,9 +36,5 @@ a#back {
 	.admin-container {
 		margin-top: 70px;
 		padding-top: 20px;
-	}
-
-	.pagination {
-		top: 81%;
 	}
 }
