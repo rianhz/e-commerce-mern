@@ -59,11 +59,11 @@ const AdminZone = () => {
 	};
 
 	return (
-		<Container>
+		<Container className="admin-container">
 			<Toaster />
 			<Row className="mt-5">
 				<Col className="table-rapper ">
-					<div className="d-flex justify-content-between align-items-center">
+					<div className="d-flex justify-content-between align-items-center mb-3">
 						<Link to="/add-product">
 							<Button>ADD PRODUCTS</Button>
 						</Link>

@@ -162,7 +162,8 @@ const Products: React.FC = () => {
 					boxShadow: "0 5px 15px -10px black",
 					borderRadius: "20px",
 					padding: "20px",
-					marginTop: "15px",
+					marginTop: "70px",
+					marginBottom: "15px",
 				}}
 			>
 				<Col
