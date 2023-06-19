@@ -9,8 +9,7 @@
 		"ts.check": "tsc --project tsconfig.json",
 		"add-build": "git add dist",
 		"lint": "eslint . --ext .ts",
-		"test": "echo \"Error: no test specified",
-		"dev": "nodemon src/index.ts"
+		"test": "echo \"Error: no test specified"
 	},
 	"pre-commit": [
 		"ts.check",

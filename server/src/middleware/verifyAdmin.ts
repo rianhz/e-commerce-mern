@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { IUser } from "../user";
+import { IUser } from "../types/user";
 
 export const verifySuperAdmin = async (
 	req: Request,
