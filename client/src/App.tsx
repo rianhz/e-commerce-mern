@@ -11,7 +11,7 @@ import EditProduct from "./pages/EditProduct/EditProduct";
 import MyCart from "./components/cart/MyCart";
 import AdminZone from "./pages/AdminZone/AdminZone";
 import UsersInfo from "./pages/Users/UsersInfo";
-import { useAppSelector } from "./app/hooks";
+import Footer from "./components/footer/Footer";
 
 function App() {
 	const [showCart, setShowCart] = useState<boolean>(false);
@@ -32,6 +32,7 @@ function App() {
 				<Route path="/users" element={<UsersInfo />} />
 				<Route path="/products" element={<Products />} />
 			</Routes>
+			<Footer />
 			<MyCart showCart={showCart} closeCart={closeCart} />
 		</div>
 	);

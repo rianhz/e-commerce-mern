@@ -94,6 +94,10 @@ a#logLink.active {
 }
 
 @media only screen and (max-width: 768px) {
+	nav {
+		position: fixed;
+		top: 0;
+	}
 	.nav-tab {
 		z-index: 30;
 		position: fixed;
@@ -138,7 +142,7 @@ a#logLink.active {
 		display: flex;
 		justify-content: flex-end;
 		align-items: flex-end !important;
-		position: fixed;
+		position: absolute;
 		top: 20px;
 		right: 30px;
 		align-items: center;

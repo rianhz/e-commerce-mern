@@ -3,11 +3,10 @@
 	background-position: center;
 	background-position-x: right;
 	background-position-y: -120px;
-
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 100vh;
-	padding: 40px;
+	height: 80vh;
+	padding: 0 40px;
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
@@ -63,5 +62,9 @@ a#shopnow:hover {
 	.landing-container h1,
 	.landing-container p {
 		text-align: center;
+	}
+
+	.landing-container h1 {
+		font-size: 39px;
 	}
 }

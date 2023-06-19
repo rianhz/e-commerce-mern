@@ -1,0 +1,8 @@
+.footer-wrapper {
+	height: 100%;
+	height: 89px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: aliceblue;
+}
